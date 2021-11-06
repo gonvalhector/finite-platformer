@@ -11,7 +11,7 @@ function love.load()
     push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, {fullscreen = true})
 end
 
-function.love.keypressed(key)
+function love.keypressed(key)
     if key == 'escape' then
         love.event.quit()
     end
