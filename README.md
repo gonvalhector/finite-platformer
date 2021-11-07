@@ -10,3 +10,4 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 ### Love2D Libraries:
 
 - **Resolution-handling library**: [Push](https://github.com/Ulydev/push) by [Ulydev](https://github.com/Ulydev).
+- **Class, GameState, Timer and Camera library**: [Hump](https://github.com/vrld/hump) by [Matthias Richter](https://github.com/vrld).
