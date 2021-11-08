@@ -13,7 +13,11 @@ camera = require 'lib/hump/camera'
 sti = require 'lib/sti'
 
 -- Gamestates
-require 'src/states/StartState'
+require 'src/states/title/StartState'
+require 'src/states/ExitConfirmState'
 
 -- Images
 titleLogo = love.graphics.newImage('graphics/title.png')
+
+-- Fonts
+messageFont = love.graphics.newFont('fonts/kenpixel_mini.ttf', 11)

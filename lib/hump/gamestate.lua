@@ -74,6 +74,10 @@ function GS.current()
 	return stack[#stack]
 end
 
+function GS.getStack()
+	return stack
+end
+
 -- XXX: don't overwrite love.errorhandler by default:
 --      this callback is different than the other callbacks
 --      (see http://love2d.org/wiki/love.errorhandler)

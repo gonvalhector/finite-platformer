@@ -19,17 +19,20 @@ end
 
 function love.update(dt)
 	currentState = gamestate.current()
+    currentStack = gamestate.getStack()
 end
 
 function love.keypressed(key)
     currentState:keypressed(key)
     if key == 'escape' then
-        love.event.quit()
+        gamestate.push(exitConfirm)
     end
 end
 
 function love.draw()
     push:start()
-    currentState:draw()
+    for i = 1, #currentStack do
+        currentStack[i]:draw()
+    end
     push:finish()
 end
