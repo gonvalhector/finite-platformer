@@ -11,3 +11,9 @@ gamestate = require 'lib/hump/gamestate'
 camera = require 'lib/hump/camera'
 -- Simple-Tiled-Implementation
 sti = require 'lib/sti'
+
+-- Gamestates
+require 'src/states/StartState'
+
+-- Images
+titleLogo = love.graphics.newImage('graphics/title.png')

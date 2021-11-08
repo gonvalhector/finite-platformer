@@ -13,21 +13,23 @@ function love.load()
         resizable = false,
         vsync = true
     })
+
+    gamestate.switch(start)
+end
+
+function love.update(dt)
+	currentState = gamestate.current()
 end
 
 function love.keypressed(key)
+    currentState:keypressed(key)
     if key == 'escape' then
         love.event.quit()
     end
 end
 
-function love.update(dt)
-	
-end
-
 function love.draw()
-	push:start()
-    love.graphics.clear(0, 0, 1, 1)
-    love.graphics.print('Finite Platformer', gameWidth / 2, gameHeight / 2)
+    push:start()
+    currentState:draw()
     push:finish()
 end
