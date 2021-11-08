@@ -14,18 +14,18 @@ function love.load()
         vsync = true
     })
 
-    gamestate.switch(start)
+    Gamestate.registerEvents{'update', 'keypressed'}
+    Gamestate.switch(Start)
 end
 
 function love.update(dt)
-	currentState = gamestate.current()
-    currentStack = gamestate.getStack()
+	currentState = Gamestate.current()
+    currentStack = Gamestate.getStack()
 end
 
 function love.keypressed(key)
-    currentState:keypressed(key)
-    if key == 'escape' then
-        gamestate.push(exitConfirm)
+    if key == 'escape' and currentState ~= ExitConfirm then
+        Gamestate.push(ExitConfirm)
     end
 end
 

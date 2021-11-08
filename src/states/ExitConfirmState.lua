@@ -1,12 +1,12 @@
 -- Exit confirmation state for when tne player hits the escape key
-exitConfirm = {}
+ExitConfirm = {}
 
-function exitConfirm:init()
+function ExitConfirm:init()
     exitMessage1 = love.graphics.newText(messageFont, "Are you sure you want to exit?")
     exitMessage2 = love.graphics.newText(messageFont, "Y = Yes | N = No")
 end
 
-function exitConfirm:draw()
+function ExitConfirm:draw()
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
     love.graphics.setColor(1, 1, 1, 1)
@@ -14,10 +14,10 @@ function exitConfirm:draw()
     love.graphics.draw(exitMessage2, gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, exitMessage2:getWidth() / 2, exitMessage2:getHeight() / 2)
 end
 
-function exitConfirm:keypressed(key)
+function ExitConfirm:keypressed(key)
     if key == 'y' then
         love.event.quit()
     elseif key == 'n' then
-        gamestate.pop()
+        Gamestate.pop()
     end
 end
