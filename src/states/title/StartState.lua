@@ -10,7 +10,16 @@ function Start:init()
     scrollDirection = 'right'
     -- Original background position
     titleScreenBackgroundX = 0
+end
 
+function Start:enter()
+    titleScreenMusic:setLooping(true)
+    titleScreenMusic:play()
+end
+
+function Start:resume()
+    titleScreenMusic:setLooping(true)
+    titleScreenMusic:play()
 end
 
 function Start:update(dt)

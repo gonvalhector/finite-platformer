@@ -21,3 +21,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 ### Graphics:
 
 - **Platformer Assets**: [Arcade Platformer Assets](https://opengameart.org/content/arcade-platformer-assets) by [GrafxKid](https://opengameart.org/users/grafxkid).
+
+### Music:
+
+- **Title Screen Music**: [Stage Select](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).

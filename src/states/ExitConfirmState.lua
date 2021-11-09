@@ -6,6 +6,10 @@ function ExitConfirm:init()
     exitMessage2 = love.graphics.newText(messageFont, "Y = Yes | N = No")
 end
 
+function ExitConfirm:enter()
+    love.audio.pause()
+end
+
 function ExitConfirm:draw()
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
