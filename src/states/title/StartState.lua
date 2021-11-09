@@ -28,14 +28,14 @@ function Start:update(dt)
     -- Scroll the tilemap in the current direction until it reaches the end, then switch
     for k, layer in pairs(titleMap.layers) do
         if scrollDirection == 'right' then
-            if layer.x <= -gameWidth then
-                scrollDirection = 'left'
+            if layer.x < -gameWidth + 1 then
+                Timer.after(1, function() scrollDirection = 'left' end)
             else
                 layer.x = layer.x - scrollSpeed * dt
             end
         elseif scrollDirection == 'left' then
             if layer.x > 0 then
-                scrollDirection = 'right'
+                Timer.after(1, function() scrollDirection = 'right' end)
             else
                 layer.x = layer.x + scrollSpeed * dt
             end

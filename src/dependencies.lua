@@ -36,3 +36,4 @@ titleScreenMusic:setVolume(0.25)
 -- Sounds
 exitConfirmInSound = love.audio.newSource('sounds/sfx_sounds_pause5_in.wav', 'static')
 exitConfirmOutSound = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static')
+menuCursorSound = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static')
