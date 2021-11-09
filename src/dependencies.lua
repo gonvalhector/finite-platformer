@@ -18,6 +18,7 @@ require 'src/states/ExitConfirmState'
 
 -- Images
 titleLogo = love.graphics.newImage('graphics/title.png')
+titleScreenBackground = love.graphics.newImage('graphics/titleScreenBackground.png')
 
 -- Fonts
 messageFont = love.graphics.newFont('fonts/kenpixel_mini.ttf', 11)

@@ -17,3 +17,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 
 - **Title font**: [Font.](https://opengameart.org/content/font-0) by [thekingphoenix](https://opengameart.org/users/thekingphoenix).
 - **Message font**: [KenPixel Mini](https://opengameart.org/content/kenney-fonts) by [Kenney](https://opengameart.org/users/kenney).
+
+### Graphics:
+
+- **Platformer Assets**: [Arcade Platformer Assets](https://opengameart.org/content/arcade-platformer-assets) by [GrafxKid](https://opengameart.org/users/grafxkid).
