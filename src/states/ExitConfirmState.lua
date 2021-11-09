@@ -8,6 +8,11 @@ end
 
 function ExitConfirm:enter()
     love.audio.pause()
+    exitConfirmInSound:play()
+end
+
+function ExitConfirm:leave()
+    exitConfirmOutSound:play()
 end
 
 function ExitConfirm:draw()
@@ -20,7 +25,8 @@ end
 
 function ExitConfirm:keypressed(key)
     if key == 'y' then
-        love.event.quit()
+        exitConfirmOutSound:play()
+        Timer.after(0.5, function() love.event.quit() end)
     elseif key == 'n' then
         Gamestate.pop()
     end

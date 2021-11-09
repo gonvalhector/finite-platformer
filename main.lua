@@ -21,6 +21,7 @@ end
 function love.update(dt)
 	currentState = Gamestate.current()
     currentStack = Gamestate.getStack()
+    Timer.update(dt)
 end
 
 function love.keypressed(key)

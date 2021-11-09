@@ -25,3 +25,9 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 ### Music:
 
 - **Title Screen Music**: [Stage Select](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+
+### Sounds:
+
+- **Exit Confirmation In**: [sfx_sounds_pause5_in.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+
+- **Exit Confirmation Out**: [sfx_sounds_pause5_out.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
