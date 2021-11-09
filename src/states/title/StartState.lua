@@ -10,6 +10,7 @@ function Start:init()
     scrollDirection = 'right'
     -- Original background position
     titleScreenBackgroundX = 0
+    titleScreenBackgroundMove = true
 end
 
 function Start:enter()
@@ -24,19 +25,25 @@ end
 
 function Start:update(dt)
     -- Scroll the background in the current direction until it reaches the end, then switch
-    titleScreenBackgroundX = scrollDirection == 'right' and titleScreenBackgroundX - scrollSpeed * dt or titleScreenBackgroundX + scrollSpeed * dt
+    if titleScreenBackgroundMove then
+        titleScreenBackgroundX = scrollDirection == 'right' and titleScreenBackgroundX - scrollSpeed * dt or titleScreenBackgroundX + scrollSpeed * dt
+    end
     -- Scroll the tilemap in the current direction until it reaches the end, then switch
     for k, layer in pairs(titleMap.layers) do
         if scrollDirection == 'right' then
             if layer.x < -gameWidth + 1 then
+                titleScreenBackgroundMove = false
                 Timer.after(1, function() scrollDirection = 'left' end)
             else
+                titleScreenBackgroundMove = true
                 layer.x = layer.x - scrollSpeed * dt
             end
         elseif scrollDirection == 'left' then
             if layer.x > 0 then
+                titleScreenBackgroundMove = false
                 Timer.after(1, function() scrollDirection = 'right' end)
             else
+                titleScreenBackgroundMove = true
                 layer.x = layer.x + scrollSpeed * dt
             end
         end
