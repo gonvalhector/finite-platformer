@@ -2,14 +2,18 @@
 ExitConfirm = {}
 
 function ExitConfirm:init()
+    -- Confirmation message
     exitMessage1 = love.graphics.newText(messageFont, "Are you sure you want to exit?")
+    -- Options to display
     exitMessage2 = love.graphics.newText(messageFont, "No")
     exitMessage3 = love.graphics.newText(messageFont, "Yes")
 end
 
 function ExitConfirm:enter()
+    -- Stop music and/or sounds from previous state
     love.audio.pause()
     exitConfirmInSound:play()
+    -- 'No' is selected as the default option
     optionSelected = 1
 end
 
@@ -23,11 +27,15 @@ function ExitConfirm:keypressed(key)
         optionSelected = optionSelected == 1 and 2 or 1
     end
     if key == 'enter' or key == 'return' then
+        -- If 'No' is selected
         if optionSelected == 1 then
+            -- Return to previous state
             Gamestate.pop()
+        -- If 'Yes' is selected
         else
+            -- Quit game
             exitConfirmOutSound:play()
-        Timer.after(0.5, function() love.event.quit() end)
+            Timer.after(0.5, function() love.event.quit() end)
         end
     end
 end

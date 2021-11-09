@@ -27,7 +27,7 @@ titleLogo = love.graphics.newImage('graphics/title.png')
 titleScreenBackground = love.graphics.newImage('graphics/titleScreenBackground.png')
 
 -- Fonts
-messageFont = love.graphics.newFont('fonts/kenpixel_mini.ttf', 11)
+messageFont = love.graphics.newFont('fonts/kenpixel_mini.ttf', 16)
 
 -- Music
 titleScreenMusic = love.audio.newSource('music/titleScreenMusic.ogg', 'static')
