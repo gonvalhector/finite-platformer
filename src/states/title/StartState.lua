@@ -3,77 +3,89 @@ Start = {}
 
 function Start:init()
     -- Load title screen map created in Tiled
-    titleMap = sti("levels/titleScreen.lua")
+    self.map = sti("levels/titleScreen.lua")
     -- Scrolling speed
-    scrollSpeed = 20
+    self.scroll = {}
+    self.scroll.speed = 20
     -- Start by scrolling the tilemap to the right
-    scrollDirection = 'right'
-    -- Original background position
-    titleScreenBackgroundX = 0
-    titleScreenBackgroundMove = true
+    self.scroll.direction = 'right'
+    -- Original background position and
+    self.background = {}
+    self.background.image = titleScreenBackground
+    self.background.x = 0
+    self.background.canMove = true
     -- Key prompt's initial alpha channel
-    keyPromptColor = {1, 1, 1, 1}
+    self.prompt = {}
+    self.prompt.image = keyPrompt
+    self.prompt.color = {1, 1, 1, 1}
+    -- Key prompt's sound
+    self.prompt.sound = menuSelectSound
+    -- Background music
+    self.music = titleScreenMusic
+    -- Title logo
+    self.logo = titleLogo
 end
 
 function Start:enter()
-    titleScreenMusic:setLooping(true)
-    titleScreenMusic:play()
+    self.music:setLooping(true)
+    self.music:play()
 end
 
 function Start:resume()
-    titleScreenMusic:setLooping(true)
-    titleScreenMusic:play()
+    self.music:setLooping(true)
+    self.music:play()
 end
 
 function Start:update(dt)
     -- Scroll the background in the current direction until it reaches the end, then switch
-    if titleScreenBackgroundMove then
-        titleScreenBackgroundX = scrollDirection == 'right' and titleScreenBackgroundX - scrollSpeed * dt or titleScreenBackgroundX + scrollSpeed * dt
+    if self.background.canMove then
+        self.background.x = self.scroll.direction == 'right' and self.background.x - self.scroll.speed * dt or self.background.x + self.scroll.speed * dt
     end
     -- Scroll the tilemap in the current direction until it reaches the end, then switch
-    for k, layer in pairs(titleMap.layers) do
-        if scrollDirection == 'right' then
+    for k, layer in pairs(self.map.layers) do
+        if self.scroll.direction == 'right' then
             if layer.x < -gameWidth + 1 then
-                titleScreenBackgroundMove = false
-                Timer.after(1, function() scrollDirection = 'left' end)
+                self.background.canMove = false
+                Timer.after(1, function() self.scroll.direction = 'left' end)
             else
-                titleScreenBackgroundMove = true
-                layer.x = layer.x - scrollSpeed * dt
+                self.background.canMove = true
+                layer.x = layer.x - self.scroll.speed * dt
             end
-        elseif scrollDirection == 'left' then
+        elseif self.scroll.direction == 'left' then
             if layer.x > 0 then
-                titleScreenBackgroundMove = false
-                Timer.after(1, function() scrollDirection = 'right' end)
+                self.background.canMove = false
+                Timer.after(1, function() self.scroll.direction = 'right' end)
             else
-                titleScreenBackgroundMove = true
-                layer.x = layer.x + scrollSpeed * dt
+                self.background.canMove = true
+                layer.x = layer.x + self.scroll.speed * dt
             end
         end
     end
     -- Tween key prompt's alpha channel
-    if keyPromptColor[4] == 0 then
-        Timer.tween(1, keyPromptColor, {1, 1, 1, 1})
-    elseif keyPromptColor[4] == 1 then
-        Timer.tween(1, keyPromptColor, {1, 1, 1, 0})
+    if self.prompt.color[4] == 0 then
+        Timer.tween(1, self.prompt.color, {1, 1, 1, 1})
+    elseif self.prompt.color[4] == 1 then
+        Timer.tween(1, self.prompt.color, {1, 1, 1, 0})
     end
 end
 
 function Start:keypressed(key)
     if key == 'enter' or key == 'return' then
-        keyPromptColor[4] = 1
-        menuSelectSound:play()
+        self.prompt.color[4] = 1
+        self.prompt.sound:play()
+        -- Change to the title menu state
         Timer.after(1, function() Gamestate.switch(TitleMenu) end)
     end
 end
 
 function Start:draw()
     -- Draw background
-    love.graphics.draw(titleScreenBackground, titleScreenBackgroundX, 0)
+    love.graphics.draw(self.background.image, self.background.x, 0)
     -- Draw tilemap
-    titleMap:draw()
+    self.map:draw()
     -- Draw title logo
-    love.graphics.draw(titleLogo, gameWidth / 2, gameHeight / 2, 0, 4, 4, titleLogo:getWidth() / 2, titleLogo:getHeight() / 2)
+    love.graphics.draw(self.logo, gameWidth / 2, gameHeight / 2, 0, 4, 4, self.logo:getWidth() / 2, self.logo:getHeight() / 2)
     -- Draw key prompt
-    love.graphics.setColor(keyPromptColor)
-    love.graphics.draw(keyPrompt, gameWidth / 2, gameHeight / 2, 0, 2, 2, keyPrompt:getWidth() / 2, keyPrompt:getHeight() / 2 - 20)
+    love.graphics.setColor(self.prompt.color)
+    love.graphics.draw(self.prompt.image, gameWidth / 2, gameHeight / 2, 0, 2, 2, self.prompt.image:getWidth() / 2, self.prompt.image:getHeight() / 2 - 20)
 end
