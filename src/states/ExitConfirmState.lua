@@ -41,8 +41,10 @@ function ExitConfirm:keypressed(key)
 end
 
 function ExitConfirm:draw()
+    -- Obscure the screen
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
+    -- Draw messages
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.draw(exitMessage1, gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, exitMessage1:getWidth() / 2, exitMessage1:getHeight() / 2)
     if optionSelected == 2 then

@@ -2,7 +2,7 @@ require 'src/dependencies'
 
 function love.load()
 	love.window.setTitle('Finite Platformer')
-    love.graphics.setDefaultFilter('nearest', 'nearest')
+    love.graphics.setDefaultFilter('nearest', 'nearest', 16)
     math.randomseed(os.time())
 
     gameWidth, gameHeight = 640, 360

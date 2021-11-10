@@ -11,6 +11,8 @@ function Start:init()
     -- Original background position
     titleScreenBackgroundX = 0
     titleScreenBackgroundMove = true
+    -- Key prompt's initial alpha channel
+    keyPromptColor = {1, 1, 1, 1}
 end
 
 function Start:enter()
@@ -48,6 +50,20 @@ function Start:update(dt)
             end
         end
     end
+    -- Tween key prompt's alpha channel
+    if keyPromptColor[4] == 0 then
+        Timer.tween(1, keyPromptColor, {1, 1, 1, 1})
+    elseif keyPromptColor[4] == 1 then
+        Timer.tween(1, keyPromptColor, {1, 1, 1, 0})
+    end
+end
+
+function Start:keypressed(key)
+    if key == 'enter' or key == 'return' then
+        keyPromptColor[4] = 1
+        menuSelectSound:play()
+        Timer.after(1, function() Gamestate.switch(TitleMenu) end)
+    end
 end
 
 function Start:draw()
@@ -56,5 +72,8 @@ function Start:draw()
     -- Draw tilemap
     titleMap:draw()
     -- Draw title logo
-    love.graphics.draw(titleLogo, gameWidth / 2, gameHeight / 2, 0, 1, 1, titleLogo:getWidth() / 2, titleLogo:getHeight() / 2)
+    love.graphics.draw(titleLogo, gameWidth / 2, gameHeight / 2, 0, 4, 4, titleLogo:getWidth() / 2, titleLogo:getHeight() / 2)
+    -- Draw key prompt
+    love.graphics.setColor(keyPromptColor)
+    love.graphics.draw(keyPrompt, gameWidth / 2, gameHeight / 2, 0, 2, 2, keyPrompt:getWidth() / 2, keyPrompt:getHeight() / 2 - 20)
 end
