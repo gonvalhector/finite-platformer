@@ -2,39 +2,46 @@
 ExitConfirm = {}
 
 function ExitConfirm:init()
+    self.messages = {}
     -- Confirmation message
-    exitMessage1 = love.graphics.newText(messageFont, "Are you sure you want to exit?")
+    self.messages[1] = love.graphics.newText(messageFont, "Are you sure you want to exit?")
     -- Options to display
-    exitMessage2 = love.graphics.newText(messageFont, "No")
-    exitMessage3 = love.graphics.newText(messageFont, "Yes")
+    self.messages[2] = love.graphics.newText(messageFont, "No")
+    self.messages[3] = love.graphics.newText(messageFont, "Yes")
+    -- Option currently selected
+    self.optionSelected = 1
+    -- State sounds
+    self.sounds = {}
+    self.sounds.enter = exitConfirmInSound
+    self.sounds.leave = exitConfirmOutSound
 end
 
 function ExitConfirm:enter()
     -- Stop music and/or sounds from previous state
     love.audio.pause()
-    exitConfirmInSound:play()
+    self.sounds.enter:play()
     -- 'No' is selected as the default option
-    optionSelected = 1
+    self.optionSelected = 1
 end
 
 function ExitConfirm:leave()
-    exitConfirmOutSound:play()
+    self.sounds.leave:play()
 end
 
 function ExitConfirm:keypressed(key)
     if key == 'a' or key == 'left' or key == 'right' or key == 'd' then
         menuCursorSound:play()
-        optionSelected = optionSelected == 1 and 2 or 1
+        self.optionSelected = self.optionSelected == 1 and 2 or 1
     end
     if key == 'enter' or key == 'return' then
         -- If 'No' is selected
-        if optionSelected == 1 then
+        if self.optionSelected == 1 then
             -- Return to previous state
             Gamestate.pop()
         -- If 'Yes' is selected
         else
             -- Quit game
-            exitConfirmOutSound:play()
+            self.sounds.leave:play()
             Timer.after(0.5, function() love.event.quit() end)
         end
     end
@@ -46,15 +53,15 @@ function ExitConfirm:draw()
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
     -- Draw messages
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(exitMessage1, gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, exitMessage1:getWidth() / 2, exitMessage1:getHeight() / 2)
-    if optionSelected == 2 then
+    love.graphics.draw(self.messages[1], gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, self.messages[1]:getWidth() / 2, self.messages[1]:getHeight() / 2)
+    if self.optionSelected == 2 then
         love.graphics.setColor(0.5, 0.5, 0.5, 1)
     end
-    love.graphics.draw(exitMessage2, gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, exitMessage2:getWidth() + 20, exitMessage2:getHeight() / 2)
-    if optionSelected == 1 then
+    love.graphics.draw(self.messages[2], gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, self.messages[2]:getWidth() + 20, self.messages[2]:getHeight() / 2)
+    if self.optionSelected == 1 then
         love.graphics.setColor(0.5, 0.5, 0.5, 1)
     else
         love.graphics.setColor(1, 1, 1, 1)
     end
-    love.graphics.draw(exitMessage3, gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, exitMessage3:getWidth() - 30, exitMessage3:getHeight() / 2)
+    love.graphics.draw(self.messages[3], gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, self.messages[3]:getWidth() - 30, self.messages[3]:getHeight() / 2)
 end
