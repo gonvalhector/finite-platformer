@@ -26,21 +26,30 @@ require 'src/states/ExitConfirmState'
 require 'src/util'
 
 -- Images
-titleLogo = love.graphics.newImage('graphics/title.png')
-titleLogo:setFilter('nearest', 'nearest', 16)
-titleScreenBackground = love.graphics.newImage('graphics/titleScreenBackground.png')
-keyPrompt = love.graphics.newImage('graphics/keyPrompt.png')
-keyPrompt:setFilter('nearest', 'nearest', 16)
+gImages = {
+    ['title-logo'] = love.graphics.newImage('graphics/title.png'),
+    ['title-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
+    ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png')
+}
+gImages['title-logo']:setFilter('nearest', 'nearest', 16)
+gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
+
 
 -- Fonts
-messageFont = love.graphics.newFont('fonts/kenpixel_mini.ttf', 16)
+gFonts = {
+    ['messages'] = love.graphics.newFont('fonts/kenpixel_mini.ttf', 16)
+}
 
 -- Music
-titleScreenMusic = love.audio.newSource('music/titleScreenMusic.ogg', 'static')
-titleScreenMusic:setVolume(0.25)
+gMusic = {
+    ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'static')
+}
+gMusic['title-music']:setVolume(0.25)
 
 -- Sounds
-exitConfirmInSound = love.audio.newSource('sounds/sfx_sounds_pause5_in.wav', 'static')
-exitConfirmOutSound = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static')
-menuCursorSound = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static')
-menuSelectSound = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static')
+gSounds = {
+    ['exit-confirm-in'] = love.audio.newSource('sounds/sfx_sounds_pause5_in.wav', 'static'),
+    ['exit-confirm-out'] = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static'),
+    ['menu-cursor'] = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static'),
+    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static')
+}

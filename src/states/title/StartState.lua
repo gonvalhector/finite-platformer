@@ -11,19 +11,19 @@ function Start:init()
     self.scroll.direction = 'right'
     -- Original background position and
     self.background = {}
-    self.background.image = titleScreenBackground
+    self.background.image = gImages['title-background']
     self.background.x = 0
     self.background.canMove = true
     -- Key prompt's initial alpha channel
     self.prompt = {}
-    self.prompt.image = keyPrompt
+    self.prompt.image = gImages['key-prompt']
     self.prompt.color = {1, 1, 1, 1}
     -- Key prompt's sound
-    self.prompt.sound = menuSelectSound
+    self.prompt.sound = gSounds['menu-select']
     -- Background music
-    self.music = titleScreenMusic
+    self.music = gMusic['title-music']
     -- Title logo
-    self.logo = titleLogo
+    self.logo = gImages['title-logo']
 end
 
 function Start:enter()

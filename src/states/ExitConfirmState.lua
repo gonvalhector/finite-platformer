@@ -4,17 +4,17 @@ ExitConfirm = {}
 function ExitConfirm:init()
     self.messages = {}
     -- Confirmation message
-    self.messages[1] = love.graphics.newText(messageFont, "Are you sure you want to exit?")
+    self.messages[1] = love.graphics.newText(gFonts['messages'], "Are you sure you want to exit?")
     -- Options to display
-    self.messages[2] = love.graphics.newText(messageFont, "No")
-    self.messages[3] = love.graphics.newText(messageFont, "Yes")
+    self.messages[2] = love.graphics.newText(gFonts['messages'], "No")
+    self.messages[3] = love.graphics.newText(gFonts['messages'], "Yes")
     -- Option currently selected
     self.optionSelected = 1
     -- State sounds
     self.sounds = {}
-    self.sounds.enter = exitConfirmInSound
-    self.sounds.leave = exitConfirmOutSound
-    self.sounds.cursor = menuCursorSound
+    self.sounds.enter = gSounds['exit-confirm-in']
+    self.sounds.leave = gSounds['exit-confirm-out']
+    self.sounds.cursor = gSounds['menu-cursor']
 end
 
 function ExitConfirm:enter()

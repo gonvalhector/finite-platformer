@@ -7,7 +7,7 @@ function TitleMenu:enter(def)
     self.background = def.background
     self.sounds = {}
     self.sounds.select = def.selectSound
-    self.sounds.cursor = menuCursorSound
+    self.sounds.cursor = gSounds['menu-cursor']
     self.logo = {}
     self.logo.image = def.logo
     self.logo.position = {}
