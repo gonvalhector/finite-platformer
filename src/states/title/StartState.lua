@@ -37,35 +37,13 @@ function Start:resume()
 end
 
 function Start:update(dt)
-    -- Scroll the background in the current direction until it reaches the end, then switch
-    if self.background.canMove then
-        self.background.x = self.scroll.direction == 'right' and self.background.x - self.scroll.speed * dt or self.background.x + self.scroll.speed * dt
-    end
-    -- Scroll the tilemap in the current direction until it reaches the end, then switch
-    for k, layer in pairs(self.map.layers) do
-        if self.scroll.direction == 'right' then
-            if layer.x < -gameWidth + 1 then
-                self.background.canMove = false
-                Timer.after(1, function() self.scroll.direction = 'left' end)
-            else
-                self.background.canMove = true
-                layer.x = layer.x - self.scroll.speed * dt
-            end
-        elseif self.scroll.direction == 'left' then
-            if layer.x > 0 then
-                self.background.canMove = false
-                Timer.after(1, function() self.scroll.direction = 'right' end)
-            else
-                self.background.canMove = true
-                layer.x = layer.x + self.scroll.speed * dt
-            end
-        end
-    end
+    -- Automatically scroll the title screen's background and map, right and left.
+    autoScroll(dt, self.map, self.background, self.scroll)
     -- Tween key prompt's alpha channel
     if self.prompt.color[4] == 0 then
-        Timer.tween(1, self.prompt.color, {1, 1, 1, 1})
+        handle = Timer.tween(1, self.prompt.color, {1, 1, 1, 1})
     elseif self.prompt.color[4] == 1 then
-        Timer.tween(1, self.prompt.color, {1, 1, 1, 0})
+        handle = Timer.tween(1, self.prompt.color, {1, 1, 1, 0})
     end
 end
 
@@ -74,7 +52,14 @@ function Start:keypressed(key)
         self.prompt.color[4] = 1
         self.prompt.sound:play()
         -- Change to the title menu state
-        Timer.after(1, function() Gamestate.switch(TitleMenu) end)
+        def = {
+            map = self.map,
+            scroll = self.scroll,
+            background = self.background,
+            logo = self.logo,
+            selectSound = self.prompt.sound
+        }
+        Timer.after(0.5, function() Gamestate.switch(TitleMenu, def) end)
     end
 end
 

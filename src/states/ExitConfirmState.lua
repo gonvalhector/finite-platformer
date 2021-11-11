@@ -14,6 +14,7 @@ function ExitConfirm:init()
     self.sounds = {}
     self.sounds.enter = exitConfirmInSound
     self.sounds.leave = exitConfirmOutSound
+    self.sounds.cursor = menuCursorSound
 end
 
 function ExitConfirm:enter()
@@ -30,7 +31,7 @@ end
 
 function ExitConfirm:keypressed(key)
     if key == 'a' or key == 'left' or key == 'right' or key == 'd' then
-        menuCursorSound:play()
+        self.sounds.cursor:play()
         self.optionSelected = self.optionSelected == 1 and 2 or 1
     end
     if key == 'enter' or key == 'return' then

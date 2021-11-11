@@ -22,6 +22,8 @@ require 'src/states/ExitConfirmState'
 --[[
     Dependencies
 ]]
+-- Helper functions and utilities
+require 'src/util'
 
 -- Images
 titleLogo = love.graphics.newImage('graphics/title.png')
