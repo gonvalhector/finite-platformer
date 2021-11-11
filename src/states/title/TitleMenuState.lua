@@ -6,6 +6,7 @@ function TitleMenu:enter(def)
     self.scroll = def.scroll
     self.background = def.background
 
+    self.music = def.music
     self.sounds = {}
     self.sounds.select = gSounds['menu-select']
     self.sounds.cursor = gSounds['menu-cursor']
@@ -40,11 +41,16 @@ function TitleMenu:enter(def)
     Timer.tween(0.5, self.logo.position, {x = gameWidth / 2, y = gameHeight / 4})
 end
 
+function TitleMenu:resume()
+    self.music:setLooping(true)
+    self.music:play()
+end
+
 function TitleMenu:update(dt)
     -- Automatically scroll the title screen's background and map, right and left.
     autoScroll(dt, self.map, self.background, self.scroll)
 
-    -- Reset option highlighted value to avoid going over or under
+    -- Reset option highlighted's value to avoid going over or under
     if self.options.selected > 3 then
         self.options.selected = 1
     end
