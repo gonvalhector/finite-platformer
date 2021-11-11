@@ -4,7 +4,7 @@ ExitConfirm = {}
 function ExitConfirm:init()
     self.messages = {}
     -- Confirmation message
-    self.messages[1] = love.graphics.newText(gFonts['messages'], "Are you sure you want to exit?")
+    self.messages[1] = love.graphics.newText(gFonts['messages'], "Are you sure you want to quit?")
     -- Options to display
     self.messages[2] = love.graphics.newText(gFonts['messages'], "No")
     self.messages[3] = love.graphics.newText(gFonts['messages'], "Yes")
@@ -54,15 +54,15 @@ function ExitConfirm:draw()
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
     -- Draw messages
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(self.messages[1], gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, self.messages[1]:getWidth() / 2, self.messages[1]:getHeight() / 2)
+    love.graphics.draw(self.messages[1], gameWidth / 2, gameHeight / 2, 0, 1, 1, self.messages[1]:getWidth() / 2, self.messages[1]:getHeight() / 2)
     if self.optionSelected == 2 then
         love.graphics.setColor(0.5, 0.5, 0.5, 1)
     end
-    love.graphics.draw(self.messages[2], gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, self.messages[2]:getWidth() + 20, self.messages[2]:getHeight() / 2)
+    love.graphics.draw(self.messages[2], gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, self.messages[2]:getWidth() + 20, self.messages[2]:getHeight() / 2)
     if self.optionSelected == 1 then
         love.graphics.setColor(0.5, 0.5, 0.5, 1)
     else
         love.graphics.setColor(1, 1, 1, 1)
     end
-    love.graphics.draw(self.messages[3], gameWidth / 2, gameHeight / 2 + 40, 0, 1, 1, self.messages[3]:getWidth() - 30, self.messages[3]:getHeight() / 2)
+    love.graphics.draw(self.messages[3], gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, self.messages[3]:getWidth() - 30, self.messages[3]:getHeight() / 2)
 end

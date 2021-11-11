@@ -29,11 +29,17 @@ require 'src/util'
 gImages = {
     ['title-logo'] = love.graphics.newImage('graphics/title.png'),
     ['title-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
+    ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png')
 }
 gImages['title-logo']:setFilter('nearest', 'nearest', 16)
 gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
+gImages['title-menu']:setFilter('nearest', 'nearest', 16)
 
+-- Frames
+gFrames = {
+    ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7)
+}
 
 -- Fonts
 gFonts = {

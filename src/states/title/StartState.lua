@@ -56,8 +56,7 @@ function Start:keypressed(key)
             map = self.map,
             scroll = self.scroll,
             background = self.background,
-            logo = self.logo,
-            selectSound = self.prompt.sound
+            logo = self.logo
         }
         Timer.after(0.5, function() Gamestate.switch(TitleMenu, def) end)
     end

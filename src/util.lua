@@ -56,5 +56,10 @@ function GenerateQuads(atlas, tilewidth, tileheight)
         end
     end
 
+    -- Custom feature
+    -- Adds width and height of the quads at the end of the table
+    table.insert(spritesheet, tilewidth)
+    table.insert(spritesheet, tileheight)
+
     return spritesheet
 end
