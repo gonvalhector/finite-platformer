@@ -28,13 +28,15 @@ require 'src/util'
 
 -- Classes
 require 'src/Level'
+require 'src/Player'
 
 -- Images
 gImages = {
     ['title-logo'] = love.graphics.newImage('graphics/title.png'),
     ['title-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
     ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
-    ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png')
+    ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
+    ['player'] = love.graphics.newImage('graphics/player.png')
 }
 gImages['title-logo']:setFilter('nearest', 'nearest', 16)
 gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
@@ -42,7 +44,8 @@ gImages['title-menu']:setFilter('nearest', 'nearest', 16)
 
 -- Frames
 gFrames = {
-    ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7)
+    ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
+    ['player'] = GenerateQuads(gImages['player'], 20, 19)
 }
 
 -- Fonts

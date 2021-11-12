@@ -8,8 +8,8 @@ return {
   height = 23,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 7,
-  nextobjectid = 2,
+  nextlayerid = 8,
+  nextobjectid = 4,
   properties = {},
   tilesets = {
     {
@@ -207,6 +207,47 @@ return {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      }
+    },
+    {
+      type = "objectgroup",
+      draworder = "topdown",
+      id = 7,
+      name = "Objects",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      parallaxx = 1,
+      parallaxy = 1,
+      properties = {},
+      objects = {
+        {
+          id = 2,
+          name = "Boundary_A",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 0,
+          y = 208,
+          width = 640,
+          height = 16,
+          rotation = 0,
+          visible = false,
+          properties = {}
+        },
+        {
+          id = 3,
+          name = "PlayerSpawn",
+          type = "SpawnPoint",
+          shape = "point",
+          x = 40,
+          y = 160,
+          width = 0,
+          height = 0,
+          rotation = 0,
+          visible = false,
+          properties = {}
+        }
       }
     }
   }
