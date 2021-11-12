@@ -3,7 +3,7 @@ Start = {}
 
 function Start:init()
     -- Load title screen map created in Tiled
-    self.map = sti("levels/titleScreen.lua")
+    self.map = STI("levels/titleScreen.lua")
     -- Scrolling speed
     self.scroll = {}
     self.scroll.speed = 20

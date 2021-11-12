@@ -12,7 +12,7 @@ Gamestate = require 'lib/hump/gamestate'
 Camera = require 'lib/hump/camera'
 
 -- Simple-Tiled-Implementation
-sti = require 'lib/sti'
+STI = require 'lib/sti'
 
 -- Gamestates
 require 'src/states/title/StartState'
@@ -25,6 +25,9 @@ require 'src/states/ExitConfirmState'
 ]]
 -- Helper functions and utilities
 require 'src/util'
+
+-- Classes
+require 'src/Level'
 
 -- Images
 gImages = {

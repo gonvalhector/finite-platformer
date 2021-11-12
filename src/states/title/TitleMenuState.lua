@@ -37,6 +37,9 @@ function TitleMenu:enter(def)
         height = gFrames['title-menu'][8]
     }
 
+    -- Play starts with Stage 1
+    self.lvl = 1
+
     -- Raise the logo
     Timer.tween(0.5, self.logo.position, {x = gameWidth / 2, y = gameHeight / 4})
 end
@@ -73,7 +76,10 @@ function TitleMenu:keypressed(key)
     if key == 'enter' or key == 'return' then
         self.sounds.select:play()
         if self.options.selected == 1 then
-            Timer.after(0.5, function() Gamestate.switch(Play) end)
+            def = {
+                lvl = self.lvl
+            }
+            Timer.after(0.5, function() Gamestate.switch(Play, def) end)
         elseif self.options.selected == 3 then
             Timer.after(0.5, function() Gamestate.push(ExitConfirm) end)
         end
