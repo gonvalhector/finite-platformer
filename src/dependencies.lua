@@ -17,6 +17,7 @@ sti = require 'lib/sti'
 -- Gamestates
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
+require 'src/states/game/PlayState'
 require 'src/states/ExitConfirmState'
 
 --[[

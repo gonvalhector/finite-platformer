@@ -72,8 +72,10 @@ function TitleMenu:keypressed(key)
     -- Select an option
     if key == 'enter' or key == 'return' then
         self.sounds.select:play()
-        if self.options.selected == 3 then
-            Gamestate.push(ExitConfirm)
+        if self.options.selected == 1 then
+            Timer.after(0.5, function() Gamestate.switch(Play) end)
+        elseif self.options.selected == 3 then
+            Timer.after(0.5, function() Gamestate.push(ExitConfirm) end)
         end
     end
 end
