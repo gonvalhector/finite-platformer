@@ -31,6 +31,9 @@ end
 function Player:update(dt)
     self.x, self.y = self.body:getPosition()
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
+    if self.linearVelocity.x > -1 and self.linearVelocity.x < 1 then
+        self.body:setLinearVelocity(0, self.linearVelocity.y)
+    end
 end
 
 function Player:draw()

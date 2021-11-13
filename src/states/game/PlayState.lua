@@ -5,6 +5,12 @@ function Play:enter(def)
     self.levelNumber = def.lvl
     self.level = Level(self.levelNumber)
 
+    self.lastX = 0
+
+    self.camera = Camera()
+    self.looksAtX = self.camera.x
+    self.looksAtY = self.camera.y
+
     self.jumpCount = 0
 
     love.audio.stop()
@@ -16,13 +22,23 @@ function Play:update(dt)
         if self.level.player.linearVelocity.x > -self.level.player.linearVelocity.max then
             self.level.player.body:applyForce(-self.level.player.force, 0)
         end
+        -- update camera to the left
+        if self.level.player.x >= gameWidth / 2 and self.level.player.x <= (self.level.map.width * 16) - (gameWidth / 2) then
+            self.looksAtX = self.looksAtX + (self.level.player.x - self.lastX)
+        end
     end
 
     if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
         if self.level.player.linearVelocity.x < self.level.player.linearVelocity.max then
             self.level.player.body:applyForce(self.level.player.force, 0)
         end
+        -- update camera to the right
+        if self.level.player.x >= gameWidth / 2 and self.level.player.x <= (self.level.map.width * 16) - (gameWidth / 2) then
+            self.looksAtX = self.looksAtX + (self.level.player.x - self.lastX)
+        end
     end
+    self.camera:lookAt(self.looksAtX, self.looksAtY)
+    self.lastX = self.level.player.x
 end
 
 function Play:keypressed(key)
@@ -35,8 +51,10 @@ function Play:keypressed(key)
 end
 
 function Play:draw()
-    self.level:draw()
+    self.camera:attach()
+        self.level:draw()
+    self.camera:detach()
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print("Mass: " .. tostring(self.level.player.mass), 0, 0)
-    love.graphics.print("Linear Velocity: " .. tostring(self.level.player.linearVelocity.x), 0, 20)
+    love.graphics.print("Player X: " .. tostring(self.level.player.x), 0, 0)
+    love.graphics.print("Player Last X: " .. tostring(self.lastX), 0, 20)
 end
