@@ -41,6 +41,7 @@ gImages = {
 gImages['title-logo']:setFilter('nearest', 'nearest', 16)
 gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
 gImages['title-menu']:setFilter('nearest', 'nearest', 16)
+gImages['player']:setFilter('nearest', 'nearest', 16)
 
 -- Frames
 gFrames = {

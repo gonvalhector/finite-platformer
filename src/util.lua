@@ -32,6 +32,7 @@ function autoScroll(dt, map, background, scroll)
     end
 end
 
+
 --[[
     Given an "atlas" (a texture with multiple sprites), as well as a
     width and a height for the tiles therein, split the texture into
@@ -62,4 +63,16 @@ function GenerateQuads(atlas, tilewidth, tileheight)
     table.insert(spritesheet, tileheight)
 
     return spritesheet
+end
+
+
+--[[
+    Defines the friction of a fixture given a type of surface.
+]]
+function newFriction(surfaceType)
+    local surfaces = {
+        ['Grass'] = 0.5,
+        ['Wood'] = 0.3
+    }
+    return surfaces[surfaceType]
 end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="4">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="6">
  <editorsettings>
   <export target="level1.lua" format="lua"/>
  </editorsettings>
@@ -115,9 +115,11 @@
 </data>
  </layer>
  <objectgroup id="7" name="Objects">
-  <object id="2" name="Boundary_A" type="Boundaries" x="0" y="208" width="640" height="16" visible="0"/>
-  <object id="3" name="PlayerSpawn" type="SpawnPoint" x="40" y="160" visible="0">
+  <object id="2" name="Grass" type="Boundaries" x="0" y="208" width="192" height="16" visible="0"/>
+  <object id="3" name="PlayerSpawn" type="SpawnPoint" x="40" y="208" visible="0">
    <point/>
   </object>
+  <object id="4" name="Grass" type="Boundaries" x="272" y="208" width="368" height="16" visible="0"/>
+  <object id="5" name="Wood" type="Boundaries" x="192" y="208" width="80" height="16" visible="0"/>
  </objectgroup>
 </map>

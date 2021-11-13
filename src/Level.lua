@@ -11,6 +11,7 @@ function Level:init(levelNumber)
     for k, object in pairs(self.map.objects) do
         if object.type == "Boundaries" then
             local boundary = {
+                type = object.name,
                 x = object.x, 
                 y = object.y, 
                 width = object.width, 
@@ -29,6 +30,11 @@ function Level:init(levelNumber)
         boundary.body = love.physics.newBody(self.world, boundary.x + ( boundary.width / 2), boundary.y + (boundary.height / 2), 'static')
         boundary.shape = love.physics.newRectangleShape(boundary.width, boundary.height)
         boundary.fixture = love.physics.newFixture(boundary.body, boundary.shape)
+        
+        local friction = newFriction(boundary.type)
+
+        boundary.fixture:setFriction(friction)
+        boundary.fixture:setUserData(boundary.type)
     end
 
     -- Player
@@ -43,10 +49,13 @@ end
 function Level:update(dt)
     self.map:update(dt)
     self.world:update(dt)
-    self.player:update(dt, self.world)
+    self.player:update(dt)
 end
 
 function Level:draw()
-    self.map:draw()
+    self.map:drawLayer(self.map.layers["Farground"])
+    self.map:drawLayer(self.map.layers["Background"])
+    self.map:drawLayer(self.map.layers["Midground"])
     self.player:draw()
+    self.map:drawLayer(self.map.layers["Foreground"])
 end

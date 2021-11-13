@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 8,
-  nextobjectid = 4,
+  nextobjectid = 6,
   properties = {},
   tilesets = {
     {
@@ -224,12 +224,12 @@ return {
       objects = {
         {
           id = 2,
-          name = "Boundary_A",
+          name = "Grass",
           type = "Boundaries",
           shape = "rectangle",
           x = 0,
           y = 208,
-          width = 640,
+          width = 192,
           height = 16,
           rotation = 0,
           visible = false,
@@ -241,9 +241,35 @@ return {
           type = "SpawnPoint",
           shape = "point",
           x = 40,
-          y = 160,
+          y = 208,
           width = 0,
           height = 0,
+          rotation = 0,
+          visible = false,
+          properties = {}
+        },
+        {
+          id = 4,
+          name = "Grass",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 272,
+          y = 208,
+          width = 368,
+          height = 16,
+          rotation = 0,
+          visible = false,
+          properties = {}
+        },
+        {
+          id = 5,
+          name = "Wood",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 192,
+          y = 208,
+          width = 80,
+          height = 16,
           rotation = 0,
           visible = false,
           properties = {}
