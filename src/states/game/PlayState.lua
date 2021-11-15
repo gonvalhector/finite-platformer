@@ -5,11 +5,7 @@ function Play:enter(def)
     self.levelNumber = def.lvl
     self.level = Level(self.levelNumber)
 
-    self.lastX = 0
-
     self.camera = Camera()
-    self.looksAtX = self.camera.x
-    self.looksAtY = self.camera.y
 
     self.jumpCount = 0
 
@@ -18,27 +14,16 @@ end
 
 function Play:update(dt)
     self.level:update(dt)
+    self.level.player.dx = 0
     if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
-        if self.level.player.linearVelocity.x > -self.level.player.linearVelocity.max then
-            self.level.player.body:applyForce(-self.level.player.force, 0)
-        end
-        -- update camera to the left
-        if self.level.player.x >= gameWidth / 2 and self.level.player.x <= (self.level.map.width * 16) - (gameWidth / 2) then
-            self.looksAtX = self.looksAtX + (self.level.player.x - self.lastX)
-        end
+        self.level.player.dx = math.floor(-self.level.player.speed * dt)
     end
 
     if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
-        if self.level.player.linearVelocity.x < self.level.player.linearVelocity.max then
-            self.level.player.body:applyForce(self.level.player.force, 0)
-        end
-        -- update camera to the right
-        if self.level.player.x >= gameWidth / 2 and self.level.player.x <= (self.level.map.width * 16) - (gameWidth / 2) then
-            self.looksAtX = self.looksAtX + (self.level.player.x - self.lastX)
-        end
+        self.level.player.dx = math.floor(self.level.player.speed * dt)
     end
-    --self.camera:lookAt(self.looksAtX, self.looksAtY)
-    self.lastX = self.level.player.x
+
+    self.level.player.body:setX(self.level.player.body:getX() + self.level.player.dx)
 end
 
 function Play:keypressed(key)
@@ -56,9 +41,8 @@ function Play:draw()
     self.camera:detach()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print("Player X: " .. tostring(self.level.player.x), 0, 0)
-    love.graphics.print("Player Last X: " .. tostring(self.lastX), 0, 20)
-    love.graphics.print("Camera X: " .. tostring(self.camera.x), 0, 40)
-    love.graphics.print("Camera Scale: " .. tostring(self.camera.scale), 0, 60)
+    love.graphics.print("Camera X: " .. tostring(self.camera.x), 0, 20)
+    love.graphics.print("Camera Scale: " .. tostring(self.camera.scale), 0, 40)
     love.graphics.setLineWidth(1)
     love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
 end

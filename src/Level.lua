@@ -3,7 +3,7 @@ Level = Class{}
 
 function Level:init(levelNumber)
     self.map = STI('levels/level' .. tostring(levelNumber) .. '.lua')
-    self.world = love.physics.newWorld(0, 300)
+    self.world = WF.newWorld(0, 300, true)
 
     -- Level boundaries and floors
     self.boundaries = {}
@@ -16,9 +16,7 @@ function Level:init(levelNumber)
                 y = object.y, 
                 width = object.width, 
                 height = object.height,
-                body = nil,
-                shape = nil,
-                fixture = nil
+                body = nil
             }
             table.insert(self.boundaries, boundary)
         elseif object.type == "SpawnPoint" and object.name == "PlayerSpawn" then
@@ -27,14 +25,12 @@ function Level:init(levelNumber)
     end
     
     for k, boundary in pairs(self.boundaries) do
-        boundary.body = love.physics.newBody(self.world, boundary.x + ( boundary.width / 2), boundary.y + (boundary.height / 2), 'static')
-        boundary.shape = love.physics.newRectangleShape(boundary.width, boundary.height)
-        boundary.fixture = love.physics.newFixture(boundary.body, boundary.shape)
+        boundary.body = self.world:newRectangleCollider(boundary.x, boundary.y, boundary.width, boundary.height)
+        boundary.body:setType('static')
         
         local friction = newFriction(boundary.type)
 
-        boundary.fixture:setFriction(friction)
-        boundary.fixture:setUserData(boundary.type)
+        boundary.body:setFriction(friction)
     end
 
     -- Player
@@ -58,4 +54,5 @@ function Level:draw()
     self.map:drawLayer(self.map.layers["Midground"])
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])
+    self.world:draw()
 end
