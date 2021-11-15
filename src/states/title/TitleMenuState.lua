@@ -42,11 +42,16 @@ function TitleMenu:enter(def)
 
     -- Raise the logo
     Timer.tween(0.5, self.logo.position, {x = gameWidth / 2, y = gameHeight / 4})
+
+    -- Flag for recognizing key input
+    self.canPressKey = true
 end
 
 function TitleMenu:resume()
     self.music:setLooping(true)
     self.music:play()
+    -- Flag for recognizing key input
+    self.canPressKey = true
 end
 
 function TitleMenu:update(dt)
@@ -73,15 +78,20 @@ function TitleMenu:keypressed(key)
     end
 
     -- Select an option
-    if key == 'enter' or key == 'return' then
-        self.sounds.select:play()
-        if self.options.selected == 1 then
-            def = {
-                lvl = self.lvl
-            }
-            Timer.after(0.5, function() Gamestate.switch(Play, def) end)
-        elseif self.options.selected == 3 then
-            Timer.after(0.5, function() Gamestate.push(ExitConfirm) end)
+    if self.canPressKey then
+        if key == 'enter' or key == 'return' then
+            self.canPressKey = false
+            self.sounds.select:play()
+            -- 'Play' option
+            if self.options.selected == 1 then
+                def = {
+                    lvl = self.lvl
+                }
+                Timer.after(0.5, function() Gamestate.switch(Play, def) end)
+            -- 'Quit' option
+            elseif self.options.selected == 3 then
+                Timer.after(0.5, function() Gamestate.push(ExitConfirm) end)
+            end
         end
     end
 end

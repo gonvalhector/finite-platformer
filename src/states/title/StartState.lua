@@ -29,6 +29,8 @@ end
 function Start:enter()
     self.music:setLooping(true)
     self.music:play()
+    -- Flag for recognizing key input
+    self.canPressKey = true
 end
 
 function Start:resume()
@@ -48,18 +50,21 @@ function Start:update(dt)
 end
 
 function Start:keypressed(key)
-    if key == 'enter' or key == 'return' then
-        self.prompt.color[4] = 1
-        self.prompt.sound:play()
-        -- Change to the title menu state
-        def = {
-            map = self.map,
-            scroll = self.scroll,
-            background = self.background,
-            logo = self.logo,
-            music = self.music
-        }
-        Timer.after(0.5, function() Gamestate.switch(TitleMenu, def) end)
+    if self.canPressKey then
+        if key == 'enter' or key == 'return' then
+            self.canPressKey = false
+            self.prompt.color[4] = 1
+            self.prompt.sound:play()
+            -- Change to the title menu state
+            def = {
+                map = self.map,
+                scroll = self.scroll,
+                background = self.background,
+                logo = self.logo,
+                music = self.music
+            }
+            Timer.after(0.5, function() Gamestate.switch(TitleMenu, def) end)
+        end
     end
 end
 
