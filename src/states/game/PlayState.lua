@@ -5,7 +5,11 @@ function Play:enter(def)
     self.levelNumber = def.lvl
     self.level = Level(self.levelNumber)
 
+    self.camera = {}
     self.camera = Camera()
+    self.cameraOrigin = {}
+    self.cameraOrigin.x = self.camera.x
+    self.cameraOrigin.y = self.camera.y
 
     self.jumpCount = 0
 
@@ -24,6 +28,9 @@ function Play:update(dt)
     end
 
     self.level.player.body:setX(self.level.player.body:getX() + self.level.player.dx)
+
+    -- update camera
+    self.camera.x = math.max(self.cameraOrigin.x, self.cameraOrigin.x + math.min(16 * self.level.map.width - gameWidth, self.level.player.body:getX() - gameWidth / 2))
 end
 
 function Play:keypressed(key)
