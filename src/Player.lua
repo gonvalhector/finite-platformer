@@ -13,13 +13,22 @@ function Player:init(def)
 
     self.world = def.world
     self.body = self.world:newRectangleCollider(self.spawnX, self.spawnY, self.width, self.height)
-    self.linearImpulse = 200
-    self.speed = 200
-    self.dx = 0
+    self.body:setMass(30)
+    self.mass = self.body:getMass()
+    self.linearImpulse = 7000
+    self.force = 10000
+    self.linearVelocity = {}
+    self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
+    self.linearVelocity.max = 300
 end
 
 function Player:update(dt)
+    self.body:setAngle(0)
     self.x, self.y = self.body:getPosition()
+    self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
+    if self.linearVelocity.x > -1 and self.linearVelocity.x < 1 then
+        self.body:setLinearVelocity(0, self.linearVelocity.y)
+    end
 end
 
 function Player:draw()

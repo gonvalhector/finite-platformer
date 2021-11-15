@@ -5,7 +5,6 @@ function Play:enter(def)
     self.levelNumber = def.lvl
     self.level = Level(self.levelNumber)
 
-    self.camera = {}
     self.camera = Camera()
     self.cameraOrigin = {}
     self.cameraOrigin.x = self.camera.x
@@ -18,19 +17,20 @@ end
 
 function Play:update(dt)
     self.level:update(dt)
-    self.level.player.dx = 0
     if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
-        self.level.player.dx = math.floor(-self.level.player.speed * dt)
+        if self.level.player.linearVelocity.x > -self.level.player.linearVelocity.max then
+            self.level.player.body:applyForce(-self.level.player.force, 0)
+        end
     end
 
     if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
-        self.level.player.dx = math.floor(self.level.player.speed * dt)
+        if self.level.player.linearVelocity.x < self.level.player.linearVelocity.max then
+            self.level.player.body:applyForce(self.level.player.force, 0)
+        end
     end
 
-    self.level.player.body:setX(self.level.player.body:getX() + self.level.player.dx)
-
     -- update camera
-    self.camera.x = math.max(self.cameraOrigin.x, self.cameraOrigin.x + math.min(16 * self.level.map.width - gameWidth, self.level.player.body:getX() - gameWidth / 2))
+    self.camera.x = math.floor(math.max(self.cameraOrigin.x, self.cameraOrigin.x + math.min(16 * self.level.map.width - gameWidth, self.level.player.body:getX() - gameWidth / 2)))
 end
 
 function Play:keypressed(key)
@@ -48,8 +48,7 @@ function Play:draw()
     self.camera:detach()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print("Player X: " .. tostring(self.level.player.x), 0, 0)
-    love.graphics.print("Camera X: " .. tostring(self.camera.x), 0, 20)
-    love.graphics.print("Camera Scale: " .. tostring(self.camera.scale), 0, 40)
+    love.graphics.print("Linear Velocity X: " .. tostring(self.level.player.linearVelocity.x), 0, 20)
     love.graphics.setLineWidth(1)
     love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
 end
