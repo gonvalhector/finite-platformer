@@ -12,6 +12,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Resolution-handling library**: [Push](https://github.com/Ulydev/push) by [Ulysse Ramage](https://github.com/Ulydev).
 - **Class, GameState, Timer and Camera library**: [Helper Utilities for a Multitude of Problems(Hump)](https://github.com/vrld/hump) by [Matthias Richter](https://github.com/vrld).
 - **Load maps created in Tiled**: [Simple-Tiled-Implementation(STI)](https://github.com/karai17/Simple-Tiled-Implementation) by [Landon Manning](https://github.com/karai17).
+- **Simplify Love2D's Physics API**: [Windfield](https://github.com/a327ex/windfield) by [adn](https://github.com/a327ex).
 
 ### Helper functions and Utilities
 
