@@ -37,7 +37,7 @@ function Play:update(dt)
             self.looksAtX = self.looksAtX + (self.level.player.x - self.lastX)
         end
     end
-    self.camera:lookAt(self.looksAtX, self.looksAtY)
+    --self.camera:lookAt(self.looksAtX, self.looksAtY)
     self.lastX = self.level.player.x
 end
 
@@ -57,4 +57,8 @@ function Play:draw()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print("Player X: " .. tostring(self.level.player.x), 0, 0)
     love.graphics.print("Player Last X: " .. tostring(self.lastX), 0, 20)
+    love.graphics.print("Camera X: " .. tostring(self.camera.x), 0, 40)
+    love.graphics.print("Camera Scale: " .. tostring(self.camera.scale), 0, 60)
+    love.graphics.setLineWidth(1)
+    love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
 end

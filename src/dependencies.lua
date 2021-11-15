@@ -14,6 +14,9 @@ Camera = require 'lib/hump/camera'
 -- Simple-Tiled-Implementation
 STI = require 'lib/sti'
 
+-- Windfield
+WF = require 'lib/windfield'
+
 -- Gamestates
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
