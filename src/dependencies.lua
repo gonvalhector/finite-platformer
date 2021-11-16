@@ -66,14 +66,19 @@ gFonts = {
 
 -- Music
 gMusic = {
-    ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'static')
+    ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'static'),
+    ['level-1'] = love.audio.newSource('music/level1.ogg', 'static')
 }
 gMusic['title-music']:setVolume(0.25)
+gMusic['level-1']:setVolume(0.25)
 
 -- Sounds
 gSounds = {
     ['exit-confirm-in'] = love.audio.newSource('sounds/sfx_sounds_pause5_in.wav', 'static'),
     ['exit-confirm-out'] = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static'),
     ['menu-cursor'] = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static'),
-    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static')
+    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static'),
+    ['jump'] = love.audio.newSource('sounds/sfx_sound_neutral1.wav', 'static'),
+    ['landing'] = love.audio.newSource('sounds/sfx_movement_jump9_landing.wav', 'static')
 }
+gSounds['jump']:setVolume(0.5)

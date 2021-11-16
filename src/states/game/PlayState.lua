@@ -5,6 +5,11 @@ function Play:enter(def)
     self.levelNumber = def.lvl
     self.level = Level(self.levelNumber)
 
+    self.music = gMusic['level-' .. tostring(self.levelNumber)]
+    self.sounds = {}
+    self.sounds.jump = gSounds['jump']
+    self.sounds.landing = gSounds['landing']
+
     self.camera = Camera()
     self.cameraOrigin = {}
     self.cameraOrigin.x = self.camera.x
@@ -13,6 +18,13 @@ function Play:enter(def)
     self.jumpCount = 0
 
     love.audio.stop()
+    self.music:setLooping(true)
+    self.music:play()
+end
+
+function Play:resume()
+    self.music:setLooping(true)
+    self.music:play()
 end
 
 function Play:update(dt)
@@ -38,7 +50,8 @@ function Play:update(dt)
     self.camera.y = math.floor(math.max(self.cameraOrigin.y, self.cameraOrigin.y + math.min(16 * self.level.map.height - gameHeight, self.level.player.body:getY() - gameHeight / 2)))
 
     -- Reset jumps available when the player hits the floor
-    if self.level.player.body:enter('Boundaries') then
+    if self.level.player.body:enter('Boundaries') and self.jumpCount > 0 then
+        self.sounds.landing:play()
         self.jumpCount = 0
 
     end
@@ -47,6 +60,7 @@ end
 function Play:keypressed(key)
     if key == "space" or key == "up" then
         if self.jumpCount < 2 then
+            self.sounds.jump:play()
             self.jumpCount = self.jumpCount + 1
             self.level.player.body:applyLinearImpulse(0, -self.level.player.linearImpulse)
         end
