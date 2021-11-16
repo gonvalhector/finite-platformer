@@ -29,9 +29,14 @@ function Play:update(dt)
         end
     end
 
-    -- update camera
+    -- Update camera
     self.camera.x = math.floor(math.max(self.cameraOrigin.x, self.cameraOrigin.x + math.min(16 * self.level.map.width - gameWidth, self.level.player.body:getX() - gameWidth / 2)))
     self.camera.y = math.floor(math.max(self.cameraOrigin.y, self.cameraOrigin.y + math.min(16 * self.level.map.height - gameHeight, self.level.player.body:getY() - gameHeight / 2)))
+
+    -- Reset jumps available when the player hits the floor
+    if self.level.player.body:enter('Boundaries') then
+        self.jumpCount = 0
+    end
 end
 
 function Play:keypressed(key)
@@ -49,7 +54,7 @@ function Play:draw()
     self.camera:detach()
     love.graphics.setColor(1, 1, 1, 1)
     love.graphics.print("Player X: " .. tostring(self.level.player.x), 0, 0)
-    love.graphics.print("Linear Velocity X: " .. tostring(self.level.player.linearVelocity.x), 0, 20)
+    love.graphics.print("Player Inertia: " .. tostring(self.level.player.inertia), 0, 20)
     love.graphics.setLineWidth(1)
     love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
     love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)

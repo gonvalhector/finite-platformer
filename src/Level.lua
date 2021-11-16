@@ -4,6 +4,8 @@ Level = Class{}
 function Level:init(levelNumber)
     self.map = STI('levels/level' .. tostring(levelNumber) .. '.lua')
     self.world = WF.newWorld(0, 300, true)
+    self.world:addCollisionClass('Player')
+    self.world:addCollisionClass('Boundaries')
 
     -- Level boundaries and floors
     self.boundaries = {}
@@ -27,6 +29,7 @@ function Level:init(levelNumber)
     for k, boundary in pairs(self.boundaries) do
         boundary.body = self.world:newRectangleCollider(boundary.x, boundary.y, boundary.width, boundary.height)
         boundary.body:setType('static')
+        boundary.body:setCollisionClass('Boundaries')
         
         local friction = newFriction(boundary.type)
 

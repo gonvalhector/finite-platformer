@@ -71,8 +71,8 @@ end
 ]]
 function newFriction(surfaceType)
     local surfaces = {
-        ['Ground'] = 0.5,
-        ['Obstacle'] = 0.5
+        ['Ground'] = 1,
+        ['Obstacle'] = 1
     }
     return surfaces[surfaceType]
 end

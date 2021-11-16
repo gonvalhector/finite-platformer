@@ -13,10 +13,12 @@ function Player:init(def)
 
     self.world = def.world
     self.body = self.world:newRectangleCollider(self.spawnX, self.spawnY, self.width, self.height)
+    self.body:setCollisionClass('Player')
     self.body:setMass(30)
     self.mass = self.body:getMass()
-    self.linearImpulse = 7000
-    self.force = 10000
+    self.inertia = self.body:getInertia()
+    self.linearImpulse = 5000
+    self.force = 12000
     self.linearVelocity = {}
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
     self.linearVelocity.max = 300
