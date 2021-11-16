@@ -17,21 +17,28 @@ STI = require 'lib/sti'
 -- Windfield
 WF = require 'lib/windfield'
 
+-- Animation Class
+require 'lib/Animation'
+
+--[[
+    Dependencies
+]]
+
 -- Gamestates
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
 require 'src/states/game/PlayState'
 require 'src/states/ExitConfirmState'
 
---[[
-    Dependencies
-]]
 -- Helper functions and utilities
 require 'src/util'
 
 -- Classes
 require 'src/Level'
 require 'src/Player'
+
+-- Data
+require 'src/entity_defs'
 
 -- Images
 gImages = {

@@ -17,6 +17,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 ### Helper functions and Utilities
 
 - **GenerateQuads**: by [Colton Ogden](https://github.com/coltonoscopy).
+- **Animation Class**: by [Colton Ogden](https://github.com/coltonoscopy).
 
 ### Fonts:
 
