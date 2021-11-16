@@ -14,8 +14,6 @@ function love.load()
         vsync = true
     })
 
-    animationTimer = 0
-
     Gamestate.registerEvents{'update', 'keypressed'}
     Gamestate.switch(Start)
 end
@@ -24,7 +22,6 @@ function love.update(dt)
 	currentState = Gamestate.current()
     currentStack = Gamestate.getStack()
     Timer.update(dt)
-    animationTimer = animationTimer + dt * 10
 end
 
 function love.keypressed(key)

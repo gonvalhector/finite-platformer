@@ -7,12 +7,12 @@ ENTITY_DEFS = {
         force = 12000,
         maxLinearVelocity = 300,
         animations = {
-            ['walking-right'] = {
+            ['walk-right'] = {
                 frames = {1, 2, 3, 4},
                 interval = 0.15,
                 texture = 'player'
             },
-            ['walking-left'] = {
+            ['walk-left'] = {
                 frames = {5, 6, 7, 8},
                 interval = 0.15,
                 texture = 'player'

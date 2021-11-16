@@ -19,18 +19,18 @@ function Play:update(dt)
     self.level:update(dt)
     if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
         self.level.player.direction = 'left'
-        self.level.player.state = 'walking'
+        self.level.player.state = self.jumpCount == 0 and 'walk' or 'jump'
         if self.level.player.linearVelocity.x > -self.level.player.linearVelocity.max then
             self.level.player.body:applyForce(-self.level.player.force, 0)
         end
-    end
-
-    if love.keyboard.isDown('right') or love.keyboard.isDown('d') then
+    elseif love.keyboard.isDown('right') or love.keyboard.isDown('d') then
         self.level.player.direction = 'right'
-        self.level.player.state = 'walking'
+        self.level.player.state = self.jumpCount == 0 and 'walk' or 'jump'
         if self.level.player.linearVelocity.x < self.level.player.linearVelocity.max then
             self.level.player.body:applyForce(self.level.player.force, 0)
         end
+    else
+        self.level.player.state = self.jumpCount == 0 and 'idle' or 'jump'
     end
 
     -- Update camera
@@ -40,20 +40,16 @@ function Play:update(dt)
     -- Reset jumps available when the player hits the floor
     if self.level.player.body:enter('Boundaries') then
         self.jumpCount = 0
+
     end
 end
 
 function Play:keypressed(key)
-    if key then
-        if key == "space" or key == "up" then
-            if self.jumpCount < 2 then
-                self.level.player.state = 'jumping'
-                self.jumpCount = self.jumpCount + 1
-                self.level.player.body:applyLinearImpulse(0, -self.level.player.linearImpulse)
-            end
+    if key == "space" or key == "up" then
+        if self.jumpCount < 2 then
+            self.jumpCount = self.jumpCount + 1
+            self.level.player.body:applyLinearImpulse(0, -self.level.player.linearImpulse)
         end
-    else
-        self.level.player.state = 'idle'
     end
 end
 
@@ -61,10 +57,10 @@ function Play:draw()
     self.camera:attach()
         self.level:draw()
     self.camera:detach()
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print("Player Y: " .. tostring(self.level.player.Y), 0, 0)
-    love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
-    love.graphics.setLineWidth(1)
-    love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
-    love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)
+    --love.graphics.setColor(1, 1, 1, 1)
+    --love.graphics.print("Player Y: " .. tostring(self.level.player.Y), 0, 0)
+    --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
+    --love.graphics.setLineWidth(1)
+    --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
+    --love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)
 end

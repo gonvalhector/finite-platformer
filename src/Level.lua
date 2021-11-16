@@ -40,7 +40,8 @@ function Level:init(levelNumber)
     def = {
         x = playerSpawnX,
         y = playerSpawnY,
-        world = self.world
+        world = self.world,
+        animations = ENTITY_DEFS['player'].animations
     }
     self.player = Player(def)
 end
@@ -57,5 +58,5 @@ function Level:draw()
     self.map:drawLayer(self.map.layers["Midground"])
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])
-    self.world:draw()
+    --self.world:draw()
 end
