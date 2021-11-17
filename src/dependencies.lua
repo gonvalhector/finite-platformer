@@ -20,6 +20,9 @@ WF = require 'lib/windfield'
 -- Animation Class
 require 'lib/Animation'
 
+-- Simple LOVE Audio Manager
+require 'lib/slam'
+
 --[[
     Dependencies
 ]]
