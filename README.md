@@ -41,3 +41,4 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Menu Select**: [sfx_sounds_pause1_in.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Jump**: [sfx_sound_neutral1.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Landing**: [sfx_movement_jump9_landing.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Coin Pickup** [sfx_coin_double3.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
