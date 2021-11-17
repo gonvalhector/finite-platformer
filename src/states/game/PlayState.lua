@@ -9,11 +9,19 @@ function Play:enter(def)
     self.sounds = {}
     self.sounds.jump = gSounds['jump']
     self.sounds.landing = gSounds['landing']
+    self.sounds.coinPickup = gSounds['coin-pickup']
 
     self.camera = Camera()
     self.cameraOrigin = {}
     self.cameraOrigin.x = self.camera.x
     self.cameraOrigin.y = self.camera.y
+
+    self.UIelements = {}
+    self.UIelements.score = {}
+    self.UIelements.score.total = def.score
+    self.UIelements.score.captions = {}
+    self.UIelements.score.captions[1] = love.graphics.newText(gFonts['interface'], "Score:")
+    self.UIelements.score.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.score.total))
 
     self.jumpCount = 0
 
@@ -57,8 +65,22 @@ function Play:update(dt)
     if self.level.player.body:enter('Boundaries') and self.jumpCount > 0 then
         self.sounds.landing:play()
         self.jumpCount = 0
-
     end
+
+    -- If player collides with a coin
+    if self.level.player.body:enter('Coins') then
+        self.sounds.coinPickup:play()
+        self.UIelements.score.total = self.UIelements.score.total + 100
+        local collision_data = self.level.player.body:getEnterCollisionData('Coins')
+        -- gets the reference to the coin object
+        local coin = collision_data.collider:getObject()
+        coin.status = 'picked-up'
+        coin.body:destroy()
+        Timer.after(0.40, function() coin.destroyed = true end)
+    end
+
+    -- Update score total in caption
+    self.UIelements.score.captions[2]:set(tostring(self.UIelements.score.total))
 end
 
 function Play:keypressed(key)
@@ -75,6 +97,13 @@ function Play:draw()
     self.camera:attach()
         self.level:draw()
     self.camera:detach()
+    -- UI Elements
+    love.graphics.setColor(20/255, 20/255, 20/255, 1)
+    love.graphics.rectangle("fill", 0, 0, gameWidth, 32)
+    love.graphics.setColor(1, 1, 1, 1)
+    -- Score
+    love.graphics.draw(self.UIelements.score.captions[1], gameWidth - self.UIelements.score.captions[1]:getWidth(), 0, 0, 1, 1, 10, 0)
+    love.graphics.draw(self.UIelements.score.captions[2], gameWidth - self.UIelements.score.captions[2]:getWidth(), self.UIelements.score.captions[1]:getHeight(), 0, 1, 1, 10, 2)
     --love.graphics.setColor(1, 1, 1, 1)
     --love.graphics.print("Player Y: " .. tostring(self.level.player.Y), 0, 0)
     --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)

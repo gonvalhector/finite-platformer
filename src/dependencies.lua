@@ -68,7 +68,8 @@ gFrames = {
 
 -- Fonts
 gFonts = {
-    ['messages'] = love.graphics.newFont('fonts/kenpixel_mini.ttf', 16)
+    ['messages'] = love.graphics.newFont('fonts/kenpixel_mini.ttf', 16),
+    ['interface'] = love.graphics.newFont('fonts/Sharp Retro.ttf', 16)
 }
 
 -- Music

@@ -9,9 +9,6 @@ function Level:init(levelNumber)
     self.background.x = 0
     self.background.y = 0
 
-    self.sounds = {}
-    self.sounds.coinPickup = gSounds['coin-pickup']
-
     self.world = WF.newWorld(0, 300, true)
     self.world:addCollisionClass('Player')
     self.world:addCollisionClass('Boundaries')
@@ -85,23 +82,13 @@ function Level:update(dt)
     self.map:update(dt)
     self.world:update(dt)
     self.player:update(dt)
+
     -- Uodate coins
     for k, coin in pairs(self.coins) do
         if coin.destroyed == false then
             coin.currentAnimation = coin.animations[coin.status]
             coin.currentAnimation:update(dt)
         end
-    end
-
-    -- If player collides with a coin
-    if self.player.body:enter('Coins') then
-        self.sounds.coinPickup:play()
-        local collision_data = self.player.body:getEnterCollisionData('Coins')
-        -- gets the reference to the coin object
-        local coin = collision_data.collider:getObject()
-        coin.status = 'picked-up'
-        coin.body:destroy()
-        Timer.after(0.40, function() coin.destroyed = true end)
     end
 end
 
@@ -120,6 +107,5 @@ function Level:draw()
     -- Player
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])
-    love.graphics.setColor(1, 0, 0, 1)
     --self.world:draw()
 end
