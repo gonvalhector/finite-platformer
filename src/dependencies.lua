@@ -47,17 +47,20 @@ gImages = {
     ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
     ['player'] = love.graphics.newImage('graphics/player.png'),
-    ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png')
+    ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
+    ['coins'] = love.graphics.newImage('graphics/coins.png')
 }
 gImages['title-logo']:setFilter('nearest', 'nearest', 16)
 gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
 gImages['title-menu']:setFilter('nearest', 'nearest', 16)
 gImages['player']:setFilter('nearest', 'nearest', 16)
+gImages['coins']:setFilter('nearest', 'nearest', 16)
 
 -- Frames
 gFrames = {
     ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
-    ['player'] = GenerateQuads(gImages['player'], 20, 18)
+    ['player'] = GenerateQuads(gImages['player'], 20, 18),
+    ['coins'] = GenerateQuads(gImages['coins'], 16, 16)
 }
 
 -- Fonts
@@ -80,6 +83,7 @@ gSounds = {
     ['menu-cursor'] = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static'),
     ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static'),
     ['jump'] = love.audio.newSource('sounds/sfx_sound_neutral1.wav', 'static'),
-    ['landing'] = love.audio.newSource('sounds/sfx_movement_jump9_landing.wav', 'static')
+    ['landing'] = love.audio.newSource('sounds/sfx_movement_jump9_landing.wav', 'static'),
+    ['coin-pickup'] = love.audio.newSource('sounds/sfx_coin_double3.wav', 'static')
 }
 gSounds['jump']:setVolume(0.5)

@@ -7,13 +7,14 @@ function Player:init(def)
     self.width = ENTITY_DEFS['player'].width
     self.height = ENTITY_DEFS['player'].height
 
-    self.animations = self:createAnimations(def.animations)
+    self.animations = def.animations
     self.state = 'idle'
     self.direction = 'right'
     self.currentAnimation = self.animations[self.state .. '-' .. self.direction]
 
     self.world = def.world
     self.body = self.world:newRectangleCollider(self.spawnX, self.spawnY, self.width - 1, self.height - 1)
+    self.body:setObject(self)
     self.body:setCollisionClass('Player')
     self.body:setMass(ENTITY_DEFS['player'].mass)
     self.mass = self.body:getMass()
@@ -22,20 +23,6 @@ function Player:init(def)
     self.linearVelocity = {}
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
     self.linearVelocity.max = ENTITY_DEFS['player'].maxLinearVelocity
-end
-
-function Player:createAnimations(animations)
-    local animationsReturned = {}
-
-    for k, animationDef in pairs(animations) do
-        animationsReturned[k] = Animation {
-            texture = animationDef.texture,
-            frames = animationDef.frames,
-            interval = animationDef.interval
-        }
-    end
-
-    return animationsReturned
 end
 
 function Player:changeAnimation(name)

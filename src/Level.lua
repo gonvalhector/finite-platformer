@@ -9,14 +9,23 @@ function Level:init(levelNumber)
     self.background.x = 0
     self.background.y = 0
 
+    self.sounds = {}
+    self.sounds.coinPickup = gSounds['coin-pickup']
+
     self.world = WF.newWorld(0, 300, true)
     self.world:addCollisionClass('Player')
     self.world:addCollisionClass('Boundaries')
+    self.world:addCollisionClass('Coins')
 
     -- Level boundaries and floors
     self.boundaries = {}
+    -- Player spawn position
     local playerSpawnX, playerSpawnY
+    -- Coins
+    self.coins = {}
+    -- Iterate over map objects
     for k, object in pairs(self.map.objects) do
+        -- Boundaries
         if object.type == "Boundaries" then
             local boundary = {
                 type = object.name,
@@ -24,30 +33,50 @@ function Level:init(levelNumber)
                 y = object.y, 
                 width = object.width, 
                 height = object.height,
-                body = nil
+                body = self.world:newRectangleCollider(object.x, object.y, object.width, object.height)
             }
+            boundary.body:setType('static')
+            boundary.body:setCollisionClass('Boundaries')
+        
+            local friction = newFriction(boundary.type)
+            boundary.body:setFriction(friction)
+
+            boundary.body:setObject(boundary)
             table.insert(self.boundaries, boundary)
+        -- Coins
+        elseif object.type == "Coins" then
+            local coin = {
+                destroyed = false,
+                x = object.x,
+                y = object.y,
+                width = object.width,
+                height = object.height,
+                status = 'not-picked-up',
+                animations = createAnimations(ENTITY_DEFS['coins'].animations),
+                currentAnimation = nil,
+                body = self.world:newCircleCollider(object.x + object.width / 2, object.y + object.height / 2, object.width / 2)
+            }
+            coin.currentAnimation = coin.animations[coin.status]
+            coin.body:setType('static')
+            coin.body:setCollisionClass('Coins')
+            coin.body:setPreSolve(function(collider_1, collider_2, contact)
+                contact:setEnabled(false)
+            end)
+
+            coin.body:setObject(coin)
+            table.insert(self.coins, coin)
+        -- Get Player spawn position
         elseif object.type == "SpawnPoint" and object.name == "PlayerSpawn" then
             playerSpawnX, playerSpawnY = object.x, object.y
         end
     end
-    
-    for k, boundary in pairs(self.boundaries) do
-        boundary.body = self.world:newRectangleCollider(boundary.x, boundary.y, boundary.width, boundary.height)
-        boundary.body:setType('static')
-        boundary.body:setCollisionClass('Boundaries')
-        
-        local friction = newFriction(boundary.type)
 
-        boundary.body:setFriction(friction)
-    end
-
-    -- Player
+    -- Instantiate Player
     def = {
         x = playerSpawnX,
         y = playerSpawnY,
         world = self.world,
-        animations = ENTITY_DEFS['player'].animations
+        animations = createAnimations(ENTITY_DEFS['player'].animations)
     }
     self.player = Player(def)
 end
@@ -56,6 +85,24 @@ function Level:update(dt)
     self.map:update(dt)
     self.world:update(dt)
     self.player:update(dt)
+    -- Uodate coins
+    for k, coin in pairs(self.coins) do
+        if coin.destroyed == false then
+            coin.currentAnimation = coin.animations[coin.status]
+            coin.currentAnimation:update(dt)
+        end
+    end
+
+    -- If player collides with a coin
+    if self.player.body:enter('Coins') then
+        self.sounds.coinPickup:play()
+        local collision_data = self.player.body:getEnterCollisionData('Coins')
+        -- gets the reference to the coin object
+        local coin = collision_data.collider:getObject()
+        coin.status = 'picked-up'
+        coin.body:destroy()
+        Timer.after(0.40, function() coin.destroyed = true end)
+    end
 end
 
 function Level:draw()
@@ -63,7 +110,16 @@ function Level:draw()
     self.map:drawLayer(self.map.layers["Farground"])
     self.map:drawLayer(self.map.layers["Background"])
     self.map:drawLayer(self.map.layers["Midground"])
+    -- Coins
+    for k, coin in pairs(self.coins) do
+        if coin.destroyed == false then
+            local anim = coin.currentAnimation
+            love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(coin.x), math.floor(coin.y))
+        end
+    end
+    -- Player
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])
+    love.graphics.setColor(1, 0, 0, 1)
     --self.world:draw()
 end

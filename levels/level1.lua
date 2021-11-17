@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 9,
-  nextobjectid = 10,
+  nextobjectid = 16,
   properties = {},
   tilesets = {
     {
@@ -287,6 +287,45 @@ return {
           height = 0,
           rotation = 0,
           visible = false,
+          properties = {}
+        },
+        {
+          id = 13,
+          name = "1",
+          type = "Coins",
+          shape = "ellipse",
+          x = 320,
+          y = 272,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 14,
+          name = "2",
+          type = "Coins",
+          shape = "ellipse",
+          x = 352,
+          y = 272,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 15,
+          name = "3",
+          type = "Coins",
+          shape = "ellipse",
+          x = 384,
+          y = 272,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
           properties = {}
         }
       }

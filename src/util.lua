@@ -76,3 +76,26 @@ function newFriction(surfaceType)
     }
     return surfaces[surfaceType]
 end
+
+
+--[[
+    Create animations.
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+]]
+function createAnimations(animations)
+    local animationsReturned = {}
+
+    for k, animationDef in pairs(animations) do
+        local def = {
+            texture = animationDef.texture,
+            frames = animationDef.frames,
+            interval = animationDef.interval,
+            looping = animationDef.looping
+        }
+        animationsReturned[k] = Animation(def)
+    end
+
+    return animationsReturned
+end
