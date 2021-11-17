@@ -1,7 +1,7 @@
 ENTITY_DEFS = {
     ['player'] = {
         width = 20,
-        height = 19,
+        height = 18,
         mass = 30,
         linearImpulse = 5000,
         force = 12000,

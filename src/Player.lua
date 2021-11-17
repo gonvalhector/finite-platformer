@@ -13,7 +13,7 @@ function Player:init(def)
     self.currentAnimation = self.animations[self.state .. '-' .. self.direction]
 
     self.world = def.world
-    self.body = self.world:newRectangleCollider(self.spawnX, self.spawnY, self.width, self.height)
+    self.body = self.world:newRectangleCollider(self.spawnX, self.spawnY, self.width - 1, self.height - 1)
     self.body:setCollisionClass('Player')
     self.body:setMass(ENTITY_DEFS['player'].mass)
     self.mass = self.body:getMass()

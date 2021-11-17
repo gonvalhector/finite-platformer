@@ -56,7 +56,7 @@ gImages['player']:setFilter('nearest', 'nearest', 16)
 -- Frames
 gFrames = {
     ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
-    ['player'] = GenerateQuads(gImages['player'], 20, 19)
+    ['player'] = GenerateQuads(gImages['player'], 20, 18)
 }
 
 -- Fonts
