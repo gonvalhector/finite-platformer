@@ -99,7 +99,7 @@ function Play:draw()
     self.camera:detach()
     -- UI Elements
     love.graphics.setColor(20/255, 20/255, 20/255, 1)
-    love.graphics.rectangle("fill", 0, 0, gameWidth, 32)
+    love.graphics.rectangle("fill", 0, 0, gameWidth, 28)
     love.graphics.setColor(1, 1, 1, 1)
     -- Score
     love.graphics.draw(self.UIelements.score.captions[1], gameWidth - self.UIelements.score.captions[1]:getWidth(), 0, 0, 1, 1, 10, 0)
