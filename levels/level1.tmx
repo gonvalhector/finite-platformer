@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="16">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="21">
  <editorsettings>
   <export target="level1.lua" format="lua"/>
  </editorsettings>
@@ -148,13 +148,28 @@
   <object id="3" name="PlayerSpawn" type="SpawnPoint" x="40" y="272" visible="0">
    <point/>
   </object>
-  <object id="13" name="1" type="Coins" x="320" y="272" width="16" height="16">
+  <object id="13" name="Coin_1" type="Coins" x="320" y="272" width="16" height="16">
    <ellipse/>
   </object>
-  <object id="14" name="2" type="Coins" x="352" y="272" width="16" height="16">
+  <object id="14" name="Coin_2" type="Coins" x="352" y="272" width="16" height="16">
    <ellipse/>
   </object>
-  <object id="15" name="3" type="Coins" x="384" y="272" width="16" height="16">
+  <object id="15" name="Coin_3" type="Coins" x="384" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="16" name="Coin_4" type="Coins" x="416" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="17" name="Coin_5" type="Coins" x="448" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="18" name="Coin_6" type="Coins" x="480" y="240" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="19" name="Coin_7" type="Coins" x="512" y="240" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="20" name="Coin_8" type="Coins" x="544" y="240" width="16" height="16">
    <ellipse/>
   </object>
  </objectgroup>
