@@ -46,7 +46,8 @@ gImages = {
     ['title-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
     ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
-    ['player'] = love.graphics.newImage('graphics/player.png')
+    ['player'] = love.graphics.newImage('graphics/player.png'),
+    ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png')
 }
 gImages['title-logo']:setFilter('nearest', 'nearest', 16)
 gImages['key-prompt']:setFilter('nearest', 'nearest', 16)

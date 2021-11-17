@@ -3,6 +3,12 @@ Level = Class{}
 
 function Level:init(levelNumber)
     self.map = STI('levels/level' .. tostring(levelNumber) .. '.lua')
+
+    self.background = {}
+    self.background.image = gImages['level-1-background']
+    self.background.x = 0
+    self.background.y = 0
+
     self.world = WF.newWorld(0, 300, true)
     self.world:addCollisionClass('Player')
     self.world:addCollisionClass('Boundaries')
@@ -53,6 +59,7 @@ function Level:update(dt)
 end
 
 function Level:draw()
+    love.graphics.draw(self.background.image, math.floor(-self.background.x), math.floor(-self.background.y))
     self.map:drawLayer(self.map.layers["Farground"])
     self.map:drawLayer(self.map.layers["Background"])
     self.map:drawLayer(self.map.layers["Midground"])

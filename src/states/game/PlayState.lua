@@ -49,6 +49,10 @@ function Play:update(dt)
     self.camera.x = math.floor(math.max(self.cameraOrigin.x, self.cameraOrigin.x + math.min(16 * self.level.map.width - gameWidth, self.level.player.body:getX() - gameWidth / 2)))
     self.camera.y = math.floor(math.max(self.cameraOrigin.y, self.cameraOrigin.y + math.min(16 * self.level.map.height - gameHeight, self.level.player.body:getY() - gameHeight / 2)))
 
+    -- Update level's background
+    self.level.background.x = ((self.camera.x - self.cameraOrigin.x) / 3) % 256
+    self.level.background.y = ((self.camera.y - self.cameraOrigin.y) / 6) % 256
+
     -- Reset jumps available when the player hits the floor
     if self.level.player.body:enter('Boundaries') and self.jumpCount > 0 then
         self.sounds.landing:play()
