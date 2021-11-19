@@ -36,6 +36,12 @@ function Play:enter(def)
     self.UIelements.health.total = self.UIelements.health.max
     self.UIelements.health.captions = {}
     self.UIelements.health.captions[1] = love.graphics.newText(gFonts['interface'], "Health:")
+    -- Coins
+    self.UIelements.coins = {}
+    self.UIelements.coins.total = 0
+    self.UIelements.coins.captions = {}
+    self.UIelements.coins.captions[1] = love.graphics.newText(gFonts['interface'], "Coins:")
+    self.UIelements.coins.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.coins.total))
 
     self.jumpCount = 0
 
@@ -86,6 +92,7 @@ function Play:update(dt)
     if self.level.player.body:enter('Coins') then
         local coinPickupSound = love.audio.newSource(self.sounds.coinPickup, 'static')
         coinPickupSound:play()
+        self.UIelements.coins.total = self.UIelements.coins.total + 1
         self.UIelements.score.total = self.UIelements.score.total + 100
         local collision_data = self.level.player.body:getEnterCollisionData('Coins')
         -- gets the reference to the coin object
@@ -95,8 +102,9 @@ function Play:update(dt)
         Timer.after(0.40, function() coin.destroyed = true end)
     end
 
-    -- Update score total in caption
+    -- Update score and coins total in captions
     self.UIelements.score.captions[2]:set(tostring(self.UIelements.score.total))
+    self.UIelements.coins.captions[2]:set(tostring(self.UIelements.coins.total))
 end
 
 function Play:keypressed(key)
@@ -121,8 +129,8 @@ function Play:draw()
     love.graphics.setColor(1, 1, 1, 1)
     -- Lives
     love.graphics.draw(self.UIelements.lives.captions[1], 10, 0)
-    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][1], 10, self.UIelements.score.captions[1]:getHeight(), 0, 2, 2, 0, 0)
-    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][3], 10, self.UIelements.score.captions[1]:getHeight(), 0, 2, 2, -8, 0)
+    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][1], 10, self.UIelements.lives.captions[1]:getHeight(), 0, 2, 2, 0, 0)
+    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][3], 10, self.UIelements.lives.captions[1]:getHeight(), 0, 2, 2, -8, 0)
     love.graphics.draw(self.UIelements.lives.captions[2], 10, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, -22, 2)
     -- Health
     love.graphics.draw(self.UIelements.health.captions[1], 20 + self.UIelements.lives.captions[1]:getWidth(), 0)
@@ -136,6 +144,11 @@ function Play:draw()
     for i = heartIndex, self.UIelements.health.max do
         love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][5], 20 + self.UIelements.lives.captions[1]:getWidth(), self.UIelements.health.captions[1]:getHeight(), 0, 2, 2, -((8 * i) - 8), 0)
     end
+    -- Coins
+    love.graphics.draw(self.UIelements.coins.captions[1], 500, 0)
+    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][2], 500, self.UIelements.coins.captions[1]:getHeight(), 0, 2, 2)
+    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][3], 516, self.UIelements.coins.captions[1]:getHeight(), 0, 2, 2)
+    love.graphics.draw(self.UIelements.coins.captions[2], 532, self.UIelements.coins.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
     -- Score
     love.graphics.draw(self.UIelements.score.captions[1], gameWidth - self.UIelements.score.captions[1]:getWidth(), 0, 0, 1, 1, 10, 0)
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
