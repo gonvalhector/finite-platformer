@@ -16,12 +16,20 @@ function Play:enter(def)
     self.cameraOrigin.x = self.camera.x
     self.cameraOrigin.y = self.camera.y
 
+    -- Score, Lives, Health & Coins
     self.UIelements = {}
+    -- Score
     self.UIelements.score = {}
     self.UIelements.score.total = def.score
     self.UIelements.score.captions = {}
     self.UIelements.score.captions[1] = love.graphics.newText(gFonts['interface'], "Score:")
     self.UIelements.score.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.score.total))
+    -- Lives
+    self.UIelements.lives = {}
+    self.UIelements.lives.total = def.lives
+    self.UIelements.lives.captions = {}
+    self.UIelements.lives.captions[1] = love.graphics.newText(gFonts['interface'], "Lives:")
+    self.UIelements.lives.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.lives.total))
 
     self.jumpCount = 0
 
@@ -99,11 +107,16 @@ function Play:draw()
     self.camera:detach()
     -- UI Elements
     love.graphics.setColor(20/255, 20/255, 20/255, 1)
-    love.graphics.rectangle("fill", 0, 0, gameWidth, 28)
+    love.graphics.rectangle("fill", 0, 0, gameWidth, 32)
     love.graphics.setColor(1, 1, 1, 1)
+    -- Lives
+    love.graphics.draw(self.UIelements.lives.captions[1], 10, 0)
+    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][1], 10, self.UIelements.score.captions[1]:getHeight(), 0, 2, 2, 0, 0)
+    love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][3], 10, self.UIelements.score.captions[1]:getHeight(), 0, 2, 2, -8, 0)
+    love.graphics.draw(self.UIelements.lives.captions[2], 10, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, -22, 2)
     -- Score
     love.graphics.draw(self.UIelements.score.captions[1], gameWidth - self.UIelements.score.captions[1]:getWidth(), 0, 0, 1, 1, 10, 0)
-    love.graphics.draw(self.UIelements.score.captions[2], gameWidth - self.UIelements.score.captions[2]:getWidth(), self.UIelements.score.captions[1]:getHeight(), 0, 1, 1, 10, 2)
+    love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
     --love.graphics.setColor(1, 1, 1, 1)
     --love.graphics.print("Player Y: " .. tostring(self.level.player.Y), 0, 0)
     --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)

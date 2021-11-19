@@ -51,19 +51,22 @@ gImages = {
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
     ['player'] = love.graphics.newImage('graphics/player.png'),
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
-    ['coins'] = love.graphics.newImage('graphics/coins.png')
+    ['coins'] = love.graphics.newImage('graphics/coins.png'),
+    ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png')
 }
 gImages['title-logo']:setFilter('nearest', 'nearest', 16)
 gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
 gImages['title-menu']:setFilter('nearest', 'nearest', 16)
 gImages['player']:setFilter('nearest', 'nearest', 16)
 gImages['coins']:setFilter('nearest', 'nearest', 16)
+gImages['ui-elements']:setFilter('nearest', 'nearest', 16)
 
 -- Frames
 gFrames = {
     ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
     ['player'] = GenerateQuads(gImages['player'], 20, 18),
-    ['coins'] = GenerateQuads(gImages['coins'], 16, 16)
+    ['coins'] = GenerateQuads(gImages['coins'], 16, 16),
+    ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8)
 }
 
 -- Fonts

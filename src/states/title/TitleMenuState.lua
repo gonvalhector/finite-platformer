@@ -40,6 +40,7 @@ function TitleMenu:enter(def)
     -- Play starts with Stage 1 and a new score
     self.lvl = 1
     self.score = 0
+    self.lives = 3
 
     -- Raise the logo
     Timer.tween(0.5, self.logo.position, {x = gameWidth / 2, y = gameHeight / 4})
@@ -87,7 +88,8 @@ function TitleMenu:keypressed(key)
             if self.options.selected == 1 then
                 def = {
                     lvl = self.lvl,
-                    score = self.score
+                    score = self.score,
+                    lives = self.lives
                 }
                 Timer.after(0.5, function() Gamestate.switch(Play, def) end)
             -- 'Quit' option
