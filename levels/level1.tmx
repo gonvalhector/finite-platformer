@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="21">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="80" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="32">
  <editorsettings>
   <export target="level1.lua" format="lua"/>
  </editorsettings>
@@ -143,8 +143,10 @@
 </data>
  </layer>
  <objectgroup id="7" name="Objects">
-  <object id="9" name="Obstacle" type="Boundaries" x="496" y="272" width="48" height="48" visible="0"/>
+  <object id="9" name="Ground" type="Boundaries" x="496" y="272" width="48" height="48" visible="0"/>
   <object id="2" name="Ground" type="Boundaries" x="0" y="320" width="1280" height="16" visible="0"/>
+  <object id="30" name="Wall" type="Boundaries" x="-16" y="0" width="16" height="320"/>
+  <object id="31" name="Wall" type="Boundaries" x="1280" y="0" width="16" height="320"/>
   <object id="3" name="PlayerSpawn" type="SpawnPoint" x="40" y="272" visible="0">
    <point/>
   </object>
@@ -170,6 +172,33 @@
    <ellipse/>
   </object>
   <object id="20" name="Coin_8" type="Coins" x="544" y="240" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="21" name="Coin_9" type="Coins" x="576" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="22" name="Coin_10" type="Coins" x="608" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="23" name="Coin_11" type="Coins" x="640" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="24" name="Coin_12" type="Coins" x="672" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="25" name="Coin_13" type="Coins" x="704" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="26" name="Coin_14" type="Coins" x="736" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="27" name="Coin_15" type="Coins" x="768" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="28" name="Coin_16" type="Coins" x="800" y="272" width="16" height="16">
+   <ellipse/>
+  </object>
+  <object id="29" name="Coin_17" type="Coins" x="832" y="272" width="16" height="16">
    <ellipse/>
   </object>
  </objectgroup>

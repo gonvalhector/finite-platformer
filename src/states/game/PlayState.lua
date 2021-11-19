@@ -82,7 +82,7 @@ function Play:update(dt)
     self.level.background.y = ((self.camera.y - self.cameraOrigin.y) / 6) % 256
 
     -- Reset jumps available when the player hits the floor
-    if self.level.player.body:enter('Boundaries') and self.jumpCount > 0 then
+    if self.level.player.body:enter('Ground') and self.jumpCount > 0 then
         local landingSound = love.audio.newSource(self.sounds.landing, 'static')
         landingSound:play()
         self.jumpCount = 0

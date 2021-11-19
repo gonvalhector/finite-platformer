@@ -11,7 +11,8 @@ function Level:init(levelNumber)
 
     self.world = WF.newWorld(0, 300, true)
     self.world:addCollisionClass('Player')
-    self.world:addCollisionClass('Boundaries')
+    self.world:addCollisionClass('Ground')
+    self.world:addCollisionClass('Wall')
     self.world:addCollisionClass('Coins')
 
     -- Level boundaries and floors
@@ -33,10 +34,9 @@ function Level:init(levelNumber)
                 body = self.world:newRectangleCollider(object.x, object.y, object.width, object.height)
             }
             boundary.body:setType('static')
-            boundary.body:setCollisionClass('Boundaries')
-        
-            local friction = newFriction(boundary.type)
-            boundary.body:setFriction(friction)
+            local collisionClass = object.name == 'Ground' and 'Ground' or 'Wall'
+            boundary.body:setCollisionClass(collisionClass)
+            boundary.body:setFriction(1)
 
             boundary.body:setObject(boundary)
             table.insert(self.boundaries, boundary)
