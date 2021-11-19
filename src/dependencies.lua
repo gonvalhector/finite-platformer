@@ -20,9 +20,6 @@ WF = require 'lib/windfield'
 -- Animation Class
 require 'lib/Animation'
 
--- Simple LOVE Audio Manager
-require 'lib/slam'
-
 --[[
     Dependencies
 ]]
@@ -88,9 +85,5 @@ gSounds = {
     ['exit-confirm-in'] = love.audio.newSource('sounds/sfx_sounds_pause5_in.wav', 'static'),
     ['exit-confirm-out'] = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static'),
     ['menu-cursor'] = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static'),
-    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static'),
-    ['jump'] = love.audio.newSource('sounds/sfx_sound_neutral1.wav', 'static'),
-    ['landing'] = love.audio.newSource('sounds/sfx_movement_jump9_landing.wav', 'static'),
-    ['coin-pickup'] = love.audio.newSource('sounds/sfx_coin_double3.wav', 'static')
+    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static')
 }
-gSounds['jump']:setVolume(0.5)

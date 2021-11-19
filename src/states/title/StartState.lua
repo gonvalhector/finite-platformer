@@ -34,7 +34,6 @@ function Start:enter()
 end
 
 function Start:resume()
-    self.music:setLooping(true)
     self.music:play()
 end
 

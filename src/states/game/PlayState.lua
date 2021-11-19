@@ -7,9 +7,9 @@ function Play:enter(def)
 
     self.music = gMusic['level-' .. tostring(self.levelNumber)]
     self.sounds = {}
-    self.sounds.jump = gSounds['jump']
-    self.sounds.landing = gSounds['landing']
-    self.sounds.coinPickup = gSounds['coin-pickup']
+    self.sounds.jump = 'sounds/sfx_sound_neutral1.wav'
+    self.sounds.landing = 'sounds/sfx_movement_jump9_landing.wav'
+    self.sounds.coinPickup = 'sounds/sfx_coin_double3.wav'
 
     self.camera = Camera()
     self.cameraOrigin = {}
@@ -77,13 +77,15 @@ function Play:update(dt)
 
     -- Reset jumps available when the player hits the floor
     if self.level.player.body:enter('Boundaries') and self.jumpCount > 0 then
-        self.sounds.landing:play()
+        local landingSound = love.audio.newSource(self.sounds.landing, 'static')
+        landingSound:play()
         self.jumpCount = 0
     end
 
     -- If player collides with a coin
     if self.level.player.body:enter('Coins') then
-        self.sounds.coinPickup:play()
+        local coinPickupSound = love.audio.newSource(self.sounds.coinPickup, 'static')
+        coinPickupSound:play()
         self.UIelements.score.total = self.UIelements.score.total + 100
         local collision_data = self.level.player.body:getEnterCollisionData('Coins')
         -- gets the reference to the coin object
@@ -100,7 +102,9 @@ end
 function Play:keypressed(key)
     if key == "space" or key == "up" then
         if self.jumpCount < 2 then
-            self.sounds.jump:play()
+            local jumpSound = love.audio.newSource(self.sounds.jump, 'static')
+            jumpSound:setVolume(0.5)
+            jumpSound:play()
             self.jumpCount = self.jumpCount + 1
             self.level.player.body:applyLinearImpulse(0, -self.level.player.linearImpulse)
         end
