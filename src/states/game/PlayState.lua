@@ -30,6 +30,12 @@ function Play:enter(def)
     self.UIelements.lives.captions = {}
     self.UIelements.lives.captions[1] = love.graphics.newText(gFonts['interface'], "Lives:")
     self.UIelements.lives.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.lives.total))
+    -- Health
+    self.UIelements.health = {}
+    self.UIelements.health.max = 3
+    self.UIelements.health.total = self.UIelements.health.max
+    self.UIelements.health.captions = {}
+    self.UIelements.health.captions[1] = love.graphics.newText(gFonts['interface'], "Health:")
 
     self.jumpCount = 0
 
@@ -114,6 +120,18 @@ function Play:draw()
     love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][1], 10, self.UIelements.score.captions[1]:getHeight(), 0, 2, 2, 0, 0)
     love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][3], 10, self.UIelements.score.captions[1]:getHeight(), 0, 2, 2, -8, 0)
     love.graphics.draw(self.UIelements.lives.captions[2], 10, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, -22, 2)
+    -- Health
+    love.graphics.draw(self.UIelements.health.captions[1], 20 + self.UIelements.lives.captions[1]:getWidth(), 0)
+    -- Full hearts
+    local heartIndex = 1
+    for i = 1, self.UIelements.health.total do
+        heartIndex = heartIndex + 1
+        love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][4], 20 + self.UIelements.lives.captions[1]:getWidth(), self.UIelements.health.captions[1]:getHeight(), 0, 2, 2, -((8 * i) - 8), 0)
+    end
+    -- Empty hearts
+    for i = heartIndex, self.UIelements.health.max do
+        love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][5], 20 + self.UIelements.lives.captions[1]:getWidth(), self.UIelements.health.captions[1]:getHeight(), 0, 2, 2, -((8 * i) - 8), 0)
+    end
     -- Score
     love.graphics.draw(self.UIelements.score.captions[1], gameWidth - self.UIelements.score.captions[1]:getWidth(), 0, 0, 1, 1, 10, 0)
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
