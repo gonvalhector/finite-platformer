@@ -23,6 +23,8 @@ function Player:init(def)
     self.linearVelocity = {}
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
     self.linearVelocity.max = ENTITY_DEFS['player'].maxLinearVelocity
+
+    self.alpha = 1
 end
 
 function Player:changeAnimation(name)
@@ -48,6 +50,7 @@ function Player:update(dt)
 end
 
 function Player:draw()
+    love.graphics.setColor(1, 1, 1, self.alpha)
     local anim = self.currentAnimation
     love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.body:getX()), math.floor(self.body:getY()), self.body:getAngle(), 1, 1, self.width / 2, self.height / 2)
 end

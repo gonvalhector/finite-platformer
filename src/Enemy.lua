@@ -30,14 +30,18 @@ function Enemy:changeAnimation(name)
     self.currentAnimation = self.animations[name]
 end
 
+function Enemy:changeDirection()
+    self.direction = self.direction == 'left' and 'right' or 'left'
+    self.linearImpulse = -self.linearImpulse
+end
+
 function Enemy:update(dt)
     self:changeAnimation(self.state .. '-' .. self.direction)
     self.currentAnimation:update(dt)
 
     -- Change direction on collision with obstacles
     if self.body:enter('Obstacle') then
-        self.direction = self.direction == 'left' and 'right' or 'left'
-        self.linearImpulse = -self.linearImpulse
+        self:changeDirection()
     end
 
     -- Movement

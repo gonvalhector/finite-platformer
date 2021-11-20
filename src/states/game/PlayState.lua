@@ -10,6 +10,8 @@ function Play:enter(def)
     self.sounds.jump = 'sounds/sfx_sound_neutral1.wav'
     self.sounds.landing = 'sounds/sfx_movement_jump9_landing.wav'
     self.sounds.coinPickup = 'sounds/sfx_coin_double3.wav'
+    self.sounds.impact = 'sounds/sfx_sounds_impact7.wav'
+    self.sounds.playerHurt = 'sounds/sfx_sounds_damage1.wav'
 
     self.camera = Camera()
     self.cameraOrigin = {}
@@ -70,7 +72,9 @@ function Play:update(dt)
             self.level.player.body:applyForce(self.level.player.force, 0)
         end
     else
-        self.level.player.state = self.jumpCount == 0 and 'idle' or 'jump'
+        if self.level.player.state ~= 'hurt' then
+            self.level.player.state = self.jumpCount == 0 and 'idle' or 'jump'
+        end
     end
 
     -- Update camera
@@ -104,7 +108,30 @@ function Play:update(dt)
         Timer.after(0.40, function() coin.destroyed = true end)
     end
 
-    -- Update score and coins total in captions
+    -- If player collides with an enemy
+    if self.level.player.body:enter('Enemy') then
+        local impactSound = love.audio.newSource(self.sounds.impact, 'static')
+        local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
+        playerHurtSound:play()
+        impactSound:play()
+        -- Take one heart from Player
+        self.UIelements.health.total = self.UIelements.health.total - 1
+        -- Change enemy's direction
+        local collision_data = self.level.player.body:getEnterCollisionData('Enemy')
+        local enemy = collision_data.collider:getObject()
+        enemy:changeDirection()
+        -- Knock the player back
+        local knockback = self.level.player.direction == 'right' and -self.level.player.linearImpulse or self.level.player.linearImpulse
+        self.level.player.body:applyLinearImpulse(knockback, 0)
+        -- Change player's state to hurt
+        self.level.player.state = 'hurt'
+        -- Change player's state to idle after 1 seconds
+        Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
+        Timer.after(1, function() self.level.player.state = 'idle' end)
+    end
+
+    -- Update UI totals in captions
+    self.UIelements.lives.captions[2]:set(tostring(self.UIelements.lives.total))
     self.UIelements.score.captions[2]:set(tostring(self.UIelements.score.total))
     self.UIelements.coins.captions[2]:set(tostring(self.UIelements.coins.total))
 end
