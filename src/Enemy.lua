@@ -4,6 +4,9 @@ function Enemy:init(def)
     self.spawnX = def.x
     self.spawnY = def.y
 
+    self.x, self.y = self.spawnX, self.spawnY
+    self.angle = 0
+
     self.type = def.type
     self.width = ENTITY_DEFS[self.type].width
     self.height = ENTITY_DEFS[self.type].height
@@ -24,6 +27,9 @@ function Enemy:init(def)
     self.linearVelocity = {}
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
     self.linearVelocity.max = ENTITY_DEFS[self.type].maxLinearVelocity
+
+    self.canHurt = true
+    self.destroyed = false
 end
 
 function Enemy:changeAnimation(name)
@@ -36,19 +42,28 @@ function Enemy:changeDirection()
 end
 
 function Enemy:update(dt)
-    self:changeAnimation(self.state .. '-' .. self.direction)
-    self.currentAnimation:update(dt)
+    if self.destroyed == false then 
+        self:changeAnimation(self.state .. '-' .. self.direction)
+        self.currentAnimation:update(dt)
 
-    -- Change direction on collision with obstacles
-    if self.body:enter('Obstacle') then
-        self:changeDirection()
+        self.x, self.y = self.body:getPosition()
+        self.angle = self.body:getAngle()
+
+        if self.state ~= 'hurt' then
+            -- Change direction on collision with obstacles
+            if self.body:enter('Obstacle') then
+                self:changeDirection()
+            end
+
+            -- Movement
+            self.body:applyLinearImpulse(self.linearImpulse, 0)
+        end
     end
-
-    -- Movement
-    self.body:applyLinearImpulse(self.linearImpulse, 0)
 end
 
 function Enemy:draw()
-    local anim = self.currentAnimation
-    love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.body:getX()), math.floor(self.body:getY()), self.body:getAngle(), 1, 1, self.width / 2, self.height / 2)
+    if self.destroyed == false then
+        local anim = self.currentAnimation
+        love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y), self.angle, 1, 1, self.width / 2, self.height / 2)
+    end
 end
