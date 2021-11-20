@@ -68,5 +68,101 @@ ENTITY_DEFS = {
                 texture = 'coins'
             }
         }
-    }
+    },
+    ['pumpkinhead'] = {
+        width = 16,
+        height = 16,
+        mass = 20,
+        linearImpulse = 50,
+        force = 12000,
+        maxLinearVelocity = 200,
+        animations = {
+            ['walk-left'] = {
+                frames = {1, 2, 3},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['walk-right'] = {
+                frames = {5, 6, 7},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['hurt-left'] = {
+                frames = {4},
+                looping = false,
+                texture = 'enemies-a'
+            },
+            ['hurt-right'] = {
+                frames = {8},
+                looping = false,
+                texture = 'enemies-a'
+            },
+        }
+    },
+    ['slimeball'] = {
+        width = 16,
+        height = 16,
+        mass = 15,
+        linearImpulse = 1000,
+        force = 12000,
+        maxLinearVelocity = 200,
+        animations = {
+            ['walk-left'] = {
+                frames = {9, 10},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['walk-right'] = {
+                frames = {13, 14},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['hurt-left'] = {
+                frames = {11},
+                looping = false,
+                texture = 'enemies-a'
+            },
+            ['hurt-right'] = {
+                frames = {15},
+                looping = false,
+                texture = 'enemies-a'
+            },
+        }
+    },
+    ['beetlejuice'] = {
+        width = 16,
+        height = 16,
+        mass = 15,
+        linearImpulse = 1000,
+        force = 12000,
+        maxLinearVelocity = 200,
+        animations = {
+            ['walk-left'] = {
+                frames = {17, 18},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['walk-right'] = {
+                frames = {21, 22},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['hurt-left'] = {
+                frames = {19},
+                looping = false,
+                texture = 'enemies-a'
+            },
+            ['hurt-right'] = {
+                frames = {23},
+                looping = false,
+                texture = 'enemies-a'
+            },
+        }
+    },
 }

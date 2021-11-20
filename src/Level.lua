@@ -13,7 +13,9 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Player')
     self.world:addCollisionClass('Ground')
     self.world:addCollisionClass('Wall')
+    self.world:addCollisionClass('Obstacle')
     self.world:addCollisionClass('Coins')
+    self.world:addCollisionClass('Enemy')
 
     -- Level boundaries and floors
     self.boundaries = {}
@@ -21,6 +23,8 @@ function Level:init(levelNumber)
     local playerSpawnX, playerSpawnY
     -- Coins
     self.coins = {}
+    -- Enemies
+    self.enemies = {}
     -- Iterate over map objects
     for k, object in pairs(self.map.objects) do
         -- Boundaries
@@ -34,8 +38,7 @@ function Level:init(levelNumber)
                 body = self.world:newRectangleCollider(object.x, object.y, object.width, object.height)
             }
             boundary.body:setType('static')
-            local collisionClass = object.name == 'Ground' and 'Ground' or 'Wall'
-            boundary.body:setCollisionClass(collisionClass)
+            boundary.body:setCollisionClass(boundary.type)
             boundary.body:setFriction(1)
 
             boundary.body:setObject(boundary)
@@ -62,6 +65,19 @@ function Level:init(levelNumber)
 
             coin.body:setObject(coin)
             table.insert(self.coins, coin)
+
+        -- Enemies
+        elseif object.type == "Enemies" then
+            def = {
+                x = object.x,
+                y = object.y,
+                world = self.world,
+                type = object.name,
+                animations = createAnimations(ENTITY_DEFS[object.name].animations)
+            }
+            local enemy = Enemy(def)
+            table.insert(self.enemies, enemy)
+
         -- Get Player spawn position
         elseif object.type == "SpawnPoint" and object.name == "PlayerSpawn" then
             playerSpawnX, playerSpawnY = object.x, object.y
@@ -83,12 +99,16 @@ function Level:update(dt)
     self.world:update(dt)
     self.player:update(dt)
 
-    -- Uodate coins
+    -- Update coins
     for k, coin in pairs(self.coins) do
         if coin.destroyed == false then
             coin.currentAnimation = coin.animations[coin.status]
             coin.currentAnimation:update(dt)
         end
+    end
+    -- Update enemies
+    for k, enemy in pairs(self.enemies) do
+        enemy:update(dt)
     end
 end
 
@@ -103,6 +123,10 @@ function Level:draw()
             local anim = coin.currentAnimation
             love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(coin.x), math.floor(coin.y))
         end
+    end
+    -- Enemies
+    for k, enemy in pairs(self.enemies) do
+        enemy:draw()
     end
     -- Player
     self.player:draw()

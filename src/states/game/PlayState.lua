@@ -82,10 +82,12 @@ function Play:update(dt)
     self.level.background.y = ((self.camera.y - self.cameraOrigin.y) / 6) % 256
 
     -- Reset jumps available when the player hits the floor
-    if self.level.player.body:enter('Ground') and self.jumpCount > 0 then
-        local landingSound = love.audio.newSource(self.sounds.landing, 'static')
-        landingSound:play()
-        self.jumpCount = 0
+    if self.jumpCount > 0 then
+        if self.level.player.body:enter('Ground') or self.level.player.body:enter('Obstacle') then
+            local landingSound = love.audio.newSource(self.sounds.landing, 'static')
+            landingSound:play()
+            self.jumpCount = 0
+        end
     end
 
     -- If player collides with a coin
@@ -152,8 +154,9 @@ function Play:draw()
     -- Score
     love.graphics.draw(self.UIelements.score.captions[1], gameWidth - self.UIelements.score.captions[1]:getWidth(), 0, 0, 1, 1, 10, 0)
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
-    --love.graphics.setColor(1, 1, 1, 1)
-    --love.graphics.print("Player Y: " .. tostring(self.level.player.Y), 0, 0)
+
+    --love.graphics.setColor(0, 0, 0, 1)
+    --love.graphics.print("Enemy mass: " .. tostring(self.level.enemies[1].mass), 0, gameHeight - 20)
     --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)

@@ -36,6 +36,7 @@ require 'src/util'
 -- Classes
 require 'src/Level'
 require 'src/Player'
+require 'src/Enemy'
 
 -- Data
 require 'src/entity_defs'
@@ -49,21 +50,20 @@ gImages = {
     ['player'] = love.graphics.newImage('graphics/player.png'),
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
-    ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png')
+    ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
+    ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png')
 }
-gImages['title-logo']:setFilter('nearest', 'nearest', 16)
-gImages['key-prompt']:setFilter('nearest', 'nearest', 16)
-gImages['title-menu']:setFilter('nearest', 'nearest', 16)
-gImages['player']:setFilter('nearest', 'nearest', 16)
-gImages['coins']:setFilter('nearest', 'nearest', 16)
-gImages['ui-elements']:setFilter('nearest', 'nearest', 16)
+for k, image in pairs(gImages) do
+    gImages[k]:setFilter('nearest', 'nearest', 16)
+end
 
 -- Frames
 gFrames = {
     ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
     ['player'] = GenerateQuads(gImages['player'], 20, 18),
     ['coins'] = GenerateQuads(gImages['coins'], 16, 16),
-    ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8)
+    ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8),
+    ['enemies-a'] = GenerateQuads(gImages['enemies-a'], 16, 16)
 }
 
 -- Fonts
