@@ -42,28 +42,26 @@ function Enemy:changeDirection()
 end
 
 function Enemy:update(dt)
-    if self.destroyed == false then 
-        self:changeAnimation(self.state .. '-' .. self.direction)
-        self.currentAnimation:update(dt)
+    if self.destroyed then return end
+    self:changeAnimation(self.state .. '-' .. self.direction)
+    self.currentAnimation:update(dt)
 
-        self.x, self.y = self.body:getPosition()
-        self.angle = self.body:getAngle()
+    self.x, self.y = self.body:getPosition()
+    self.angle = self.body:getAngle()
 
-        if self.state ~= 'hurt' then
-            -- Change direction on collision with obstacles
-            if self.body:enter('Obstacle') then
-                self:changeDirection()
-            end
-
-            -- Movement
-            self.body:applyLinearImpulse(self.linearImpulse, 0)
+    if self.state ~= 'hurt' then
+        -- Change direction on collision with obstacles
+        if self.body:enter('Obstacle') then
+            self:changeDirection()
         end
+
+        -- Movement
+        self.body:applyLinearImpulse(self.linearImpulse, 0)
     end
 end
 
 function Enemy:draw()
-    if self.destroyed == false then
-        local anim = self.currentAnimation
-        love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y), self.angle, 1, 1, self.width / 2, self.height / 2)
-    end
+    if self.destroyed then return end
+    local anim = self.currentAnimation
+    love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y), self.angle, 1, 1, self.width / 2, self.height / 2)
 end
