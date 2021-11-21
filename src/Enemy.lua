@@ -28,7 +28,6 @@ function Enemy:init(def)
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
     self.linearVelocity.max = ENTITY_DEFS[self.type].maxLinearVelocity
 
-    self.canHurt = true
     self.destroyed = false
 end
 

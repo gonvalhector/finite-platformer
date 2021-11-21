@@ -116,6 +116,7 @@ function Play:update(dt)
         impactSound:play()
         local collision_data = self.level.player.body:getEnterCollisionData('Enemy')
         local enemy = collision_data.collider:getObject()
+
         -- when player jumps on top of enemy
         if self.jumpCount > 0 then
             -- Play sound
@@ -126,30 +127,29 @@ function Play:update(dt)
             -- Change enemy's state to hurt
             enemy.state = 'hurt'
             -- Destroy enemy's body
-            enemy.canHurt = false
-            Timer.after(0.40, function() 
-                enemy.destroyed = true 
+            enemy.body:setCollisionClass('Ghost')
+            enemy.body:setAngularVelocity(12.5)
+            Timer.after(5, function() 
+                enemy.destroyed = true
                 enemy.body:destroy()
             end)
         -- When player touches enemy
         else
-            if enemy.canHurt then
-                -- Play sound
-                local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
-                playerHurtSound:play()
-                -- Take one heart from Player
-                self.UIelements.health.total = self.UIelements.health.total - 1
-                -- Change enemy's direction
-                enemy:changeDirection()
-                -- Knock the player back
-                local knockback = self.level.player.direction == 'right' and -self.level.player.linearImpulse or self.level.player.linearImpulse
-                self.level.player.body:applyLinearImpulse(knockback, 0)
-                -- Change player's state to hurt
-                self.level.player.state = 'hurt'
-                -- Change player's state to idle after 1 seconds
-                Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
-                Timer.after(1, function() self.level.player.state = 'idle' end)
-            end
+            -- Play sound
+            local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
+            playerHurtSound:play()
+            -- Take one heart from Player
+            self.UIelements.health.total = self.UIelements.health.total - 1
+            -- Change enemy's direction
+            enemy:changeDirection()
+            -- Knock the player back
+            local knockback = self.level.player.direction == 'right' and -self.level.player.linearImpulse or self.level.player.linearImpulse
+            self.level.player.body:applyLinearImpulse(knockback, 0)
+            -- Change player's state to hurt
+            self.level.player.state = 'hurt'
+            -- Change player's state to idle after 1 seconds
+            Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
+            Timer.after(1, function() self.level.player.state = 'idle' end)
         end
     end
 
@@ -206,7 +206,7 @@ function Play:draw()
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
     --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("Enemy mass: " .. tostring(self.level.enemies[1].mass), 0, gameHeight - 20)
+    --love.graphics.print("Enemy's body: " .. tostring(self.level.enemies[1].body:getX()), 0, gameHeight - 20)
     --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)

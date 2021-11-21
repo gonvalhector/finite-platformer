@@ -16,6 +16,7 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Obstacle')
     self.world:addCollisionClass('Coins')
     self.world:addCollisionClass('Enemy')
+    self.world:addCollisionClass('Ghost', {ignores = {'Player', 'Ground'}})
 
     -- Level boundaries and floors
     self.boundaries = {}
@@ -131,5 +132,5 @@ function Level:draw()
     -- Player
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])
-    --self.world:draw()
+    self.world:draw()
 end
