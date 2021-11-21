@@ -132,5 +132,5 @@ function Level:draw()
     -- Player
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])
-    self.world:draw()
+    --self.world:draw()
 end
