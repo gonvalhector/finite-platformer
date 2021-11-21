@@ -23,10 +23,6 @@ function Enemy:init(def)
     self.body:setMass(ENTITY_DEFS[self.type].mass)
     self.mass = self.body:getMass()
     self.linearImpulse = -ENTITY_DEFS[self.type].linearImpulse
-    self.force = ENTITY_DEFS[self.type].force
-    self.linearVelocity = {}
-    self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
-    self.linearVelocity.max = ENTITY_DEFS[self.type].maxLinearVelocity
 
     self.destroyed = false
 end
@@ -50,7 +46,7 @@ function Enemy:update(dt)
 
     if self.state ~= 'hurt' then
         -- Change direction on collision with obstacles
-        if self.body:enter('Obstacle') then
+        if self.body:enter('Obstacle') or self.body:enter('Enemy') then
             self:changeDirection()
         end
 
