@@ -2,10 +2,10 @@
 Play = {}
 
 function Play:enter(def)
-    self.levelNumber = def.lvl
-    self.level = Level(self.levelNumber)
+    self.lvl = def.lvl
+    self.level = Level(self.lvl)
 
-    self.music = gMusic['level-' .. tostring(self.levelNumber)]
+    self.music = gMusic['level-' .. tostring(self.lvl)]
     self.sounds = {}
     self.sounds.jump = 'sounds/sfx_sound_neutral1.wav'
     self.sounds.landing = 'sounds/sfx_movement_jump9_landing.wav'
@@ -22,17 +22,17 @@ function Play:enter(def)
     -- Score, Lives, Health & Coins
     self.UIelements = {}
     -- Score
+    self.score = def.score
     self.UIelements.score = {}
-    self.UIelements.score.total = def.score
     self.UIelements.score.captions = {}
     self.UIelements.score.captions[1] = love.graphics.newText(gFonts['interface'], "Score:")
-    self.UIelements.score.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.score.total))
+    self.UIelements.score.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.score))
     -- Lives
+    self.lives = def.lives
     self.UIelements.lives = {}
-    self.UIelements.lives.total = def.lives
     self.UIelements.lives.captions = {}
     self.UIelements.lives.captions[1] = love.graphics.newText(gFonts['interface'], "Lives:")
-    self.UIelements.lives.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.lives.total))
+    self.UIelements.lives.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.lives))
     -- Health
     self.UIelements.health = {}
     self.UIelements.health.max = 3
@@ -60,6 +60,7 @@ end
 
 function Play:update(dt)
     self.level:update(dt)
+    if self.level.player.state == 'death' then return end
     if love.keyboard.isDown('left') or love.keyboard.isDown('a') then
         self.level.player.direction = 'left'
         self.level.player.state = self.jumpCount == 0 and 'walk' or 'jump'
@@ -100,7 +101,7 @@ function Play:update(dt)
         local coinPickupSound = love.audio.newSource(self.sounds.coinPickup, 'static')
         coinPickupSound:play()
         self.UIelements.coins.total = self.UIelements.coins.total + 1
-        self.UIelements.score.total = self.UIelements.score.total + 100
+        self.score = self.score + 100
         local collision_data = self.level.player.body:getEnterCollisionData('Coins')
         -- gets the reference to the coin object
         local coin = collision_data.collider:getObject()
@@ -123,7 +124,7 @@ function Play:update(dt)
             local enemyHurtSound = love.audio.newSource(self.sounds.enemyHurt, 'static')
             enemyHurtSound:play()
             -- Add to score
-            self.UIelements.score.total = self.UIelements.score.total + 200
+            self.score = self.score + 200
             -- Change enemy's state to hurt
             enemy.state = 'hurt'
             -- Destroy enemy's body
@@ -154,9 +155,27 @@ function Play:update(dt)
     end
 
     -- Update UI totals in captions
-    self.UIelements.lives.captions[2]:set(tostring(self.UIelements.lives.total))
-    self.UIelements.score.captions[2]:set(tostring(self.UIelements.score.total))
+    self.UIelements.lives.captions[2]:set(tostring(self.lives))
+    self.UIelements.score.captions[2]:set(tostring(self.score))
     self.UIelements.coins.captions[2]:set(tostring(self.UIelements.coins.total))
+
+    -- Restart level if player loses all health
+    if self.UIelements.health.total <= 0 and self.level.player.state ~= 'death' then
+        -- Update player's state
+        self.level.player.state = 'death'
+        -- Update lives
+        self.lives = self.lives - 1
+        -- Restart level
+        Timer.after(0.5, function()
+            local def = {
+                lvl = self.lvl,
+                score = self.score,
+                lives = self.lives
+            }
+            Gamestate.push(Restart, def)
+        end)
+    end
+
 end
 
 function Play:keypressed(key)
@@ -206,7 +225,7 @@ function Play:draw()
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
     --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("Enemy's body: " .. tostring(self.level.enemies[1].body:getX()), 0, gameHeight - 20)
+    --love.graphics.print("Level number: " .. tostring(self.lvl), 0, gameHeight - 20)
     --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)

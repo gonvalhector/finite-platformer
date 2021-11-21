@@ -48,6 +48,16 @@ ENTITY_DEFS = {
                 frames = {12},
                 looping = false,
                 texture = 'player'
+            },
+            ['death-right'] = {
+                frames = {13},
+                looping = false,
+                texture = 'player'
+            },
+            ['death-left'] = {
+                frames = {14},
+                looping = false,
+                texture = 'player'
             }
         }
     },

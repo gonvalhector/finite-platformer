@@ -28,6 +28,7 @@ require 'lib/Animation'
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
 require 'src/states/game/PlayState'
+require 'src/states/game/RestartState'
 require 'src/states/ExitConfirmState'
 
 -- Helper functions and utilities
@@ -51,7 +52,8 @@ gImages = {
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
-    ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png')
+    ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
+    ['restart-caption'] = love.graphics.newImage('graphics/restart.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -85,5 +87,6 @@ gSounds = {
     ['exit-confirm-in'] = love.audio.newSource('sounds/sfx_sounds_pause5_in.wav', 'static'),
     ['exit-confirm-out'] = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static'),
     ['menu-cursor'] = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static'),
-    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static')
+    ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static'),
+    ['restart'] = love.audio.newSource('sounds/game_over_bad_chest.wav', 'static')
 }

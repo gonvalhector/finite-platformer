@@ -23,6 +23,8 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 
 - **Title font**: [Font.](https://opengameart.org/content/font-0) by [thekingphoenix](https://opengameart.org/users/thekingphoenix).
 - **Message font**: [KenPixel Mini](https://opengameart.org/content/kenney-fonts) by [Kenney](https://opengameart.org/users/kenney).
+- **UI font**: [Sharp Retro Font](https://opengameart.org/content/sharp-retro-font) by [JROB774](https://opengameart.org/users/jrob774).
+- **Block Font**: [Pixel Block Font](https://opengameart.org/content/pixel-block-font) by [JROB774](https://opengameart.org/users/jrob774).
 
 ### Graphics:
 
@@ -45,3 +47,4 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Impact**: [sounds/sfx_sounds_impact7.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Player Being Hit**: [sounds/sfx_sounds_damage1.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Enemy Being Hit**: [sounds/sfx_sounds_button11.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Restart Level**: [game_over_bad_chest.wav](https://opengameart.org/content/game-over-bad-chest-sfx) by [Oiboo](https://opengameart.org/users/oiboo).

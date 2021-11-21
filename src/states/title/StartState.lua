@@ -1,7 +1,7 @@
 -- Title screen state
 Start = {}
 
-function Start:init()
+function Start:enter()
     -- Load title screen map created in Tiled
     self.map = STI("levels/titleScreen.lua")
     -- Scrolling speed
@@ -22,15 +22,15 @@ function Start:init()
     self.prompt.sound = gSounds['menu-select']
     -- Background music
     self.music = gMusic['title-music']
+    self.music:setLooping(true)
     -- Title logo
     self.logo = gImages['title-logo']
-end
 
-function Start:enter()
-    self.music:setLooping(true)
-    self.music:play()
     -- Flag for recognizing key input
     self.canPressKey = true
+
+    love.audio.stop()
+    self.music:play()
 end
 
 function Start:resume()
@@ -55,7 +55,7 @@ function Start:keypressed(key)
             self.prompt.color[4] = 1
             self.prompt.sound:play()
             -- Change to the title menu state
-            def = {
+            local def = {
                 map = self.map,
                 scroll = self.scroll,
                 background = self.background,

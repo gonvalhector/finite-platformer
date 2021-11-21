@@ -69,7 +69,7 @@ function Level:init(levelNumber)
 
         -- Enemies
         elseif object.type == "Enemies" then
-            def = {
+           local  def = {
                 x = object.x,
                 y = object.y,
                 world = self.world,
@@ -86,7 +86,7 @@ function Level:init(levelNumber)
     end
 
     -- Instantiate Player
-    def = {
+    local def = {
         x = playerSpawnX,
         y = playerSpawnY,
         world = self.world,

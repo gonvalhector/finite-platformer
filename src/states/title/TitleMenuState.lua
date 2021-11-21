@@ -86,7 +86,7 @@ function TitleMenu:keypressed(key)
             self.sounds.select:play()
             -- 'Play' option
             if self.options.selected == 1 then
-                def = {
+                local def = {
                     lvl = self.lvl,
                     score = self.score,
                     lives = self.lives
