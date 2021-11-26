@@ -42,9 +42,9 @@ function Start:update(dt)
     autoScroll(dt, self.map, self.background, self.scroll)
     -- Tween key prompt's alpha channel
     if self.prompt.color[4] == 0 then
-        handle = Timer.tween(1, self.prompt.color, {1, 1, 1, 1})
+        Timer.tween(1, self.prompt.color, {1, 1, 1, 1})
     elseif self.prompt.color[4] == 1 then
-        handle = Timer.tween(1, self.prompt.color, {1, 1, 1, 0})
+        Timer.tween(1, self.prompt.color, {1, 1, 1, 0})
     end
 end
 

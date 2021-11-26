@@ -34,6 +34,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 
 - **Title Screen Music**: [Stage Select](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Level 1**: [Stage 1](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Game Over**: [Witch's Lair](https://opengameart.org/content/jrpg-pack-3-evil) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 
 ### Sounds:
 

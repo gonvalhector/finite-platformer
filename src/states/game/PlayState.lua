@@ -163,17 +163,26 @@ function Play:update(dt)
     if self.UIelements.health.total <= 0 and self.level.player.state ~= 'death' then
         -- Update player's state
         self.level.player.state = 'death'
-        -- Update lives
-        self.lives = self.lives - 1
-        -- Restart level
-        Timer.after(0.5, function()
-            local def = {
-                lvl = self.lvl,
-                score = self.score,
-                lives = self.lives
-            }
-            Gamestate.push(Restart, def)
-        end)
+        -- If there are no lives left
+        if self.lives - 1 < 0 then
+            -- Switch to game over state
+            Timer.after(0.5, function()
+                Gamestate.switch(Gameover)
+            end)
+        -- If there are still lives left
+        else
+            -- Update lives
+            self.lives = math.max(0, self.lives - 1)
+            -- Restart level
+            Timer.after(0.5, function()
+                local def = {
+                    lvl = self.lvl,
+                    score = self.score,
+                    lives = self.lives
+                }
+                Gamestate.push(Restart, def)
+            end)
+        end
     end
 
 end

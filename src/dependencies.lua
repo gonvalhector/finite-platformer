@@ -29,6 +29,7 @@ require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
 require 'src/states/game/PlayState'
 require 'src/states/game/RestartState'
+require 'src/states/game/GameoverState'
 require 'src/states/ExitConfirmState'
 
 -- Helper functions and utilities
@@ -53,7 +54,8 @@ gImages = {
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
     ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
-    ['restart-caption'] = love.graphics.newImage('graphics/restart.png')
+    ['restart-caption'] = love.graphics.newImage('graphics/restart.png'),
+    ['gameover-caption'] = love.graphics.newImage('graphics/gameover.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -77,10 +79,12 @@ gFonts = {
 -- Music
 gMusic = {
     ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'static'),
-    ['level-1'] = love.audio.newSource('music/level1.ogg', 'static')
+    ['level-1'] = love.audio.newSource('music/level1.ogg', 'static'),
+    ['gameover'] = love.audio.newSource('music/gameover.ogg', 'static')
 }
 gMusic['title-music']:setVolume(0.25)
 gMusic['level-1']:setVolume(0.25)
+gMusic['gameover']:setVolume(0.5)
 
 -- Sounds
 gSounds = {

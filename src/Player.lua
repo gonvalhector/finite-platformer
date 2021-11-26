@@ -53,4 +53,5 @@ function Player:draw()
     love.graphics.setColor(1, 1, 1, self.alpha)
     local anim = self.currentAnimation
     love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.body:getX()), math.floor(self.body:getY()), self.body:getAngle(), 1, 1, self.width / 2, self.height / 2)
+    love.graphics.setColor(1, 1, 1, 1)
 end

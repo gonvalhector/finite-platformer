@@ -64,7 +64,7 @@ function Restart:draw()
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
     -- Draw captions
     love.graphics.setColor(1, 1, 1, 1)
-    -- Draw 'Restart?'' caption
+    -- Draw 'Restart Level?' caption
     love.graphics.draw(self.captions[1].image, self.captions[1].x, self.captions[1].y, 0, 2, 2, self.captions[1].image:getWidth() / 2, self.captions[1].image:getHeight() / 2)
     -- Draw 'Yes' caption
     if self.optionSelected == 1 then
