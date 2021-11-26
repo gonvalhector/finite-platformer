@@ -7,9 +7,18 @@ self.score = def.score
 self.lives = def.lives
 
 self.captions = {}
-self.captions[1] = gImages['restart-caption']
-self.captions[2] = love.graphics.newText(gFonts['messages'], "Yes")
-self.captions[3] = love.graphics.newText(gFonts['messages'], "No")
+self.captions[1] = {}
+self.captions[1].image = gImages['restart-caption']
+self.captions[1].x = gameWidth / 2
+self.captions[1].y = gameHeight / 2 - 20
+self.captions[2] = {}
+self.captions[2].image = love.graphics.newText(gFonts['messages'], "Yes")
+self.captions[2].x = 179
+self.captions[2].y = 209
+self.captions[3] = {}
+self.captions[3].image = love.graphics.newText(gFonts['messages'], "No")
+self.captions[3].x = 445
+self.captions[3].y = 209
 
 self.sounds = {}
 self.sounds.restart = gSounds['restart']
@@ -20,6 +29,7 @@ self.optionSelected = 1
 
 love.audio.stop()
 self.sounds.restart:play()
+Timer.tween(0.5, self.captions[1], { y = gameHeight / 2 - 60 })
 end
 
 function Restart:keypressed(key)
@@ -55,33 +65,33 @@ function Restart:draw()
     -- Draw captions
     love.graphics.setColor(1, 1, 1, 1)
     -- Draw 'Restart?'' caption
-    love.graphics.draw(self.captions[1], gameWidth / 2, gameHeight / 2 - 20, 0, 2, 2, self.captions[1]:getWidth() / 2, self.captions[1]:getHeight() / 2)
+    love.graphics.draw(self.captions[1].image, self.captions[1].x, self.captions[1].y, 0, 2, 2, self.captions[1].image:getWidth() / 2, self.captions[1].image:getHeight() / 2)
     -- Draw 'Yes' caption
     if self.optionSelected == 1 then
         love.graphics.setColor(247/255, 56/255, 91/255, 1)
-        love.graphics.draw(self.captions[2], 179, 209)
+        love.graphics.draw(self.captions[2].image, self.captions[2].x, self.captions[2].y)
         --
         love.graphics.setColor(255/255, 232/255, 148/255, 1)
-        love.graphics.draw(self.captions[2], 178, 208)
+        love.graphics.draw(self.captions[2].image, self.captions[2].x - 1, self.captions[2].y - 1)
     else
         love.graphics.setColor(175/255, 16/255, 29/255, 1)
-        love.graphics.draw(self.captions[2], 179, 209)
+        love.graphics.draw(self.captions[2].image, self.captions[2].x, self.captions[2].y)
         --
         love.graphics.setColor(255/255, 155/255, 61/255, 1)
-        love.graphics.draw(self.captions[2], 178, 208)
+        love.graphics.draw(self.captions[2].image, self.captions[2].x - 1, self.captions[2].y - 1)
     end
     -- Draw 'No' caption
     if self.optionSelected == 2 then
         love.graphics.setColor(247/255, 56/255, 91/255, 1)
-        love.graphics.draw(self.captions[3], 445, 209)
+        love.graphics.draw(self.captions[3].image, self.captions[3].x, self.captions[3].y)
         --
         love.graphics.setColor(255/255, 232/255, 148/255, 1)
-        love.graphics.draw(self.captions[3], 444, 208)
+        love.graphics.draw(self.captions[3].image, self.captions[3].x - 1, self.captions[3].y - 1)
     else
         love.graphics.setColor(175/255, 16/255, 29/255, 1)
-        love.graphics.draw(self.captions[3], 445, 209)
+        love.graphics.draw(self.captions[3].image, self.captions[3].x, self.captions[3].y)
         --
         love.graphics.setColor(255/255, 155/255, 61/255, 1)
-        love.graphics.draw(self.captions[3], 444, 208)
+        love.graphics.draw(self.captions[3].image, self.captions[3].x - 1, self.captions[3].y - 1)
     end
 end
