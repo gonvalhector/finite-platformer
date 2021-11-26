@@ -52,6 +52,7 @@ function Gameover:enter()
     end, self.maxBodies)
 
     love.audio.stop()
+    self.music:setLooping(true)
     self.music:play()
 end
 
