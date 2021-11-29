@@ -15,6 +15,7 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Wall')
     self.world:addCollisionClass('Obstacle')
     self.world:addCollisionClass('Coins')
+    self.world:addCollisionClass('Hearts')
     self.world:addCollisionClass('Enemy')
     self.world:addCollisionClass('Ghost', {ignores = {'Player', 'Ground'}})
 
@@ -95,6 +96,10 @@ function Level:update(dt)
     for k, coin in pairs(self.coins) do
         coin:update(dt)
     end
+    -- Update hearts
+    for k, heart in pairs(self.hearts) do
+        heart:update(dt)
+    end
     -- Update enemies
     for k, enemy in pairs(self.enemies) do
         enemy:update(dt)
@@ -109,6 +114,10 @@ function Level:draw()
     -- Coins
     for k, coin in pairs(self.coins) do
         coin:draw()
+    end
+    -- Hearts
+    for k, heart in pairs(self.hearts) do
+        heart:draw()
     end
     -- Enemies
     for k, enemy in pairs(self.enemies) do

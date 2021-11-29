@@ -10,6 +10,7 @@ function Play:enter(def)
     self.sounds.jump = 'sounds/sfx_sound_neutral1.wav'
     self.sounds.landing = 'sounds/sfx_movement_jump9_landing.wav'
     self.sounds.coinPickup = 'sounds/sfx_coin_double3.wav'
+    self.sounds.heartPickup = 'sounds/sfx_coin_cluster3.wav'
     self.sounds.impact = 'sounds/sfx_sounds_impact7.wav'
     self.sounds.playerHurt = 'sounds/sfx_sounds_damage1.wav'
     self.sounds.enemyHurt = 'sounds/sfx_sounds_button11.wav'
@@ -109,8 +110,22 @@ function Play:update(dt)
         -- gets the reference to the coin object
         local coin = collision_data.collider:getObject()
         coin.status = 'picked-up'
+        -- destroy coin
         coin.body:destroy()
         Timer.after(0.40, function() coin.destroyed = true end)
+    end
+
+    -- If player collides with a heart
+    if self.level.player.body:enter('Hearts') then
+        local heartPickupSound = love.audio.newSource(self.sounds.heartPickup, 'static')
+        heartPickupSound:play()
+        self.UIelements.health.total = math.min(self.UIelements.health.max, self.UIelements.health.total + 1)
+        local collision_data = self.level.player.body:getEnterCollisionData('Hearts')
+        -- gets the reference to the heart object
+        local heart = collision_data.collider:getObject()
+        -- destroy heart
+        heart.body:destroy()
+        heart.destroyed = true
     end
 
     -- If player collides with an enemy
@@ -127,9 +142,19 @@ function Play:update(dt)
             local enemyHurtSound = love.audio.newSource(self.sounds.enemyHurt, 'static')
             enemyHurtSound:play()
             -- Add to score
-            self.score = self.score + 200
+            self.score = math.min(self.UIelements.score.max, self.score + 200)
             -- Change enemy's state to hurt
             enemy.state = 'hurt'
+            -- Spawn a heart
+            if math.random(3) == 1 then
+                local def = {
+                    x = enemy.body:getX(),
+                    y = enemy.body:getY(),
+                    world = self.level.world
+                }
+                local heart = Heart(def)
+                table.insert(self.level.hearts, heart)
+            end
             -- Destroy enemy's body
             enemy.body:setCollisionClass('Ghost')
             enemy.body:setAngularVelocity(12.5)

@@ -9,7 +9,7 @@ function Heart:init(def)
     self.height = ENTITY_DEFS['hearts'].height
 
     self.status = 'not-picked-up'
-    self.animations = createAnimations(ENTITY_DEFS['coins'].animations)
+    self.animations = createAnimations(ENTITY_DEFS['hearts'].animations)
     self.currentAnimation = self.animations[self.status]
 
     self.world = def.world
