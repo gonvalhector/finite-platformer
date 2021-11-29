@@ -40,7 +40,7 @@ function TitleMenu:enter(def)
     -- Play starts with Stage 1 and a new score
     self.lvl = 1
     self.score = 0
-    self.lives = 0
+    self.lives = 3
 
     -- Raise the logo
     Timer.tween(0.5, self.logo.position, {x = gameWidth / 2, y = gameHeight / 4})

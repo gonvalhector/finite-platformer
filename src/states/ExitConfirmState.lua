@@ -53,7 +53,7 @@ function ExitConfirm:draw()
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
     -- Draw messages
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(240/255, 238/255, 236/255, 1)
     love.graphics.draw(self.messages[1], gameWidth / 2, gameHeight / 2, 0, 1, 1, self.messages[1]:getWidth() / 2, self.messages[1]:getHeight() / 2)
     if self.optionSelected == 2 then
         love.graphics.setColor(0.5, 0.5, 0.5, 1)
@@ -62,7 +62,7 @@ function ExitConfirm:draw()
     if self.optionSelected == 1 then
         love.graphics.setColor(0.5, 0.5, 0.5, 1)
     else
-        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.setColor(240/255, 238/255, 236/255, 1)
     end
     love.graphics.draw(self.messages[3], gameWidth / 2, gameHeight / 2 + 20, 0, 1, 1, self.messages[3]:getWidth() - 30, self.messages[3]:getHeight() / 2)
 end
