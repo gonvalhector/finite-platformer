@@ -40,6 +40,7 @@ require 'src/Level'
 require 'src/Player'
 require 'src/Enemy'
 require 'src/Coin'
+require 'src/Heart'
 
 -- Data
 require 'src/entity_defs'

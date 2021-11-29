@@ -79,6 +79,17 @@ ENTITY_DEFS = {
             }
         }
     },
+    ['hearts'] = {
+        width = 8,
+        height = 8,
+        animations = {
+            ['not-picked-up'] = {
+                frames = {6},
+                looping = false,
+                texture = 'ui-elements'
+            }
+        }
+    },
     ['pumpkinhead'] = {
         width = 16,
         height = 16,
