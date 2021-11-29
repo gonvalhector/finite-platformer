@@ -39,6 +39,7 @@ require 'src/util'
 require 'src/Level'
 require 'src/Player'
 require 'src/Enemy'
+require 'src/Coin'
 
 -- Data
 require 'src/entity_defs'

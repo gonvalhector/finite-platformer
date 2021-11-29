@@ -24,6 +24,8 @@ function Level:init(levelNumber)
     local playerSpawnX, playerSpawnY
     -- Coins
     self.coins = {}
+    -- Hearts
+    self.hearts = {}
     -- Enemies
     self.enemies = {}
     -- Iterate over map objects
@@ -46,25 +48,14 @@ function Level:init(levelNumber)
             table.insert(self.boundaries, boundary)
         -- Coins
         elseif object.type == "Coins" then
-            local coin = {
-                destroyed = false,
+            local def = {
                 x = object.x,
                 y = object.y,
                 width = object.width,
                 height = object.height,
-                status = 'not-picked-up',
-                animations = createAnimations(ENTITY_DEFS['coins'].animations),
-                currentAnimation = nil,
-                body = self.world:newCircleCollider(object.x + object.width / 2, object.y + object.height / 2, object.width / 2)
+                world = self.world
             }
-            coin.currentAnimation = coin.animations[coin.status]
-            coin.body:setType('static')
-            coin.body:setCollisionClass('Coins')
-            coin.body:setPreSolve(function(collider_1, collider_2, contact)
-                contact:setEnabled(false)
-            end)
-
-            coin.body:setObject(coin)
+            local coin = Coin(def)
             table.insert(self.coins, coin)
 
         -- Enemies
@@ -102,10 +93,7 @@ function Level:update(dt)
 
     -- Update coins
     for k, coin in pairs(self.coins) do
-        if coin.destroyed == false then
-            coin.currentAnimation = coin.animations[coin.status]
-            coin.currentAnimation:update(dt)
-        end
+        coin:update(dt)
     end
     -- Update enemies
     for k, enemy in pairs(self.enemies) do
@@ -120,10 +108,7 @@ function Level:draw()
     self.map:drawLayer(self.map.layers["Midground"])
     -- Coins
     for k, coin in pairs(self.coins) do
-        if coin.destroyed == false then
-            local anim = coin.currentAnimation
-            love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(coin.x), math.floor(coin.y))
-        end
+        coin:draw()
     end
     -- Enemies
     for k, enemy in pairs(self.enemies) do
