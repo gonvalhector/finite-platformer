@@ -213,6 +213,8 @@ function Play:update(dt)
         end
     end
 
+    -- Remove destroyed entitites
+    self:clean(self.level.coins, self.level.hearts, self.level.crates, self.level.enemies)
 end
 
 function Play:keypressed(key)
@@ -267,9 +269,49 @@ function Play:draw()
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
     --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("Crate Mass: " .. tostring(self.level.crates[1].mass), 0, gameHeight - 20)
-    --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
+    --love.graphics.print("Coins in Level: " .. tostring(#self.level.coins), 0, gameHeight - 20)
+    --love.graphics.print("Enemies in Level: " .. tostring(#self.level.enemies), 0, gameHeight - 10)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
     --love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)
+end
+
+function Play:clean(coins, hearts, crates, enemies)
+    local destroyIndex = 0
+    -- Remove destroyed coins from level
+    for i = 1, #coins do
+        if coins[i].destroyed then
+            destroyIndex = i
+            break
+        end
+    end
+    if destroyIndex ~= 0 then table.remove(coins, destroyIndex) end
+    destroyIndex = 0
+    -- Remove destroyed hearts from level
+    for i = 1, #hearts do
+        if hearts[i].destroyed then
+            destroyIndex = i
+            break
+        end
+    end
+    if destroyIndex ~= 0 then table.remove(hearts, destroyIndex) end
+    destroyIndex = 0
+    -- Remove destroyed crates from level
+    for i = 1, #crates do
+        if crates[i].destroyed then
+            destroyIndex = i
+            break
+        end
+    end
+    if destroyIndex ~= 0 then table.remove(crates, destroyIndex) end
+    destroyIndex = 0
+    -- Remove destroyed enemies from level
+    for i = 1, #enemies do
+        if enemies[i].destroyed then
+            destroyIndex = i
+            break
+        end
+    end
+    if destroyIndex ~= 0 then table.remove(enemies, destroyIndex) end
+    destroyIndex = 0
 end
