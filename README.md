@@ -29,6 +29,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 ### Graphics:
 
 - **Platformer Assets**: [Arcade Platformer Assets](https://opengameart.org/content/arcade-platformer-assets) by [GrafxKid](https://opengameart.org/users/grafxkid).
+- **Items And Elements**: [Items And Elements](https://opengameart.org/content/items-and-elements) by [GrafxKid](https://opengameart.org/users/grafxkid).
 
 ### Music:
 
