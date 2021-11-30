@@ -46,7 +46,7 @@ function Enemy:update(dt)
 
     if self.state ~= 'hurt' then
         -- Change direction on collision with obstacles
-        if self.body:enter('Obstacle') or self.body:enter('Enemy') then
+        if self.body:enter('Obstacle') or self.body:enter('Enemy') or self.body:enter('Crates') then
             self:changeDirection()
         end
 

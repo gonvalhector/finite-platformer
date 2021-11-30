@@ -16,6 +16,7 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Obstacle')
     self.world:addCollisionClass('Coins')
     self.world:addCollisionClass('Hearts')
+    self.world:addCollisionClass('Crates')
     self.world:addCollisionClass('Enemy')
     self.world:addCollisionClass('Ghost', {ignores = {'Player', 'Ground'}})
 
@@ -27,6 +28,8 @@ function Level:init(levelNumber)
     self.coins = {}
     -- Hearts
     self.hearts = {}
+    -- Crates
+    self.crates = {}
     -- Enemies
     self.enemies = {}
     -- Iterate over map objects
@@ -59,6 +62,16 @@ function Level:init(levelNumber)
             local coin = Coin(def)
             table.insert(self.coins, coin)
 
+        -- Crates
+        elseif object.type == "Crates" then
+            local def = {
+                x = object.x,
+                y = object.y,
+                world = self.world
+            }
+            local crate = Crate(def)
+            table.insert(self.crates, crate)
+        
         -- Enemies
         elseif object.type == "Enemies" then
            local  def = {
@@ -100,6 +113,10 @@ function Level:update(dt)
     for k, heart in pairs(self.hearts) do
         heart:update(dt)
     end
+    -- Update crates
+    for k, crate in pairs(self.crates) do
+        crate:update(dt)
+    end
     -- Update enemies
     for k, enemy in pairs(self.enemies) do
         enemy:update(dt)
@@ -118,6 +135,10 @@ function Level:draw()
     -- Hearts
     for k, heart in pairs(self.hearts) do
         heart:draw()
+    end
+    -- Crates
+    for k, crate in pairs(self.crates) do
+        crate:draw()
     end
     -- Enemies
     for k, enemy in pairs(self.enemies) do

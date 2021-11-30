@@ -90,6 +90,74 @@ ENTITY_DEFS = {
             }
         }
     },
+    ['red-crates'] = {
+        width = 16,
+        height = 16,
+        mass = 30,
+        animations = {
+            ['unbroken'] = {
+                frames = {1},
+                looping = false,
+                texture = 'crates'
+            },
+            ['broken'] = {
+                frames = {5},
+                looping = false,
+                texture = 'crates'
+            }
+        }
+    },
+    ['green-crates'] = {
+        width = 16,
+        height = 16,
+        mass = 30,
+        animations = {
+            ['unbroken'] = {
+                frames = {2},
+                looping = false,
+                texture = 'crates'
+            },
+            ['broken'] = {
+                frames = {6},
+                looping = false,
+                texture = 'crates'
+            }
+        }
+    },
+    ['brown-crates'] = {
+        width = 16,
+        height = 16,
+        mass = 30,
+        animations = {
+            ['unbroken'] = {
+                frames = {3},
+                looping = false,
+                texture = 'crates'
+            },
+            ['broken'] = {
+                frames = {7},
+                looping = false,
+                texture = 'crates'
+            }
+        }
+    },
+    ['gray-crates'] = {
+        width = 16,
+        height = 16,
+        mass = 30,
+        animations = {
+            ['unbroken'] = {
+                frames = {4},
+                looping = false,
+                texture = 'crates'
+            },
+            ['broken'] = {
+                frames = {8},
+                looping = false,
+                texture = 'crates'
+            }
+        }
+    },
     ['pumpkinhead'] = {
         width = 16,
         height = 16,

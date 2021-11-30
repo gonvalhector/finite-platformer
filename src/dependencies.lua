@@ -41,8 +41,10 @@ require 'src/Player'
 require 'src/Enemy'
 require 'src/Coin'
 require 'src/Heart'
+require 'src/Crate'
 
 -- Data
+require 'src/constants'
 require 'src/entity_defs'
 
 -- Images
@@ -54,6 +56,7 @@ gImages = {
     ['player'] = love.graphics.newImage('graphics/player.png'),
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
+    ['crates'] = love.graphics.newImage('graphics/crates.png'),
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
     ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
     ['restart-caption'] = love.graphics.newImage('graphics/restart.png'),
@@ -68,6 +71,7 @@ gFrames = {
     ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
     ['player'] = GenerateQuads(gImages['player'], 20, 18),
     ['coins'] = GenerateQuads(gImages['coins'], 16, 16),
+    ['crates'] = GenerateQuads(gImages['crates'], 16, 16),
     ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8),
     ['enemies-a'] = GenerateQuads(gImages['enemies-a'], 16, 16)
 }

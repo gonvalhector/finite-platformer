@@ -93,7 +93,7 @@ function Play:update(dt)
 
     -- Reset jumps available when the player hits the floor
     if self.jumpCount > 0 then
-        if self.level.player.body:enter('Ground') or self.level.player.body:enter('Obstacle') then
+        if self.level.player.body:enter('Ground') or self.level.player.body:enter('Obstacle') or self.level.player.body:enter('Crates') then
             local landingSound = love.audio.newSource(self.sounds.landing, 'static')
             landingSound:play()
             self.jumpCount = 0
@@ -266,8 +266,8 @@ function Play:draw()
     if self.score == self.UIelements.score.max then love.graphics.setColor(241/255, 187/255, 59/255, 1) else love.graphics.setColor(240/255, 238/255, 236/255, 1) end
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
-    --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("Level number: " .. tostring(self.lvl), 0, gameHeight - 20)
+    love.graphics.setColor(0, 0, 0, 1)
+    love.graphics.print("Crate Mass: " .. tostring(self.level.crates[1].mass), 0, gameHeight - 20)
     --love.graphics.print("Linear Velocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, 20)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)

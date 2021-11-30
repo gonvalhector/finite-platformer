@@ -23,6 +23,7 @@ function Player:init(def)
     self.linearVelocity = {}
     self.linearVelocity.x, self.linearVelocity.y = self.body:getLinearVelocity()
     self.linearVelocity.max = ENTITY_DEFS['player'].maxLinearVelocity
+    self.restitution = self.body:getRestitution()
 
     self.alpha = 1
 end

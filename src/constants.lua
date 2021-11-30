@@ -1,0 +1,1 @@
+CRATE_COLORS = {'red', 'green', 'brown', 'gray'}
