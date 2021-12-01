@@ -51,3 +51,5 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Player Being Hit**: [sounds/sfx_sounds_damage1.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Enemy Being Hit**: [sounds/sfx_sounds_button11.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Restart Level**: [game_over_bad_chest.wav](https://opengameart.org/content/game-over-bad-chest-sfx) by [Oiboo](https://opengameart.org/users/oiboo).
+- **Pause In**: [sfx_sounds_pause4_in.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Pause Out**: [sfx_sounds_pause4_out.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
