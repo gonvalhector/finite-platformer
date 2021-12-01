@@ -8,13 +8,18 @@ self.lives = def.lives
 
 self.captions = {}
 self.captions[1] = {}
-self.captions[1].image = gImages['restart-caption']
+self.captions[1].image = gFrames['captions'][3]
+self.captions[1].sheet = gImages['captions']
 self.captions[1].x = gameWidth / 2
 self.captions[1].y = gameHeight / 2 - 20
+self.captions[1].width = gFrames['captions'][#gFrames['captions'] - 1]
+self.captions[1].height = gFrames['captions'][#gFrames['captions']]
+
 self.captions[2] = {}
 self.captions[2].image = love.graphics.newText(gFonts['messages'], "Yes")
 self.captions[2].x = 179
 self.captions[2].y = 209
+
 self.captions[3] = {}
 self.captions[3].image = love.graphics.newText(gFonts['messages'], "No")
 self.captions[3].x = 445
@@ -65,7 +70,7 @@ function Restart:draw()
     -- Draw captions
     love.graphics.setColor(1, 1, 1, 1)
     -- Draw 'Restart Level?' caption
-    love.graphics.draw(self.captions[1].image, self.captions[1].x, self.captions[1].y, 0, 2, 2, self.captions[1].image:getWidth() / 2, self.captions[1].image:getHeight() / 2)
+    love.graphics.draw(self.captions[1].sheet, self.captions[1].image, self.captions[1].x, self.captions[1].y, 0, 2, 2, self.captions[1].width / 2, self.captions[1].height / 2)
     -- Draw 'Yes' caption
     if self.optionSelected == 1 then
         love.graphics.setColor(247/255, 56/255, 91/255, 1)

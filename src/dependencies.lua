@@ -59,8 +59,7 @@ gImages = {
     ['crates'] = love.graphics.newImage('graphics/crates.png'),
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
     ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
-    ['restart-caption'] = love.graphics.newImage('graphics/restart.png'),
-    ['gameover-caption'] = love.graphics.newImage('graphics/gameover.png')
+    ['captions'] = love.graphics.newImage('graphics/captions.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -73,7 +72,8 @@ gFrames = {
     ['coins'] = GenerateQuads(gImages['coins'], 16, 16),
     ['crates'] = GenerateQuads(gImages['crates'], 16, 16),
     ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8),
-    ['enemies-a'] = GenerateQuads(gImages['enemies-a'], 16, 16)
+    ['enemies-a'] = GenerateQuads(gImages['enemies-a'], 16, 16),
+    ['captions'] = GenerateQuads(gImages['captions'], 242, 28)
 }
 
 -- Fonts

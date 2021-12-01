@@ -33,8 +33,8 @@ function TitleMenu:enter(def)
             inactive = gFrames['title-menu'][5],
             active = gFrames['title-menu'][6]
         },
-        width = gFrames['title-menu'][7],
-        height = gFrames['title-menu'][8]
+        width = gFrames['title-menu'][#gFrames['title-menu'] - 1],
+        height = gFrames['title-menu'][#gFrames['title-menu']]
     }
 
     -- Play starts with Stage 1 and a new score

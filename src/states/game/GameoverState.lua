@@ -3,9 +3,12 @@ Gameover = {}
 function Gameover:enter()
     self.captions = {}
     self.captions[1] = {}
-    self.captions[1].image = gImages['gameover-caption']
+    self.captions[1].image = gFrames['captions'][2]
+    self.captions[1].sheet = gImages['captions']
     self.captions[1].x = gameWidth / 2
     self.captions[1].y = gameHeight / 2
+    self.captions[1].width = gFrames['captions'][#gFrames['captions'] - 1]
+    self.captions[1].height = gFrames['captions'][#gFrames['captions']]
 
     -- Press Enter to continue prompt
     self.prompt = {}
@@ -93,7 +96,7 @@ function Gameover:draw()
     -- Draw captions
     love.graphics.setColor(1, 1, 1, 1)
     -- Draw 'Game Over' caption
-    love.graphics.draw(self.captions[1].image, self.captions[1].x, self.captions[1].y, 0, 2, 2, self.captions[1].image:getWidth() / 2, self.captions[1].image:getHeight() / 2)
+    love.graphics.draw(self.captions[1].sheet, self.captions[1].image, self.captions[1].x, self.captions[1].y, 0, 2, 2, self.captions[1].width / 2, self.captions[1].height / 2)
     -- Draw key prompt
     love.graphics.setColor(self.prompt.color)
     love.graphics.draw(self.prompt.image, gameWidth / 2, gameHeight / 2, 0, 2, 2, self.prompt.image:getWidth() / 2, self.prompt.image:getHeight() / 2 - 20)
