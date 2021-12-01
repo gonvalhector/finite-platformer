@@ -227,6 +227,10 @@ function Play:keypressed(key)
             self.level.player.body:applyLinearImpulse(0, -self.level.player.linearImpulse)
         end
     end
+
+    if key == "p" then
+        Gamestate.push(Pause)
+    end
 end
 
 function Play:draw()

@@ -28,6 +28,7 @@ require 'lib/Animation'
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
 require 'src/states/game/PlayState'
+require 'src/states/game/PauseState'
 require 'src/states/game/RestartState'
 require 'src/states/game/GameoverState'
 require 'src/states/ExitConfirmState'
@@ -98,5 +99,7 @@ gSounds = {
     ['exit-confirm-out'] = love.audio.newSource('sounds/sfx_sounds_pause5_out.wav', 'static'),
     ['menu-cursor'] = love.audio.newSource('sounds/sfx_menu_move1.wav', 'static'),
     ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static'),
-    ['restart'] = love.audio.newSource('sounds/game_over_bad_chest.wav', 'static')
+    ['restart'] = love.audio.newSource('sounds/game_over_bad_chest.wav', 'static'),
+    ['pause-in'] = love.audio.newSource('sounds/sfx_sounds_pause4_in.wav', 'static'),
+    ['pause-out'] = love.audio.newSource('sounds/sfx_sounds_pause4_out.wav', 'static')
 }
