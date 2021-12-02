@@ -280,6 +280,7 @@ function Play:draw()
     --love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)
 end
 
+-- Remove destroyed entitites
 function Play:clean(coins, hearts, crates, enemies)
     local destroyIndex = 0
     -- Remove destroyed coins from level
