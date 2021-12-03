@@ -26,6 +26,10 @@ function Player:init(def)
     self.restitution = self.body:getRestitution()
 
     self.alpha = 1
+
+    self.checkpoint = {}
+    self.checkpoint.x = 0
+    self.checkpoint.y = 0
 end
 
 function Player:changeAnimation(name)
@@ -53,6 +57,6 @@ end
 function Player:draw()
     love.graphics.setColor(1, 1, 1, self.alpha)
     local anim = self.currentAnimation
-    love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.body:getX()), math.floor(self.body:getY()), self.body:getAngle(), 1, 1, self.width / 2, self.height / 2)
+    love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y), 0, 1, 1, self.width / 2, self.height / 2)
     love.graphics.setColor(1, 1, 1, 1)
 end

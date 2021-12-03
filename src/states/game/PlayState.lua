@@ -100,6 +100,33 @@ function Play:update(dt)
         end
     end
 
+    -- If player collides with a checkpoint
+    if self.level.player.body:enter('Checkpoint') then
+        -- Get checkpoint data
+        local collision_data = self.level.player.body:getEnterCollisionData('Checkpoint')
+        local checkpoint = collision_data.collider:getObject()
+        -- Update player's checkpoint position
+        self.level.player.checkpoint.x = checkpoint.x + (self.level.player.width / 2)
+        self.level.player.checkpoint.y = (checkpoint.y + checkpoint.height) - self.level.player.height
+    end
+
+    -- If player collides with a resetpoint
+    if self.level.player.body:enter('Resetpoint') then
+        -- Play sound
+        local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
+        playerHurtSound:play()
+        -- Take one heart from Player
+        self.UIelements.health.total = self.UIelements.health.total - 1
+        -- Change player's state to hurt
+        self.level.player.state = 'hurt'
+        -- Change player's state to idle after 1 seconds
+        Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
+        Timer.after(1, function() self.level.player.state = 'idle' end)
+        -- Reset player's position to checkpoint
+        self.level.player.body:setLinearVelocity(0, 0)
+        self.level.player.body:setPosition(self.level.player.checkpoint.x, self.level.player.checkpoint.y)
+    end
+
     -- If player collides with a coin
     if self.level.player.body:enter('Coins') then
         local coinPickupSound = love.audio.newSource(self.sounds.coinPickup, 'static')
@@ -129,7 +156,7 @@ function Play:update(dt)
     end
 
     -- If player collides with an enemy
-    if self.level.player.body:enter('Enemy') then
+    if self.level.player.body:enter('Enemy') and self.level.player.state ~= 'hurt' then
         -- Play impact sound
         local impactSound = love.audio.newSource(self.sounds.impact, 'static')
         impactSound:play()
@@ -272,9 +299,9 @@ function Play:draw()
     if self.score == self.UIelements.score.max then love.graphics.setColor(241/255, 187/255, 59/255, 1) else love.graphics.setColor(240/255, 238/255, 236/255, 1) end
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
-    --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("Coins in Level: " .. tostring(#self.level.coins), 0, gameHeight - 20)
-    --love.graphics.print("Enemies in Level: " .. tostring(#self.level.enemies), 0, gameHeight - 10)
+    love.graphics.setColor(0, 0, 0, 1)
+    love.graphics.print("Checkpoint X: " .. tostring(self.level.player.checkpoint.x), 0, gameHeight - 20)
+    love.graphics.print("Checkpoint Y: " .. tostring(self.level.player.checkpoint.y), 0, gameHeight - 10)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
     --love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)
