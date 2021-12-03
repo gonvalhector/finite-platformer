@@ -56,6 +56,7 @@ gImages = {
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
     ['player'] = love.graphics.newImage('graphics/player.png'),
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
+    ['gameover-background'] = love.graphics.newImage('graphics/gameoverBackground.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
     ['crates'] = love.graphics.newImage('graphics/crates.png'),
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),

@@ -1,6 +1,8 @@
 Gameover = {}
 
 function Gameover:enter()
+    self.background = gImages['gameover-background']
+
     self.captions = {}
     self.captions[1] = {}
     self.captions[1].image = gFrames['captions'][2]
@@ -88,6 +90,8 @@ function Gameover:keypressed(key)
 end
 
 function Gameover:draw()
+    -- Draw background
+    love.graphics.draw(self.background, 0, 0)
     -- Draw bodies
     for k, body in pairs(self.bodies) do
         love.graphics.draw(body.sheet, body.sprite, math.floor(body.x), math.floor(body.y), body.collider:getAngle(), 1, 1, body.width / 2, body.height / 2)
