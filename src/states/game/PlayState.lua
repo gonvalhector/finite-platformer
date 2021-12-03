@@ -93,7 +93,7 @@ function Play:update(dt)
 
     -- Reset jumps available when the player hits the floor
     if self.jumpCount > 0 then
-        if self.level.player.body:enter('Ground') or self.level.player.body:enter('Obstacle') or self.level.player.body:enter('Crates') then
+        if self.level.player.body:enter('Ground') or self.level.player.body:enter('Crates') then
             local landingSound = love.audio.newSource(self.sounds.landing, 'static')
             landingSound:play()
             self.jumpCount = 0

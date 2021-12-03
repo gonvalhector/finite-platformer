@@ -10,7 +10,6 @@ function Level:init(levelNumber)
     self.background.y = 0
 
     self.world = WF.newWorld(0, 300, true)
-    self.world:addCollisionClass('Player')
     self.world:addCollisionClass('Ground')
     self.world:addCollisionClass('Wall')
     self.world:addCollisionClass('Obstacle')
@@ -18,6 +17,7 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Hearts')
     self.world:addCollisionClass('Crates')
     self.world:addCollisionClass('Enemy')
+    self.world:addCollisionClass('Player', {ignores = {'Obstacle'}})
     self.world:addCollisionClass('Ghost', {ignores = {'Player', 'Ground'}})
 
     -- Level boundaries and floors

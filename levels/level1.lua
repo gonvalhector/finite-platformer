@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 9,
-  nextobjectid = 39,
+  nextobjectid = 43,
   properties = {},
   tilesets = {
     {
@@ -277,6 +277,19 @@ return {
           properties = {}
         },
         {
+          id = 41,
+          name = "Ground",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 544,
+          y = 304,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
           id = 34,
           name = "Obstacle",
           type = "Boundaries",
@@ -290,11 +303,50 @@ return {
           properties = {}
         },
         {
+          id = 40,
+          name = "Ground",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 928,
+          y = 304,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
           id = 35,
           name = "Obstacle",
           type = "Boundaries",
           shape = "rectangle",
           x = 928,
+          y = 304,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 42,
+          name = "Obstacle",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 1104,
+          y = 304,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 39,
+          name = "Ground",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 1264,
           y = 304,
           width = 16,
           height = 16,
