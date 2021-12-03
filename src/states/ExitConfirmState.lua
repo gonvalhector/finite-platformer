@@ -52,6 +52,11 @@ function ExitConfirm:draw()
     -- Obscure the screen
     love.graphics.setColor(0, 0, 0, 0.5)
     love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
+    -- Draw shadow for messages
+    love.graphics.setColor(20/255, 20/255, 20/255, 1)
+    love.graphics.draw(self.messages[1], gameWidth / 2 + 1, gameHeight / 2 + 1, 0, 1, 1, self.messages[1]:getWidth() / 2, self.messages[1]:getHeight() / 2)
+    love.graphics.draw(self.messages[2], gameWidth / 2 + 1, gameHeight / 2 + 21, 0, 1, 1, self.messages[2]:getWidth() + 20, self.messages[2]:getHeight() / 2)
+    love.graphics.draw(self.messages[3], gameWidth / 2 + 1, gameHeight / 2 + 21, 0, 1, 1, self.messages[3]:getWidth() - 30, self.messages[3]:getHeight() / 2)
     -- Draw messages
     love.graphics.setColor(240/255, 238/255, 236/255, 1)
     love.graphics.draw(self.messages[1], gameWidth / 2, gameHeight / 2, 0, 1, 1, self.messages[1]:getWidth() / 2, self.messages[1]:getHeight() / 2)
