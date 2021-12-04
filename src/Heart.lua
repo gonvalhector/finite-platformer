@@ -29,7 +29,7 @@ function Heart:update(dt)
     end
 end
 
-function Heart:draw(dt)
+function Heart:draw()
     if self.destroyed == false then
         local anim = self.currentAnimation
         love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y))

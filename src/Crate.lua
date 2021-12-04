@@ -34,7 +34,7 @@ function Crate:update(dt)
     end
 end
 
-function Crate:draw(dt)
+function Crate:draw()
     if self.destroyed == false then
         local anim = self.currentAnimation
         love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y), self.angle, 1, 1, self.width / 2, self.height / 2)

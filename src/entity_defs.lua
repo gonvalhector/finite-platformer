@@ -158,6 +158,66 @@ ENTITY_DEFS = {
             }
         }
     },
+    ['1-small-cone'] = {
+        width = 10,
+        height = 13,
+        animations = {
+            ['default'] = {
+                frames = {1},
+                looping = false,
+                texture = 'ice-cream',
+                sheet = 'small-cones'
+            }
+        }
+    },
+    ['2-small-cone'] = {
+        width = 10,
+        height = 13,
+        animations = {
+            ['default'] = {
+                frames = {2},
+                looping = false,
+                texture = 'ice-cream',
+                sheet = 'small-cones'
+            }
+        }
+    },
+    ['3-small-cone'] = {
+        width = 10,
+        height = 13,
+        animations = {
+            ['default'] = {
+                frames = {4},
+                looping = false,
+                texture = 'ice-cream',
+                sheet = 'small-cones'
+            }
+        }
+    },
+    ['4-small-cone'] = {
+        width = 10,
+        height = 13,
+        animations = {
+            ['default'] = {
+                frames = {5},
+                looping = false,
+                texture = 'ice-cream',
+                sheet = 'small-cones'
+            }
+        }
+    },
+    ['5-big-cone'] = {
+        width = 10,
+        height = 26,
+        animations = {
+            ['default'] = {
+                frames = {3},
+                looping = false,
+                texture = 'ice-cream',
+                sheet = 'big-cones'
+            }
+        }
+    },
     ['pumpkinhead'] = {
         width = 16,
         height = 16,

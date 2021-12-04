@@ -29,7 +29,7 @@ function Coin:update(dt)
     end
 end
 
-function Coin:draw(dt)
+function Coin:draw()
     if self.destroyed == false then
         local anim = self.currentAnimation
         love.graphics.draw(gImages[anim.texture], gFrames[anim.texture][anim:getCurrentFrame()], math.floor(self.x), math.floor(self.y))

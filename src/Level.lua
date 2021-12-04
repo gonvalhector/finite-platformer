@@ -2,10 +2,11 @@
 Level = Class{}
 
 function Level:init(levelNumber)
-    self.map = STI('levels/level' .. tostring(levelNumber) .. '.lua')
+    self.lvl = levelNumber
+    self.map = STI('levels/level' .. tostring(self.lvl) .. '.lua')
 
     self.background = {}
-    self.background.image = gImages['level-1-background']
+    self.background.image = gImages['level-' .. tostring(self.lvl) .. '-background']
     self.background.x = 0
     self.background.y = 0
 
@@ -17,6 +18,7 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Resetpoint')
     self.world:addCollisionClass('Coins')
     self.world:addCollisionClass('Hearts')
+    self.world:addCollisionClass('Goal')
     self.world:addCollisionClass('Crates')
     self.world:addCollisionClass('Enemy')
     self.world:addCollisionClass('Player', {ignores = {'Obstacle', 'Checkpoint'}})
@@ -34,6 +36,8 @@ function Level:init(levelNumber)
     self.crates = {}
     -- Enemies
     self.enemies = {}
+    -- Goal
+    self.goal = nil
     -- Iterate over map objects
     for k, object in pairs(self.map.objects) do
         -- Boundaries
@@ -86,6 +90,16 @@ function Level:init(levelNumber)
             local enemy = Enemy(def)
             table.insert(self.enemies, enemy)
 
+        -- Goal
+        elseif object.type == "Goal" then
+            local def = {
+                x = object.x,
+                y = object.y,
+                world = self.world,
+                lvl = self.lvl
+            }
+            self.goal = Goal(def)
+
         -- Get Player spawn position
         elseif object.type == "SpawnPoint" and object.name == "PlayerSpawn" then
             playerSpawnX, playerSpawnY = object.x, object.y
@@ -123,6 +137,8 @@ function Level:update(dt)
     for k, enemy in pairs(self.enemies) do
         enemy:update(dt)
     end
+    -- Update goal
+    self.goal:update(dt)
 end
 
 function Level:draw()
@@ -146,6 +162,8 @@ function Level:draw()
     for k, enemy in pairs(self.enemies) do
         enemy:draw()
     end
+    -- Goal
+    self.goal:draw()
     -- Player
     self.player:draw()
     self.map:drawLayer(self.map.layers["Foreground"])

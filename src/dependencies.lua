@@ -42,6 +42,7 @@ require 'src/Player'
 require 'src/Enemy'
 require 'src/Coin'
 require 'src/Heart'
+require 'src/Goal'
 require 'src/Crate'
 
 -- Data
@@ -61,7 +62,8 @@ gImages = {
     ['crates'] = love.graphics.newImage('graphics/crates.png'),
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
     ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
-    ['captions'] = love.graphics.newImage('graphics/captions.png')
+    ['captions'] = love.graphics.newImage('graphics/captions.png'),
+    ['ice-cream'] = love.graphics.newImage('graphics/ice_cream.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -75,7 +77,9 @@ gFrames = {
     ['crates'] = GenerateQuads(gImages['crates'], 16, 16),
     ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8),
     ['enemies-a'] = GenerateQuads(gImages['enemies-a'], 16, 16),
-    ['captions'] = GenerateQuads(gImages['captions'], 242, 28)
+    ['captions'] = GenerateQuads(gImages['captions'], 242, 28),
+    ['small-cones'] = GenerateQuads(gImages['ice-cream'], 10, 13),
+    ['big-cones'] = GenerateQuads(gImages['ice-cream'], 10, 26)
 }
 
 -- Fonts
