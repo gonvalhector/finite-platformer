@@ -53,13 +53,17 @@ function Play:enter(def)
      -- Goal
      self.UIelements.goal = {}
      self.UIelements.goal.captions = {}
-     self.UIelements.goal.captions[1] = love.graphics.newText(gFonts['interface'], "Get to the ice cream!")
+     self.UIelements.goal.captions[1] = love.graphics.newText(gFonts['interface'], "Get the ice cream!")
+     self.UIelements.goal.alpha = 1
 
     self.jumpCount = 0
 
     love.audio.stop()
     self.music:setLooping(true)
     self.music:play()
+
+    -- Toggle the alpha channel of the goal caption
+    Timer.every(0.75, function() self.UIelements.goal.alpha = self.UIelements.goal.alpha == 1 and 0 or 1 end)
 end
 
 function Play:resume()
@@ -170,8 +174,10 @@ function Play:update(dt)
             -- destroy goal
             goal.body:destroy()
             goal.destroyed = true
+            -- Change to next level
+            self.lvl = self.lvl + 1
             local def = {
-                lvl = self.lvl + 1,
+                lvl = self.lvl,
                 score = self.score,
                 lives = self.lives
             }
@@ -312,10 +318,12 @@ function Play:draw()
         love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][5], 22 + self.UIelements.lives.captions[1]:getWidth(), self.UIelements.health.captions[1]:getHeight(), 0, 2, 2, -((8 * i) - 8), 0)
     end
     -- Goal
+    love.graphics.setColor(240/255, 238/255, 236/255, self.UIelements.goal.alpha)
     if self.level.goal.destroyed == false and self.level.goal.visible == true then
         love.graphics.draw(self.UIelements.goal.captions[1], gameWidth / 2, 14, 0, 1, 1, math.floor(self.UIelements.goal.captions[1]:getWidth() / 2), math.floor(self.UIelements.goal.captions[1]:getHeight() / 2))
     end
     -- Coins
+    love.graphics.setColor(240/255, 238/255, 236/255, 1)
     love.graphics.draw(self.UIelements.coins.captions[1], 500, 0)
     love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][2], 500, self.UIelements.coins.captions[1]:getHeight(), 0, 2, 2)
     love.graphics.draw(gImages['ui-elements'], gFrames['ui-elements'][3], 516, self.UIelements.coins.captions[1]:getHeight(), 0, 2, 2)

@@ -59,8 +59,13 @@ function Victory:keypressed(key)
             self.canPressKey = false
             self.prompt.color[4] = 1
             self.prompt.sound:play()
-            -- Change to the Start state
-            Timer.after(0.5, function() Gamestate.switch(Start) end)
+            -- Change to the Play state
+            local def = {
+                lvl = self.lvl,
+                score = self.score,
+                lives = self.lives
+            }
+            Timer.after(0.5, function() Gamestate.switch(Play, def) end)
         end
     end
 end
