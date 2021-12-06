@@ -25,10 +25,13 @@ function Goal:init(def)
 end
 
 function Goal:update(dt)
+    if self.destroyed == false then
+        self.x, self.y = self.body:getPosition()
+    end
 end
 
 function Goal:draw()
     if self.destroyed == false and self.visible == true then
-        love.graphics.draw(gImages['ice-cream'], gFrames[self.size .. '-cones'][self.flavor], math.floor(self.x), math.floor(self.y))
+        love.graphics.draw(gImages['ice-cream'], gFrames[self.size .. '-cones'][self.flavor], math.floor(self.x), math.floor(self.y), 0, 1, 1, self.width / 2, self.height / 2)
     end
 end

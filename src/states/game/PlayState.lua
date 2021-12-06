@@ -11,6 +11,7 @@ function Play:enter(def)
     self.sounds.landing = 'sounds/sfx_movement_jump9_landing.wav'
     self.sounds.coinPickup = 'sounds/sfx_coin_double3.wav'
     self.sounds.heartPickup = 'sounds/sfx_coin_cluster3.wav'
+    self.sounds.goalPickup = 'sounds/sfx_coin_cluster5.wav'
     self.sounds.impact = 'sounds/sfx_sounds_impact7.wav'
     self.sounds.playerHurt = 'sounds/sfx_sounds_damage1.wav'
     self.sounds.enemyHurt = 'sounds/sfx_sounds_button11.wav'
@@ -157,6 +158,19 @@ function Play:update(dt)
         -- destroy heart
         heart.body:destroy()
         heart.destroyed = true
+    end
+
+    -- if player collides with the goal
+    if self.level.player.body:enter('Goal') then
+        local collision_data = self.level.player.body:getEnterCollisionData('Goal')
+        local goal = collision_data.collider:getObject()
+        if goal.visible == true and goal.destroyed == false then
+            local goalPickupSound = love.audio.newSource(self.sounds.goalPickup, 'static')
+            goalPickupSound:play()
+            -- destroy heart
+            goal.body:destroy()
+            goal.destroyed = true
+        end
     end
 
     -- If player collides with an enemy
