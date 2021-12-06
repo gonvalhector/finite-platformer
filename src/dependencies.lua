@@ -31,6 +31,7 @@ require 'src/states/game/PlayState'
 require 'src/states/game/PauseState'
 require 'src/states/game/RestartState'
 require 'src/states/game/GameoverState'
+require 'src/states/game/VictoryState'
 require 'src/states/ExitConfirmState'
 
 -- Helper functions and utilities
@@ -63,7 +64,8 @@ gImages = {
     ['ui-elements'] = love.graphics.newImage('graphics/ui_elements.png'),
     ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
     ['captions'] = love.graphics.newImage('graphics/captions.png'),
-    ['ice-cream'] = love.graphics.newImage('graphics/ice_cream.png')
+    ['ice-cream'] = love.graphics.newImage('graphics/ice_cream.png'),
+    ['confetti'] = love.graphics.newImage('graphics/confetti.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -77,9 +79,10 @@ gFrames = {
     ['crates'] = GenerateQuads(gImages['crates'], 16, 16),
     ['ui-elements'] = GenerateQuads(gImages['ui-elements'], 8, 8),
     ['enemies-a'] = GenerateQuads(gImages['enemies-a'], 16, 16),
-    ['captions'] = GenerateQuads(gImages['captions'], 242, 28),
+    ['captions'] = GenerateQuads(gImages['captions'], 272, 28),
     ['small-cones'] = GenerateQuads(gImages['ice-cream'], 10, 13),
-    ['big-cones'] = GenerateQuads(gImages['ice-cream'], 10, 26)
+    ['big-cones'] = GenerateQuads(gImages['ice-cream'], 10, 26),
+    ['confetti'] = GenerateQuads(gImages['confetti'], 4, 4)
 }
 
 -- Fonts
@@ -90,13 +93,15 @@ gFonts = {
 
 -- Music
 gMusic = {
-    ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'static'),
-    ['level-1'] = love.audio.newSource('music/level1.ogg', 'static'),
-    ['gameover'] = love.audio.newSource('music/gameover.ogg', 'static')
+    ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'stream'),
+    ['level-1'] = love.audio.newSource('music/level1.ogg', 'stream'),
+    ['gameover'] = love.audio.newSource('music/gameover.ogg', 'stream'),
+    ['victory'] = love.audio.newSource('music/Viktor Kraus - Victory!.mp3', 'stream')
 }
 gMusic['title-music']:setVolume(0.25)
 gMusic['level-1']:setVolume(0.25)
 gMusic['gameover']:setVolume(0.5)
+gMusic['victory']:setVolume(0.5)
 
 -- Sounds
 gSounds = {

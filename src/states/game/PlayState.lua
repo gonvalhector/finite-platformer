@@ -167,9 +167,15 @@ function Play:update(dt)
         if goal.visible == true and goal.destroyed == false then
             local goalPickupSound = love.audio.newSource(self.sounds.goalPickup, 'static')
             goalPickupSound:play()
-            -- destroy heart
+            -- destroy goal
             goal.body:destroy()
             goal.destroyed = true
+            local def = {
+                lvl = self.lvl + 1,
+                score = self.score,
+                lives = self.lives
+            }
+            Timer.after(0.5, function() Gamestate.push(Victory, def) end)
         end
     end
 

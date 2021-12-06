@@ -32,6 +32,6 @@ end
 
 function Goal:draw()
     if self.destroyed == false and self.visible == true then
-        love.graphics.draw(gImages['ice-cream'], gFrames[self.size .. '-cones'][self.flavor], math.floor(self.x), math.floor(self.y), 0, 1, 1, self.width / 2, self.height / 2)
+        love.graphics.draw(gImages['ice-cream'], gFrames[self.size .. '-cones'][self.flavor], math.floor(self.x), math.floor(self.y), 0, 1, 1, math.floor(self.width / 2), math.floor(self.height / 2))
     end
 end
