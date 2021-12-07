@@ -1,7 +1,7 @@
 Victory = {}
 
 function Victory:enter(def)
-    -- Level variables
+    -- Player variables
     self.lvl = def.lvl
     self.score = def.score
     self.lives = def.lives
@@ -65,7 +65,7 @@ function Victory:keypressed(key)
                 score = self.score,
                 lives = self.lives
             }
-            Timer.after(0.5, function() Gamestate.switch(Play, def) end)
+            Timer.after(0.5, function() Gamestate.switch(Stage, def) end)
         end
     end
 end

@@ -27,6 +27,7 @@ require 'lib/Animation'
 -- Gamestates
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
+require 'src/states/game/StageState'
 require 'src/states/game/PlayState'
 require 'src/states/game/PauseState'
 require 'src/states/game/RestartState'
@@ -56,6 +57,8 @@ gImages = {
     ['title-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
     ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
+    ['level-caption'] = love.graphics.newImage('graphics/level.png'),
+    ['level-numbers'] = love.graphics.newImage('graphics/numbers.png'),
     ['player'] = love.graphics.newImage('graphics/player.png'),
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
     ['gameover-background'] = love.graphics.newImage('graphics/gameoverBackground.png'),
@@ -74,6 +77,7 @@ end
 -- Frames
 gFrames = {
     ['title-menu'] = GenerateQuads(gImages['title-menu'], 59, 7),
+    ['level-numbers'] = GenerateQuads(gImages['level-numbers'], 5, 7),
     ['player'] = GenerateQuads(gImages['player'], 20, 18),
     ['coins'] = GenerateQuads(gImages['coins'], 16, 16),
     ['crates'] = GenerateQuads(gImages['crates'], 16, 16),
@@ -111,5 +115,6 @@ gSounds = {
     ['menu-select'] = love.audio.newSource('sounds/sfx_sounds_pause1_in.wav', 'static'),
     ['restart'] = love.audio.newSource('sounds/game_over_bad_chest.wav', 'static'),
     ['pause-in'] = love.audio.newSource('sounds/sfx_sounds_pause4_in.wav', 'static'),
-    ['pause-out'] = love.audio.newSource('sounds/sfx_sounds_pause4_out.wav', 'static')
+    ['pause-out'] = love.audio.newSource('sounds/sfx_sounds_pause4_out.wav', 'static'),
+    ['wind'] = love.audio.newSource('sounds/Wind.ogg', 'static')
 }

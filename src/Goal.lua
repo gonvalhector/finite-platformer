@@ -2,7 +2,7 @@ Goal = Class{}
 
 function Goal:init(def)
     self.destroyed = false
-    self.visible = true
+    self.visible = false
 
     self.lvl = def.lvl
     self.size = self.lvl == 5 and 'big' or 'small'
