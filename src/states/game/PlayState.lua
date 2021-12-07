@@ -270,6 +270,15 @@ function Play:update(dt)
         end
     end
 
+    -- Level Objectives
+    if self.lvl == 1 then
+        self.level.goal.visible = true
+    elseif self.lvl == 2 then
+        if self.UIelements.coins.total >= 50 then
+            self.level.goal.visible = true
+        end
+    end
+
     -- Remove destroyed entitites
     self:clean(self.level.coins, self.level.hearts, self.level.crates, self.level.enemies)
 end

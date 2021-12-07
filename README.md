@@ -37,6 +37,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Title Screen Music**: [Stage Select](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Level 1**: [Stage 1](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Game Over**: [Witch's Lair](https://opengameart.org/content/jrpg-pack-3-evil) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Level Completed**: [Victory!](https://opengameart.org/content/victory-1) by [Viktor Kraus](https://opengameart.org/users/viktor-kraus).
 
 ### Sounds:
 
@@ -54,3 +55,4 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Restart Level**: [game_over_bad_chest.wav](https://opengameart.org/content/game-over-bad-chest-sfx) by [Oiboo](https://opengameart.org/users/oiboo).
 - **Pause In**: [sfx_sounds_pause4_in.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Pause Out**: [sfx_sounds_pause4_out.wav](https://opengameart.org/content/512-sound-effects-8-bit-style) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Wind**: [Wind.ogg](https://opengameart.org/content/wind) by [IgnasD](https://opengameart.org/users/ignasd).
