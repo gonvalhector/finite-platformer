@@ -57,7 +57,7 @@ end
 
 function Stage:update(dt)
     -- Scroll background horizontally
-    self.background.x = (self.background.x - self.background.dx * dt) % gameWidth
+    self.background.x = (self.background.x + self.background.dx * dt) % gameWidth
 
     -- Tween key prompt's alpha channel
     if self.prompt.color[4] == 0 then
