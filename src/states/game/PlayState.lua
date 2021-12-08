@@ -203,7 +203,7 @@ function Play:update(dt)
             -- Change enemy's state to hurt
             enemy.state = 'hurt'
             -- Spawn a heart
-            if math.random(3) == 1 then
+            if math.random(2) == 1 then
                 local def = {
                     x = enemy.body:getX(),
                     y = enemy.body:getY(),
