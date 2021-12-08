@@ -20,7 +20,7 @@ function Level:init(levelNumber)
     self.world:addCollisionClass('Hearts')
     self.world:addCollisionClass('Goal')
     self.world:addCollisionClass('Crates')
-    self.world:addCollisionClass('Enemy')
+    self.world:addCollisionClass('Enemy', {ignores = {'Checkpoint'}})
     self.world:addCollisionClass('Player', {ignores = {'Obstacle', 'Checkpoint'}})
     self.world:addCollisionClass('Ghost', {ignores = {'Player', 'Ground'}})
 
