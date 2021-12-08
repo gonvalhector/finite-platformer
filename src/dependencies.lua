@@ -105,7 +105,7 @@ gMusic = {
 gMusic['title-music']:setVolume(0.25)
 gMusic['level-1']:setVolume(0.25)
 gMusic['gameover']:setVolume(0.5)
-gMusic['victory']:setVolume(0.5)
+gMusic['victory']:setVolume(0.4)
 
 -- Sounds
 gSounds = {
