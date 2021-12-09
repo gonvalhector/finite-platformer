@@ -49,7 +49,7 @@ function Play:enter(def)
     self.UIelements.coins.captions = {}
     self.UIelements.coins.captions[1] = love.graphics.newText(gFonts['interface'], "Coins:")
     self.UIelements.coins.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.coins.total))
-    self.UIelements.coins.max = 99
+    self.UIelements.coins.max = 999
      -- Goal
      self.UIelements.goal = {}
      self.UIelements.goal.captions = {}
@@ -274,7 +274,7 @@ function Play:update(dt)
     if self.lvl == 1 then
         self.level.goal.visible = true
     elseif self.lvl == 2 then
-        if self.UIelements.coins.total >= 50 then
+        if self.UIelements.coins.total >= 150 then
             self.level.goal.visible = true
         end
     end

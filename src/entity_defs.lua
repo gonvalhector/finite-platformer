@@ -245,7 +245,7 @@ ENTITY_DEFS = {
                 frames = {8},
                 looping = false,
                 texture = 'enemies-a'
-            },
+            }
         }
     },
     ['slimeball'] = {
@@ -275,7 +275,7 @@ ENTITY_DEFS = {
                 frames = {15},
                 looping = false,
                 texture = 'enemies-a'
-            },
+            }
         }
     },
     ['beetlejuice'] = {
@@ -305,7 +305,37 @@ ENTITY_DEFS = {
                 frames = {23},
                 looping = false,
                 texture = 'enemies-a'
-            },
+            }
         }
     },
+    ['beatermelon'] = {
+        width = 16,
+        height = 16,
+        mass = 20,
+        linearImpulse = 50,
+        animations = {
+            ['walk-left'] = {
+                frames = {12, 16},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['walk-right'] = {
+                frames = {24, 28},
+                interval = 0.15,
+                looping = true,
+                texture = 'enemies-a'
+            },
+            ['hurt-left'] = {
+                frames = {20},
+                looping = false,
+                texture = 'enemies-a'
+            },
+            ['hurt-right'] = {
+                frames = {32},
+                looping = false,
+                texture = 'enemies-a'
+            }
+        }
+    }
 }
