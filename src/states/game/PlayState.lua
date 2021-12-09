@@ -274,7 +274,7 @@ function Play:update(dt)
     if self.lvl == 1 then
         self.level.goal.visible = true
     elseif self.lvl == 2 then
-        if self.UIelements.coins.total >= 150 then
+        if self.UIelements.coins.total >= 200 then
             self.level.goal.visible = true
         end
     end
