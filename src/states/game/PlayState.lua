@@ -194,7 +194,7 @@ function Play:update(dt)
         local enemy = collision_data.collider:getObject()
 
         -- when player jumps on top of enemy
-        if self.jumpCount > 0 then
+        if self.jumpCount > 0 or self.level.player.linearVelocity.y > 0 then
             -- Play sound
             local enemyHurtSound = love.audio.newSource(self.sounds.enemyHurt, 'static')
             enemyHurtSound:play()
@@ -344,9 +344,10 @@ function Play:draw()
     if self.score == self.UIelements.score.max then love.graphics.setColor(241/255, 187/255, 59/255, 1) else love.graphics.setColor(240/255, 238/255, 236/255, 1) end
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
-    --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("LVL: " .. tostring(self.level.goal.lvl), 0, gameHeight - 20)
-    --love.graphics.print("Checkpoint Y: " .. tostring(self.level.player.checkpoint.y), 0, gameHeight - 10)
+    love.graphics.setColor(0, 0, 0, 1)
+    love.graphics.print("Player LVelocity X: " .. tostring(self.level.player.linearVelocity.x), 0, gameHeight - 20)
+    love.graphics.print("Player LVelocity Y: " .. tostring(self.level.player.linearVelocity.y), 0, gameHeight - 10)
+    love.graphics.setColor(1, 1, 1, 1)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
     --love.graphics.line(0, gameHeight / 2, gameWidth, gameHeight / 2)
