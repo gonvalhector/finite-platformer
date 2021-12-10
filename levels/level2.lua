@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 323,
+  nextobjectid = 325,
   properties = {},
   tilesets = {
     {
@@ -296,6 +296,32 @@ return {
           shape = "rectangle",
           x = -16,
           y = 0,
+          width = 16,
+          height = 320,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 323,
+          name = "Wall",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 256,
+          y = -320,
+          width = 16,
+          height = 320,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 324,
+          name = "Wall",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 2624,
+          y = -320,
           width = 16,
           height = 320,
           rotation = 0,
