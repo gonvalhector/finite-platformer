@@ -26,6 +26,7 @@ function Player:init(def)
     self.restitution = self.body:getRestitution()
 
     self.alpha = 1
+    self.invincible = false
 
     self.checkpoint = {}
     self.checkpoint.x = 0

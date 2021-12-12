@@ -121,16 +121,23 @@ function Play:update(dt)
 
     -- If player collides with a resetpoint
     if self.level.player.body:enter('Resetpoint') then
-        -- Play sound
-        local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
-        playerHurtSound:play()
-        -- Take one heart from Player
-        self.UIelements.health.total = self.UIelements.health.total - 1
-        -- Change player's state to hurt
-        self.level.player.state = 'hurt'
-        -- Change player's state to idle after 1 seconds
-        Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
-        Timer.after(1, function() self.level.player.state = 'idle' end)
+        if self.level.player.invincible == false then
+            -- Play sound
+            local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
+            playerHurtSound:play()
+            -- Take one heart from Player
+            self.UIelements.health.total = self.UIelements.health.total - 1
+            -- Change player's state to hurt
+            self.level.player.state = 'hurt'
+            -- Make the player invincible for 1 second
+            self.level.player.invincible = true
+            -- Change player's state to idle after 1 second
+            Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
+            Timer.after(1, function() 
+                self.level.player.state = 'idle'
+                self.level.player.invincible = false
+            end)
+        end
         -- Reset player's position to checkpoint
         self.level.player.body:setLinearVelocity(0, 0)
         self.level.player.body:setPosition(self.level.player.checkpoint.x, self.level.player.checkpoint.y)
@@ -221,21 +228,28 @@ function Play:update(dt)
             end)
         -- When player touches enemy
         else
-            -- Play sound
-            local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
-            playerHurtSound:play()
-            -- Take one heart from Player
-            self.UIelements.health.total = self.UIelements.health.total - 1
+            if self.level.player.invincible == false then
+                -- Play sound
+                local playerHurtSound = love.audio.newSource(self.sounds.playerHurt, 'static')
+                playerHurtSound:play()
+                -- Take one heart from Player
+                self.UIelements.health.total = self.UIelements.health.total - 1
+                -- Change player's state to hurt
+                self.level.player.state = 'hurt'
+                -- Knock the player back
+                local knockback = self.level.player.direction == 'right' and -self.level.player.linearImpulse or self.level.player.linearImpulse
+                self.level.player.body:applyLinearImpulse(knockback, 0)
+                -- Make the player invincible for 1 second
+                self.level.player.invincible = true
+                -- Change player's state to idle after 1 second
+                Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
+                Timer.after(1, function() 
+                    self.level.player.state = 'idle'
+                    self.level.player.invincible = false 
+                end)
+            end
             -- Change enemy's direction
-            enemy:changeDirection()
-            -- Knock the player back
-            local knockback = self.level.player.direction == 'right' and -self.level.player.linearImpulse or self.level.player.linearImpulse
-            self.level.player.body:applyLinearImpulse(knockback, 0)
-            -- Change player's state to hurt
-            self.level.player.state = 'hurt'
-            -- Change player's state to idle after 1 seconds
-            Timer.every(0.1, function() self.level.player.alpha = self.level.player.alpha == 1 and 0 or 1 end, 6)
-            Timer.after(1, function() self.level.player.state = 'idle' end)
+            enemy:changeDirection()    
         end
     end
 
