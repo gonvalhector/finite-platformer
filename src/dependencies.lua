@@ -62,6 +62,7 @@ gImages = {
     ['player'] = love.graphics.newImage('graphics/player.png'),
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
     ['level-2-background'] = love.graphics.newImage('graphics/level2Background.png'),
+    ['level-3-background'] = love.graphics.newImage('graphics/level3Background.png'),
     ['gameover-background'] = love.graphics.newImage('graphics/gameoverBackground.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
     ['crates'] = love.graphics.newImage('graphics/crates.png'),
@@ -101,12 +102,14 @@ gMusic = {
     ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'stream'),
     ['level-1'] = love.audio.newSource('music/level1.ogg', 'stream'),
     ['level-2'] = love.audio.newSource('music/level2.ogg', 'stream'),
+    ['level-3'] = love.audio.newSource('music/level3.ogg', 'stream'),
     ['gameover'] = love.audio.newSource('music/gameover.ogg', 'stream'),
     ['victory'] = love.audio.newSource('music/Viktor Kraus - Victory!.mp3', 'stream')
 }
 gMusic['title-music']:setVolume(0.25)
 gMusic['level-1']:setVolume(0.25)
 gMusic['level-2']:setVolume(0.25)
+gMusic['level-3']:setVolume(0.25)
 gMusic['gameover']:setVolume(0.5)
 gMusic['victory']:setVolume(0.4)
 

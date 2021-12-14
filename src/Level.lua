@@ -36,6 +36,7 @@ function Level:init(levelNumber)
     self.crates = {}
     -- Enemies
     self.enemies = {}
+    self.enemiesTotal = 0
     -- Goal
     self.goal = nil
     -- Iterate over map objects
@@ -89,6 +90,7 @@ function Level:init(levelNumber)
             }
             local enemy = Enemy(def)
             table.insert(self.enemies, enemy)
+            self.enemiesTotal = self.enemiesTotal + 1
 
         -- Goal
         elseif object.type == "Goal" then

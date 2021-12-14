@@ -220,6 +220,7 @@ function Play:update(dt)
                 table.insert(self.level.hearts, heart)
             end
             -- Destroy enemy's body
+            self.level.enemiesTotal = self.level.enemiesTotal - 1
             enemy.body:setCollisionClass('Ghost')
             enemy.body:setAngularVelocity(12.5)
             Timer.after(5, function() 
@@ -289,6 +290,10 @@ function Play:update(dt)
         self.level.goal.visible = true
     elseif self.lvl == 2 then
         if self.UIelements.coins.total >= 200 then
+            self.level.goal.visible = true
+        end
+    elseif self.lvl == 3 then
+        if self.level.enemiesTotal == 0 then
             self.level.goal.visible = true
         end
     end

@@ -4,8 +4,8 @@ GOAL_FLAVORS = {1, 2, 4, 5, 3}
 
 LEVEL_OBJECTIVES = {
     "Get the ice cream at the end of the level!",
-    "Get ALL 200 coins!",
-    "Destroy 10 creepy crawlies!",
+    "Get ALL coins!",
+    "Destroy ALL creepy crawlies!",
     "Find the ice cream!",
     "Get all coins and destroy all creepy crawlies!"
 }
