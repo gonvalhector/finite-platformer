@@ -6,6 +6,6 @@ LEVEL_OBJECTIVES = {
     "Get the ice cream at the end of the level!",
     "Get ALL coins!",
     "Destroy ALL creepy crawlies!",
-    "Find the ice cream!",
+    "Get the ice cream at the top!",
     "Get all coins and destroy all creepy crawlies!"
 }

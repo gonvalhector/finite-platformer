@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 6,
-  nextobjectid = 89,
+  nextobjectid = 95,
   properties = {},
   tilesets = {
     {
@@ -654,6 +654,32 @@ return {
           properties = {}
         },
         {
+          id = 89,
+          name = "Checkpoint",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 2305,
+          y = 0,
+          width = 20,
+          height = 352,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 90,
+          name = "Checkpoint",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 2411,
+          y = 0,
+          width = 20,
+          height = 352,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
           id = 29,
           name = "Checkpoint",
           type = "Boundaries",
@@ -680,6 +706,32 @@ return {
           properties = {}
         },
         {
+          id = 91,
+          name = "Checkpoint",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 3553,
+          y = 0,
+          width = 20,
+          height = 400,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 92,
+          name = "Checkpoint",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 3595,
+          y = 0,
+          width = 20,
+          height = 400,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
           id = 31,
           name = "Checkpoint",
           type = "Boundaries",
@@ -701,6 +753,32 @@ return {
           y = 0,
           width = 20,
           height = 432,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 93,
+          name = "Checkpoint",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 4433,
+          y = 0,
+          width = 20,
+          height = 416,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 94,
+          name = "Checkpoint",
+          type = "Boundaries",
+          shape = "rectangle",
+          x = 4475,
+          y = 0,
+          width = 20,
+          height = 416,
           rotation = 0,
           visible = true,
           properties = {}
