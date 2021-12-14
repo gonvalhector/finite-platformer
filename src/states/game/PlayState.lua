@@ -103,9 +103,13 @@ function Play:update(dt)
     -- Reset jumps available when the player hits the floor
     if self.jumpCount > 0 then
         if self.level.player.body:enter('Ground') or self.level.player.body:enter('Crates') then
-            local landingSound = love.audio.newSource(self.sounds.landing, 'static')
-            landingSound:play()
-            self.jumpCount = 0
+            local collision_data = self.level.player.body:getEnterCollisionData('Ground') or self.level.player.body:getEnterCollisionData('Crates')
+            local object = collision_data.collider:getObject()
+            if self.level.player.y + self.level.player.height / 2 > object.y - object.height / 2 then
+                local landingSound = love.audio.newSource(self.sounds.landing, 'static')
+                landingSound:play()
+                self.jumpCount = 0
+            end
         end
     end
 
@@ -296,6 +300,8 @@ function Play:update(dt)
         if self.level.enemiesTotal == 0 then
             self.level.goal.visible = true
         end
+    elseif self.lvl == 4 then
+        self.level.goal.visible = true
     end
 
     -- Remove destroyed entitites
