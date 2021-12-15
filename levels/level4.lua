@@ -1560,9 +1560,9 @@ return {
           type = "Boundaries",
           shape = "rectangle",
           x = 384,
-          y = 641,
+          y = 640,
           width = 144,
-          height = 127,
+          height = 128,
           rotation = 0,
           visible = true,
           properties = {}
@@ -1586,9 +1586,9 @@ return {
           type = "Boundaries",
           shape = "rectangle",
           x = 752,
-          y = 641,
+          y = 640,
           width = 144,
-          height = 127,
+          height = 128,
           rotation = 0,
           visible = true,
           properties = {}

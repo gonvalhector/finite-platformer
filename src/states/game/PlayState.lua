@@ -60,7 +60,7 @@ function Play:enter(def)
     self.snow = love.graphics.newParticleSystem(gImages['snow'], 800)
     self.snow:setQuads(gFrames['snow'][1], gFrames['snow'][2], gFrames['snow'][3], gFrames['snow'][4])
     self.snow:setColors(1, 1, 1, 1, 1, 1, 1, 0)
-    self.snow:setParticleLifetime(10, 15)
+    self.snow:setParticleLifetime(7, 10)
     self.snow:setEmissionRate(100)
     self.snow:setSizes(1)
     self.snow:setLinearAcceleration(-10, 20, 10, 20)
@@ -314,6 +314,10 @@ function Play:update(dt)
         self.level.goal.visible = true
         -- Update snow
         self.snow:update(dt)
+    elseif self.lvl == 5 then
+        if self.UIelements.coins.total >= 200 and self.level.enemiesTotal == 0 then
+            self.level.goal.visible = true
+        end
     end
 
     -- Remove destroyed entitites
