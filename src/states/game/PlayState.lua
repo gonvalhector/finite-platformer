@@ -315,6 +315,8 @@ function Play:update(dt)
         -- Update snow
         self.snow:update(dt)
     elseif self.lvl == 5 then
+        -- Update snow
+        self.snow:update(dt)
         if self.UIelements.coins.total >= 200 and self.level.enemiesTotal == 0 then
             self.level.goal.visible = true
         end

@@ -64,6 +64,7 @@ gImages = {
     ['level-2-background'] = love.graphics.newImage('graphics/level2Background.png'),
     ['level-3-background'] = love.graphics.newImage('graphics/level3Background.png'),
     ['level-4-background'] = love.graphics.newImage('graphics/level4Background.png'),
+    ['level-5-background'] = love.graphics.newImage('graphics/level5Background.png'),
     ['gameover-background'] = love.graphics.newImage('graphics/gameoverBackground.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
     ['crates'] = love.graphics.newImage('graphics/crates.png'),
@@ -96,7 +97,7 @@ gFrames = {
 
 -- Fonts
 gFonts = {
-    ['messages'] = love.graphics.newFont('fonts/kenpixel_mini.ttf', 16),
+    ['messages'] = love.graphics.newFont('fonts/kenpixel_mini_square.ttf', 16),
     ['interface'] = love.graphics.newFont('fonts/Sharp Retro.ttf', 16)
 }
 
@@ -117,7 +118,7 @@ gMusic['level-1']:setVolume(0.25)
 gMusic['level-2']:setVolume(0.25)
 gMusic['level-3']:setVolume(0.25)
 gMusic['level-4']:setVolume(0.25)
-gMusic['level-5']:setVolume(0.25)
+gMusic['level-5']:setVolume(0.50)
 gMusic['gameover']:setVolume(0.5)
 gMusic['victory']:setVolume(0.4)
 

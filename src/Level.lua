@@ -52,8 +52,10 @@ function Level:init(levelNumber)
                 body = self.world:newRectangleCollider(object.x, object.y, object.width, object.height)
             }
             boundary.body:setType('static')
-            boundary.body:setCollisionClass(boundary.type)
-            boundary.body:setFriction(1)
+            local collisionClass =  boundary.type == "Ice" and "Ground" or boundary.type
+            boundary.body:setCollisionClass(collisionClass)
+            local friction = boundary.type == "Ice" and 0.1 or 1
+            boundary.body:setFriction(friction)
 
             boundary.body:setObject(boundary)
             table.insert(self.boundaries, boundary)

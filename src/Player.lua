@@ -29,8 +29,8 @@ function Player:init(def)
     self.invincible = false
 
     self.checkpoint = {}
-    self.checkpoint.x = 0
-    self.checkpoint.y = 0
+    self.checkpoint.x = self.spawnX
+    self.checkpoint.y = self.spawnY
 end
 
 function Player:changeAnimation(name)

@@ -38,7 +38,7 @@ function TitleMenu:enter(def)
     }
 
     -- Play starts with Stage 1 and a new score
-    self.lvl = 4
+    self.lvl = 5
     self.score = 0
     self.lives = 3
 
