@@ -196,8 +196,7 @@ function Play:update(dt)
             -- destroy goal
             goal.body:destroy()
             goal.destroyed = true
-            -- Change to next level
-            self.lvl = self.lvl + 1
+            -- Change to victory state
             local def = {
                 lvl = self.lvl,
                 score = self.score,

@@ -59,7 +59,8 @@ function Victory:keypressed(key)
             self.canPressKey = false
             self.prompt.color[4] = 1
             self.prompt.sound:play()
-            -- Change to the Play state
+            -- Change to next level
+            self.lvl = self.lvl + 1
             local def = {
                 lvl = self.lvl,
                 score = self.score,
