@@ -50,11 +50,22 @@ function Play:enter(def)
     self.UIelements.coins.captions[1] = love.graphics.newText(gFonts['interface'], "Coins:")
     self.UIelements.coins.captions[2] = love.graphics.newText(gFonts['interface'], tostring(self.UIelements.coins.total))
     self.UIelements.coins.max = 999
-     -- Goal
-     self.UIelements.goal = {}
-     self.UIelements.goal.captions = {}
-     self.UIelements.goal.captions[1] = love.graphics.newText(gFonts['interface'], "Get the ice cream!")
-     self.UIelements.goal.alpha = 1
+    -- Goal
+    self.UIelements.goal = {}
+    self.UIelements.goal.captions = {}
+    self.UIelements.goal.captions[1] = love.graphics.newText(gFonts['interface'], "Get the ice cream!")
+    self.UIelements.goal.alpha = 1
+
+    -- Snow Particles
+    self.snow = love.graphics.newParticleSystem(gImages['snow'], 800)
+    self.snow:setQuads(gFrames['snow'][1], gFrames['snow'][2], gFrames['snow'][3], gFrames['snow'][4])
+    self.snow:setColors(1, 1, 1, 1, 1, 1, 1, 0)
+    self.snow:setParticleLifetime(10, 15)
+    self.snow:setEmissionRate(100)
+    self.snow:setSizes(1)
+    self.snow:setLinearAcceleration(-10, 20, 10, 20)
+    self.snow:setEmissionArea('normal', gameWidth, gameHeight, 0, false)
+     
 
     self.jumpCount = 0
 
@@ -105,7 +116,7 @@ function Play:update(dt)
         if self.level.player.body:enter('Ground') or self.level.player.body:enter('Crates') then
             local collision_data = self.level.player.body:getEnterCollisionData('Ground') or self.level.player.body:getEnterCollisionData('Crates')
             local object = collision_data.collider:getObject()
-            if self.level.player.y + self.level.player.height / 2 > object.y - object.height / 2 then
+            if self.level.player.y - self.level.player.height / 2 < object.y then
                 local landingSound = love.audio.newSource(self.sounds.landing, 'static')
                 landingSound:play()
                 self.jumpCount = 0
@@ -302,6 +313,8 @@ function Play:update(dt)
         end
     elseif self.lvl == 4 then
         self.level.goal.visible = true
+        -- Update snow
+        self.snow:update(dt)
     end
 
     -- Remove destroyed entitites
@@ -328,6 +341,10 @@ function Play:draw()
     self.camera:attach()
         self.level:draw()
     self.camera:detach()
+    if self.lvl > 3 then
+        -- Draw snow
+        love.graphics.draw(self.snow, gameWidth / 2, -10)
+    end
     -- UI Elements
     love.graphics.setColor(20/255, 20/255, 20/255, 1)
     love.graphics.rectangle("fill", 0, 0, gameWidth, 32)

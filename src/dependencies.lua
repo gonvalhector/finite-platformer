@@ -63,6 +63,7 @@ gImages = {
     ['level-1-background'] = love.graphics.newImage('graphics/level1Background.png'),
     ['level-2-background'] = love.graphics.newImage('graphics/level2Background.png'),
     ['level-3-background'] = love.graphics.newImage('graphics/level3Background.png'),
+    ['level-4-background'] = love.graphics.newImage('graphics/level4Background.png'),
     ['gameover-background'] = love.graphics.newImage('graphics/gameoverBackground.png'),
     ['coins'] = love.graphics.newImage('graphics/coins.png'),
     ['crates'] = love.graphics.newImage('graphics/crates.png'),
@@ -70,7 +71,8 @@ gImages = {
     ['enemies-a'] = love.graphics.newImage('graphics/enemies_a.png'),
     ['captions'] = love.graphics.newImage('graphics/captions.png'),
     ['ice-cream'] = love.graphics.newImage('graphics/ice_cream.png'),
-    ['confetti'] = love.graphics.newImage('graphics/confetti.png')
+    ['confetti'] = love.graphics.newImage('graphics/confetti.png'),
+    ['snow'] = love.graphics.newImage('graphics/snow.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -88,7 +90,8 @@ gFrames = {
     ['captions'] = GenerateQuads(gImages['captions'], 272, 28),
     ['small-cones'] = GenerateQuads(gImages['ice-cream'], 10, 13),
     ['big-cones'] = GenerateQuads(gImages['ice-cream'], 10, 26),
-    ['confetti'] = GenerateQuads(gImages['confetti'], 4, 4)
+    ['confetti'] = GenerateQuads(gImages['confetti'], 4, 4),
+    ['snow'] = GenerateQuads(gImages['snow'], 8, 8)
 }
 
 -- Fonts
@@ -99,17 +102,22 @@ gFonts = {
 
 -- Music
 gMusic = {
-    ['title-music'] = love.audio.newSource('music/titleScreenMusic.ogg', 'stream'),
+    ['title-music'] = love.audio.newSource('music/titleScreenMusic.mp3', 'stream'),
+    ['stage'] = love.audio.newSource('music/stageState.ogg', 'stream'),
     ['level-1'] = love.audio.newSource('music/level1.ogg', 'stream'),
     ['level-2'] = love.audio.newSource('music/level2.ogg', 'stream'),
     ['level-3'] = love.audio.newSource('music/level3.ogg', 'stream'),
+    ['level-4'] = love.audio.newSource('music/level4.ogg', 'stream'),
+    ['level-5'] = love.audio.newSource('music/level5.ogg', 'stream'),
     ['gameover'] = love.audio.newSource('music/gameover.ogg', 'stream'),
-    ['victory'] = love.audio.newSource('music/Viktor Kraus - Victory!.mp3', 'stream')
+    ['victory'] = love.audio.newSource('music/victory.mp3', 'stream')
 }
-gMusic['title-music']:setVolume(0.25)
+gMusic['title-music']:setVolume(0.5)
 gMusic['level-1']:setVolume(0.25)
 gMusic['level-2']:setVolume(0.25)
 gMusic['level-3']:setVolume(0.25)
+gMusic['level-4']:setVolume(0.25)
+gMusic['level-5']:setVolume(0.25)
 gMusic['gameover']:setVolume(0.5)
 gMusic['victory']:setVolume(0.4)
 

@@ -34,8 +34,13 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 
 ### Music:
 
-- **Title Screen Music**: [Stage Select](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Title Screen Music**: [Birthday Cake](https://opengameart.org/content/birthday-cake) by [Viktor Kraus](https://opengameart.org/users/viktor-kraus).
+- **Stage Objective**: [Stage Select](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Level 1**: [Stage 1](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Level 2**: [Stage 2](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Level 3**: [Boss Fight](https://opengameart.org/content/4-chiptunes-adventure) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Level 4**: [Grasslands](https://opengameart.org/content/jrpg-pack-1-exploration) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
+- **Level 5**: [Prairie Nights](https://opengameart.org/content/jrpg-pack-1-exploration) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Game Over**: [Witch's Lair](https://opengameart.org/content/jrpg-pack-3-evil) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Level Completed**: [Victory!](https://opengameart.org/content/victory-1) by [Viktor Kraus](https://opengameart.org/users/viktor-kraus).
 
