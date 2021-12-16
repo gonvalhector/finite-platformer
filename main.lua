@@ -24,12 +24,6 @@ function love.update(dt)
     Timer.update(dt)
 end
 
-function love.keypressed(key)
-    if key == 'escape' and currentState ~= ExitConfirm then
-        Gamestate.push(ExitConfirm)
-    end
-end
-
 function love.draw()
     push:start()
     for i = 1, #currentStack do

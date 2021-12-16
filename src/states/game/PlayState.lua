@@ -337,7 +337,7 @@ function Play:keypressed(key)
         end
     end
 
-    if key == "p" then
+    if key == "p" or key == "escape" then
         Gamestate.push(Pause)
     end
 end
