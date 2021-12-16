@@ -39,7 +39,7 @@ function Pause:enter()
     -- Flag for recognizing key input
     self.canPressKey = true
 
-    love.audio.stop()
+    love.audio.pause()
     self.sounds.pauseIn:play()
     Timer.tween(0.25, self.caption, { y = gameHeight / 2 - 100 })
     Timer.tween(0.5, self.options, { alpha = 1 })
