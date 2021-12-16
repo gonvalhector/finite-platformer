@@ -26,7 +26,7 @@ function Victory:enter(def)
     -- Flag for recognizing key input
     self.canPressKey = true
 
-    -- Game Over Music
+    -- Victory Music
     self.music = gMusic['victory']
 
     -- Confetti Particles
@@ -66,7 +66,13 @@ function Victory:keypressed(key)
                 score = self.score,
                 lives = self.lives
             }
-            Timer.after(0.5, function() Gamestate.switch(Stage, def) end)
+            Timer.after(0.5, function() 
+                if self.lvl > 5 then
+                    Gamestate.switch(Credits)
+                else
+                    Gamestate.switch(Stage, def)
+                end
+             end)
         end
     end
 end

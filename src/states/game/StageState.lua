@@ -8,7 +8,7 @@ function Stage:enter(def)
 
     -- Looping background
     self.background = {}
-    self.background.image = gImages['title-background']
+    self.background.image = self.lvl > 3 and gImages['stage-background-ice'] or gImages['stage-background']
     self.background.x = 0
     self.background.y = 0
     self.background.dx = 150
@@ -51,6 +51,22 @@ function Stage:enter(def)
     self.sounds.wind = gSounds['wind']
     self.sounds.prompt = gSounds['menu-select']
 
+    -- Stage Objectives Music
+    self.music = gMusic['stage']
+
+    -- Snow Particles
+    self.snow = love.graphics.newParticleSystem(gImages['snow'], 800)
+    self.snow:setQuads(gFrames['snow'][1], gFrames['snow'][2], gFrames['snow'][3], gFrames['snow'][4])
+    self.snow:setColors(1, 1, 1, 1, 1, 1, 1, 0)
+    self.snow:setParticleLifetime(7, 10)
+    self.snow:setEmissionRate(100)
+    self.snow:setSizes(1)
+    self.snow:setLinearAcceleration(-10, 20, 10, 20)
+    self.snow:setEmissionArea('normal', gameWidth, gameHeight, 0, false)
+
+    love.audio.stop()
+    self.music:setLooping(true)
+    self.music:play()
     self.sounds.wind:play()
     Timer.tween(0.5, self.captions[2], { y = gameHeight / 3 })
 end
@@ -64,6 +80,10 @@ function Stage:update(dt)
         Timer.tween(1, self.prompt.color, {1, 1, 1, 1})
     elseif self.prompt.color[4] == 1 then
         Timer.tween(1, self.prompt.color, {1, 1, 1, 0})
+    end
+    -- Update snow
+    if self.lvl > 3 then
+        self.snow:update(dt)
     end
 end
 
@@ -87,6 +107,10 @@ end
 function Stage:draw()
     -- Draw background
     love.graphics.draw(self.background.image, -self.background.x, self.background.y)
+    -- Draw snow
+    if self.lvl > 3 then
+        love.graphics.draw(self.snow, gameWidth / 2, -10)
+    end
     -- Draw captions
     love.graphics.setColor(1, 1, 1, 1)
     -- Draw 'Level' caption

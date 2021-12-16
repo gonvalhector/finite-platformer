@@ -56,6 +56,8 @@ require 'src/entity_defs'
 gImages = {
     ['title-logo'] = love.graphics.newImage('graphics/title.png'),
     ['title-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
+    ['stage-background'] = love.graphics.newImage('graphics/titleScreenBackground.png'),
+    ['stage-background-ice'] = love.graphics.newImage('graphics/stageBackgroundIce.png'),
     ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
     ['level-caption'] = love.graphics.newImage('graphics/level.png'),
@@ -117,6 +119,7 @@ gMusic = {
     ['credits'] = love.audio.newSource('music/credits.mp3', 'stream')
 }
 gMusic['title-music']:setVolume(0.5)
+gMusic['stage']:setVolume(0.25)
 gMusic['level-1']:setVolume(0.25)
 gMusic['level-2']:setVolume(0.25)
 gMusic['level-3']:setVolume(0.25)

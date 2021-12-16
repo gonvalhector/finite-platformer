@@ -340,19 +340,14 @@ function Play:keypressed(key)
     if key == "p" then
         Gamestate.push(Pause)
     end
-
-    -- TO DELETE
-    if key == "c" then
-        Gamestate.switch(Credits)
-    end
 end
 
 function Play:draw()
     self.camera:attach()
         self.level:draw()
     self.camera:detach()
+    -- Draw snow
     if self.lvl > 3 then
-        -- Draw snow
         love.graphics.draw(self.snow, gameWidth / 2, -10)
     end
     -- UI Elements
@@ -397,7 +392,7 @@ function Play:draw()
     love.graphics.draw(self.UIelements.score.captions[2], gameWidth - 55, self.UIelements.score.captions[1]:getHeight(), 0, 1.4, 1.4, 0, 2)
 
     --love.graphics.setColor(0, 0, 0, 1)
-    --love.graphics.print("LVL: " .. tostring(self.level.goal.lvl), 0, gameHeight - 20)
+    --love.graphics.print("N of Enemies: " .. tostring(#self.level.enemies), 0, gameHeight - 20)
     --love.graphics.print("Checkpoint Y: " .. tostring(self.level.player.checkpoint.y), 0, gameHeight - 10)
     --love.graphics.setLineWidth(1)
     --love.graphics.line(gameWidth / 2, 0, gameWidth / 2, gameHeight)
