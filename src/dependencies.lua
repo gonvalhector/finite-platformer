@@ -33,6 +33,7 @@ require 'src/states/game/PauseState'
 require 'src/states/game/RestartState'
 require 'src/states/game/GameoverState'
 require 'src/states/game/VictoryState'
+require 'src/states/CreditsState'
 require 'src/states/ExitConfirmState'
 
 -- Helper functions and utilities
@@ -73,7 +74,8 @@ gImages = {
     ['captions'] = love.graphics.newImage('graphics/captions.png'),
     ['ice-cream'] = love.graphics.newImage('graphics/ice_cream.png'),
     ['confetti'] = love.graphics.newImage('graphics/confetti.png'),
-    ['snow'] = love.graphics.newImage('graphics/snow.png')
+    ['snow'] = love.graphics.newImage('graphics/snow.png'),
+    ['credits'] = love.graphics.newImage('graphics/credits.png')
 }
 for k, image in pairs(gImages) do
     gImages[k]:setFilter('nearest', 'nearest', 16)
@@ -111,7 +113,8 @@ gMusic = {
     ['level-4'] = love.audio.newSource('music/level4.ogg', 'stream'),
     ['level-5'] = love.audio.newSource('music/level5.ogg', 'stream'),
     ['gameover'] = love.audio.newSource('music/gameover.ogg', 'stream'),
-    ['victory'] = love.audio.newSource('music/victory.mp3', 'stream')
+    ['victory'] = love.audio.newSource('music/victory.mp3', 'stream'),
+    ['credits'] = love.audio.newSource('music/credits.mp3', 'stream')
 }
 gMusic['title-music']:setVolume(0.5)
 gMusic['level-1']:setVolume(0.25)
@@ -121,6 +124,7 @@ gMusic['level-4']:setVolume(0.25)
 gMusic['level-5']:setVolume(0.50)
 gMusic['gameover']:setVolume(0.5)
 gMusic['victory']:setVolume(0.4)
+gMusic['credits']:setVolume(0.5)
 
 -- Sounds
 gSounds = {

@@ -340,6 +340,11 @@ function Play:keypressed(key)
     if key == "p" then
         Gamestate.push(Pause)
     end
+
+    -- TO DELETE
+    if key == "c" then
+        Gamestate.switch(Credits)
+    end
 end
 
 function Play:draw()

@@ -3,13 +3,14 @@ Victory = {}
 function Victory:enter(def)
     -- Player variables
     self.lvl = def.lvl
+    self.lvl = self.lvl + 1
     self.score = def.score
     self.lives = def.lives
 
     -- 'Victory' caption
     self.captions = {}
     self.captions[1] = {}
-    self.captions[1].image = gFrames['captions'][4]
+    self.captions[1].image = self.lvl == 6 and gFrames['captions'][5] or gFrames['captions'][4]
     self.captions[1].sheet = gImages['captions']
     self.captions[1].x = gameWidth / 2
     self.captions[1].y = gameHeight / 2
@@ -60,7 +61,6 @@ function Victory:keypressed(key)
             self.prompt.color[4] = 1
             self.prompt.sound:play()
             -- Change to next level
-            self.lvl = self.lvl + 1
             local def = {
                 lvl = self.lvl,
                 score = self.score,

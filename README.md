@@ -22,7 +22,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 ### Fonts:
 
 - **Title font**: [Font.](https://opengameart.org/content/font-0) by [thekingphoenix](https://opengameart.org/users/thekingphoenix).
-- **Message font**: [KenPixel Mini](https://opengameart.org/content/kenney-fonts) by [Kenney](https://opengameart.org/users/kenney).
+- **Message font**: [KenPixel Mini Square](https://opengameart.org/content/kenney-fonts) by [Kenney](https://opengameart.org/users/kenney).
 - **UI font**: [Sharp Retro Font](https://opengameart.org/content/sharp-retro-font) by [JROB774](https://opengameart.org/users/jrob774).
 - **Block Font**: [Pixel Block Font](https://opengameart.org/content/pixel-block-font) by [JROB774](https://opengameart.org/users/jrob774).
 
@@ -43,6 +43,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Level 5**: [Prairie Nights](https://opengameart.org/content/jrpg-pack-1-exploration) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Game Over**: [Witch's Lair](https://opengameart.org/content/jrpg-pack-3-evil) by [SubspaceAudio](https://opengameart.org/users/subspaceaudio).
 - **Level Completed**: [Victory!](https://opengameart.org/content/victory-1) by [Viktor Kraus](https://opengameart.org/users/viktor-kraus).
+- **Credits**: [Blueberries](https://opengameart.org/content/blueberries) by [Viktor Kraus](https://opengameart.org/users/viktor-kraus).
 
 ### Sounds:
 
