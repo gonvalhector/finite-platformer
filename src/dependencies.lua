@@ -27,6 +27,7 @@ require 'lib/Animation'
 -- Gamestates
 require 'src/states/title/StartState'
 require 'src/states/title/TitleMenuState'
+require 'src/states/HowToPlayState'
 require 'src/states/game/StageState'
 require 'src/states/game/PlayState'
 require 'src/states/game/PauseState'
@@ -60,6 +61,7 @@ gImages = {
     ['stage-background-ice'] = love.graphics.newImage('graphics/stageBackgroundIce.png'),
     ['title-menu'] = love.graphics.newImage('graphics/titleMenu.png'),
     ['key-prompt'] = love.graphics.newImage('graphics/keyPrompt.png'),
+    ['how-to-play'] = love.graphics.newImage('graphics/howToPlay.png'),
     ['level-caption'] = love.graphics.newImage('graphics/level.png'),
     ['level-numbers'] = love.graphics.newImage('graphics/numbers.png'),
     ['player'] = love.graphics.newImage('graphics/player.png'),

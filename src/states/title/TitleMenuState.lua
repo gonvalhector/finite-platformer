@@ -92,6 +92,9 @@ function TitleMenu:keypressed(key)
                     lives = self.lives
                 }
                 Timer.after(0.5, function() Gamestate.switch(Stage, def) end)
+            -- 'How To Play' option
+            elseif self.options.selected == 2 then
+                Timer.after(0.5, function() Gamestate.push(HowToPlay) end)
             -- 'Quit' option
             elseif self.options.selected == 3 then
                 Timer.after(0.5, function() Gamestate.push(ExitConfirm) end)

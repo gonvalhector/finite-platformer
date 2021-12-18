@@ -78,6 +78,10 @@ function Pause:keypressed(key)
             if self.options.selected == 1 then
                 self.sounds.pauseOut:play()
                 Gamestate.pop() 
+            -- 'How To Play' option
+            elseif self.options.selected == 2 then
+                self.sounds.select:play()
+                Timer.after(0.5, function() Gamestate.push(HowToPlay) end)
             -- 'Quit' option
             elseif self.options.selected == 3 then
                 self.sounds.select:play()

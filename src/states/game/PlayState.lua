@@ -327,7 +327,7 @@ function Play:update(dt)
 end
 
 function Play:keypressed(key)
-    if key == "space" or key == "up" then
+    if key == "space" then
         if self.jumpCount < 2 then
             local jumpSound = love.audio.newSource(self.sounds.jump, 'static')
             jumpSound:setVolume(0.5)

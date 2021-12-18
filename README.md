@@ -31,6 +31,7 @@ Intended as ***Hector Gonzalez***'s submission for the final project of the **"C
 - **Platformer Assets**: [Arcade Platformer Assets](https://opengameart.org/content/arcade-platformer-assets) by [GrafxKid](https://opengameart.org/users/grafxkid).
 - **Crates and Spikes**: [Items And Elements](https://opengameart.org/content/items-and-elements) by [GrafxKid](https://opengameart.org/users/grafxkid).
 - **Ice Cream**: [City Mega Pack](https://opengameart.org/content/city-mega-pack) by [GrafxKid](https://opengameart.org/users/grafxkid).
+- **Keys**: [Input Prompts Pixel 16×](https://opengameart.org/content/input-prompts-pixel-16%C3%97) by [Kenney](https://opengameart.org/users/kenney).
 
 ### Music:
 
