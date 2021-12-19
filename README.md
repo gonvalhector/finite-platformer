@@ -2,12 +2,41 @@
 
 ## About
 
-**Finite Platformer** is a 2D platformer game made in the **LÖVE2D** framework and written in ***Lua***.  
-Intended as ***Hector Gonzalez***'s submission for the final project of the **"CS50’s Introduction to Game Development"** online course.
+**Finite Platformer** is a 2D platformer game made by [Hector Gonzalez](https://www.gonvalhector.com/) with the **LÖVE** framework and written in ***Lua***.  
+Intended as my submission for the final project of the **"CS50’s Introduction to Game Development"** online course.
+
+## Installation
+
+1. Install [LÖVE 11.3](https://love2d.org/).
+2. Download the repository's [zip file](https://github.com/gonvalhector/finite-platformer/archive/refs/heads/main.zip).
+3. Drag and drop the ***/finite-platformer-main*** folder into ***love.exe***.
+
+## How To Play
+
+| Action | Keys |
+| ----------- | ----------- |
+| Accept | Enter or Return |
+| Jump | Space |
+| Right | D or Right Arrow Key |
+| Left | A or Left Arrow Key |
+| Pause | Escape or P |
+
+## Objective
+
+Traverse through each level and complete their specific objectives to make the **ice cream** item appear, which gives you access to the next level:
+1. Get the ice cream at the end of the level.
+2. Get all coins.
+3. Destroy all enemies.
+4. Get the ice cream at the top.
+5. Get all coins and destroy all enemies.
 
 ## Credits & Attributions
 
-### Love2D Libraries:
+### Finite Platformer
+
+Made by [Hector Gonzalez](https://www.gonvalhector.com/).
+
+### LÖVE Libraries:
 
 - **Resolution-handling library**: [Push](https://github.com/Ulydev/push) by [Ulysse Ramage](https://github.com/Ulydev).
 - **Class, GameState, Timer and Camera library**: [Helper Utilities for a Multitude of Problems(Hump)](https://github.com/vrld/hump) by [Matthias Richter](https://github.com/vrld).

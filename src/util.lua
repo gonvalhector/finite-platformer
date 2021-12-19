@@ -65,19 +65,6 @@ function GenerateQuads(atlas, tilewidth, tileheight)
     return spritesheet
 end
 
-
---[[
-    Defines the friction of a fixture given a type of surface.
-]]
-function newFriction(surfaceType)
-    local surfaces = {
-        ['Normal'] = 1,
-        ['Ice'] = 0.1
-    }
-    return surfaces[surfaceType]
-end
-
-
 --[[
     Create animations.
 
